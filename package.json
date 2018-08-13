@@ -1,9 +1,16 @@
 {
   "name": "autobot",
   "version": "0.0.0",
+  "description": "A simple Angular project fro playing with cars ;-)",
+  "homepage": "https://autobot.cars",
+  "author": {
+    "name": "Alberto Basalo",
+    "email": "albertobasalo@agorabinaria.com",
+    "url": "https://twitter.com/albertobasalo"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o",
+    "start": "ng serve -o --port 4201",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
