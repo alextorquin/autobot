@@ -28,7 +28,7 @@
     "interface-over-type-literal": true,
     "label-position": true,
     "max-line-length": [
-      true,
+      false,
       140
     ],
     "member-access": false,
@@ -125,6 +125,15 @@
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
-    "directive-class-suffix": true
+    "directive-class-suffix": true,
+    "consistent-return": "warn",
+    "no-const-assign": "warn",
+    "no-multiple-empty-lines": ["warn", { "max": 1 }],
+    "max-statements-per-line": ["warn", { "max": 1 }],
+    "max-depth": ["warn", 2],
+    "complexity": ["warn", 4],
+    "max-params": ["warn", 4],
+    "max-statements": ["warn", 8],
+    "max-lines": ["warn", 256]
   }
 }
