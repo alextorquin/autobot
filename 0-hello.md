@@ -1,6 +1,8 @@
-# 0-hello
+# 0 - Hola Angular CLI
 
-## 0.1 Generación automática
+## 0.1 Herramientas para crear y ejecutar una aplicación
+
+## 0.1.1 Generación automática
 
 La generación de proyectos puede automatizarse con scripts como este.
 
@@ -33,9 +35,7 @@ echo "---> Starting"
 npm start
 ```
 
-## 0.2 Configuración manual
-
-### 0.2.1 Scripts en `package.json`
+### 0.1.2 Configuración manual de Scripts en `package.json`
 
 ```json
 {
@@ -53,7 +53,9 @@ npm start
 }
 ```
 
-### 0.2.2 Estilos en `angular.json`
+## 0.2 Estructura de una aplicación Angular
+
+### 0.2.1 Estilos en `angular.json`
 
 ```json
 {
@@ -65,7 +67,7 @@ npm start
 }
 ```
 
-### 0.2.3 Metadata en `index.html` y copia en `404.html`
+### 0.2.2 Metadata en `index.html` y copia en `404.html`
 
 ```html
   <title>AutoBot 0-hello</title>
@@ -77,17 +79,13 @@ npm start
         content="Alberto Basalo">
 ```
 
-### 0.2.4 Contenido en la plantilla *html* de `app.component.ts`
+### 0.2.3 Contenido en la plantilla *html* de `app.component.ts`
 
 ```html
     <header class="hero">
       <div class="hero-body has-text-centered">
-        <h1 class="title">
-          Bienvenido a {{title}}!
-        </h1>
-        <h2 class="subtitle">
-          Versión: {{subtitle}}
-        </h2>
+        <h1 class="title"> Bienvenido a {{title}} </h1>
+        <h2 class="subtitle"> Versión: {{subtitle}} </h2>
         <a target="_blank" rel="noopener" href="https://academia-binaria.com/">
           <img width="100" src="./assets/logo.png">
         </a>
@@ -112,18 +110,18 @@ npm start
     <footer>
       <div class="content has-text-centered">
         <p>
-          <strong>Autobot.</strong><i>-A simple Angular project for playing with cars ;-)</i> by <a href="https://twitter.com/albertobasalo">Alberto Basalo</a>.
+          <strong>Autobot.</strong><i>-A simple Angular project for playing with cars... while learning Angular ;-)</i>.
         </p>
         <p>
           <small>
-            The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+          By <a href="https://twitter.com/albertobasalo">Alberto Basalo</a>
           </small>
         </p>
       </div>
     </footer>
 ```
 
-### 0.2.5 Contenido en el código 
+### 0.2.4 Contenido en el código 
 ```typescript
   title = 'autobot';
   subtitle = '0-hello';

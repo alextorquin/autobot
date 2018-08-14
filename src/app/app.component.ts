@@ -5,12 +5,8 @@ import { Component } from '@angular/core';
   template: `
     <header class="hero">
       <div class="hero-body has-text-centered">
-        <h1 class="title">
-          Bienvenido a {{title}}!
-        </h1>
-        <h2 class="subtitle">
-          Versión: {{subtitle}}
-        </h2>
+        <h1 class="title"> Bienvenido a {{title}} </h1>
+        <h2 class="subtitle"> Versión: {{subtitle}} </h2>
         <a target="_blank" rel="noopener" href="https://academia-binaria.com/">
           <img width="100" src="./assets/logo.png">
         </a>
