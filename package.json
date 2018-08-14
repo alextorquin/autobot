@@ -12,6 +12,8 @@
     "ng": "ng",
     "start": "ng serve -o --port 4203",
     "build": "ng build --prod --stats-json",
+    "xpregh": "npm run build",
+    "gh": "rm -r docs && mkdir docs && cp -r dist/autobot/* docs",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
