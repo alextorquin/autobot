@@ -43,6 +43,7 @@ Scripts en `package.json`
     "ng": "ng",
     "start": "ng serve -o --port 4203",
     "build": "ng build --prod --stats-json",
+    "gh": "ng build --prod --output-path docs --base-href https://academiabinaria.github.io/autobot/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -64,9 +65,10 @@ Estilos en `angular.json`
 }
 ```
 
-Metadata en `index.html`
+Metadata en `index.html` y copia en `404.html`
 
 ```html
+  <title>AutoBot 0-hello</title>
   <meta name="description"
         content="A simple Angular project for playing with cars ;-)">
   <meta name="keywords"
@@ -82,4 +84,5 @@ Metadata en `index.html`
 npm run doc
 npm run build
 npm run stats
+npm run gh
 ```
