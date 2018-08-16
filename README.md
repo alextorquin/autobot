@@ -14,6 +14,12 @@ Proyecto simple usado como ejemplo en cursos de Angular. *Coded in english.*
 
 - Instrucciones paso a paso: [Script](./0-hello.md)
 
+### 1-base
+
+- Artículo: [Base para una aplicación Angular](https://academia-binaria.com/base-aplicacion-angular/)
+
+-- Instrucciones paso a paso: [Script](./1-base.md)
+
 
 ## Autor
 
