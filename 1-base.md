@@ -13,5 +13,4 @@
 
 ## 1.3 Shared para componentes reutilizables
 - No utilizado por el momento
-## 1.4 Home y otros para implementar funcionalidades
-- No utilizado por el momento
+
