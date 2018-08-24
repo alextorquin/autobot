@@ -17,7 +17,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   public title = 'autobot';
-  public subtitle = '1-base';
+  public subtitle = '2-spa';
   constructor() {}
 
   ngOnInit() {}
