@@ -3,21 +3,16 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'app-about',
   template: `
-    <h1>
-      about works!
-    </h1>
-    <h2 class="title">Links to learn Angular: </h2>
-      <ul>
-        <li>
-          <h2><a target="_blank" rel="noopener" href="https://academia-binaria.com/hola-angular-cli/">Tutorial en español</a></h2>
-        </li>
-        <li>
-          <h2><a target="_blank" rel="noopener" href="https://github.com/AcademiaBinaria/autobot/tree/0-hello">GitHub Repository</a></h2>
-        </li>
-        <li>
-          <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-        </li>
-      </ul>
+    <h1 class="title">Angular sample simple project </h1>
+    <nav class="navbar" role="navigation" aria-label="about nested navigation">
+      <div class="navbar-menu is-active">
+        <div class="navbar-start">
+          <a class="navbar-item"  [routerLink]="['./links']"> Links</a>
+          <a class="navbar-item"  [routerLink]="['./info']"> Info</a>
+        </div>
+      </div>
+    </nav>
+    <router-outlet></router-outlet>
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush

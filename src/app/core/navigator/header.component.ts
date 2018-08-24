@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
       </a>
     </div>
     <div class="navbar-menu">
-      <div class="navbar-start">
+      <div class="navbar-start ">
         <a class="navbar-item" routerLink="about"> About</a>
       </div>
       <div class="navbar-end">
