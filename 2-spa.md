@@ -1,8 +1,8 @@
 # 2 - Páginas y rutas Angular SPA
 
 ## 2.1 Generación automática
-- ./scripts/lib/g-tools.sh
-- Correcciones de pertenencia
+- ./scripts/g-feature.sh '' about
+- ./scripts/g-feature.sh '' car
 
 ## 2.2 Core para compoentes de instancia única
 
