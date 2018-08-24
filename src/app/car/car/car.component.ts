@@ -4,24 +4,29 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-car',
   template: `
+  <br>
   <div class="card">
-  <header class="card-header">
-    <div class="card-header-title">
-      {{ carId }}
+    <header class="card-header">
+      <div class="card-header-title">
+        {{ carId }}
+      </div>
+      <a [routerLink]="['/']"  aria-label="home" class="button is-info is-outlined"> <-   </a>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        Current speed : 0 km/h
+        Traveled : 0 km
+      </div>
     </div>
-    <a [routerLink]="['/']"  aria-label="home"> <-   </a>
-  </header>
-  <div class="card-content">
-    <div class="content">
-      Current speed : 0 km/h
-      Traveled : 0 km
-    </div>
+    <footer class="card-footer">
+      <div class="card-footer-item">
+        <button class="button is-danger is-outlined">Brake</button>
+      </div>
+      <div class="card-footer-item">
+        <button class="button is-primary is-outlined">Throttle</button>
+      </div>
+    </footer>
   </div>
-  <footer class="card-footer">
-    <a href="#" class="card-footer-item">Brake</a>
-    <a href="#" class="card-footer-item">Throttle</a>
-  </footer>
-</div>
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
