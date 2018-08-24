@@ -1,4 +1,4 @@
-git tag -a v1.0.0 -m "1-Base para una aplicación Angular"
+git tag -a v2.0.0 -m "2-Páginas y rutas Angular SPA"
 git push origin master --tag
 
 

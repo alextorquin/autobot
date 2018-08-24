@@ -6,10 +6,10 @@
 - ng g c about/about/info --flat
 - ng g c about/about/links --flat
 
-## 2.2 Core para compoentes de instancia única
+## 2.2 Rutas lazy principales
 
-### 2.2.1 App component simplificado
-- Delega en `NavigatorComponent`
-- El cual se descompone en `HeaderComponent` , `MainComponent` y `FooterComponent`
+## 2.3 Rutas nested
+
+## 2.3 Rutas paramétricas
 
 
