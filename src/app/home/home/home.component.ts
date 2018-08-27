@@ -28,8 +28,26 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
+  public cars = [
+    {
+      url: 'Model S',
+      caption: 'Model S'
+    },
+    {
+      url: 'Model X',
+      caption: 'Model X'
+    },
+    {
+      url: 'Model 3',
+      caption: 'Model 3'
+    },
+    {
+      url: 'Roadster',
+      caption: 'Roadster'
+    }
+  ];
   public title = 'autobot';
-  public subtitle = '2-spa';
+  public subtitle = '3-data';
   constructor() {}
 
   ngOnInit() {}

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-about',
@@ -7,8 +7,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     <nav class="navbar" role="navigation" aria-label="about nested navigation">
       <div class="navbar-menu is-active">
         <div class="navbar-start">
-          <a class="navbar-item"  [routerLink]="['./links']"> Links</a>
-          <a class="navbar-item"  [routerLink]="['./info']"> Info</a>
+          <a *ngFor="let link of links" class="navbar-item"  [routerLink]="link.url">{{ link.caption }}</a>
         </div>
       </div>
     </nav>
@@ -18,10 +17,17 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AboutComponent implements OnInit {
+  public links = [
+    {
+      url: './links',
+      caption: 'Links'
+    },
+    {
+      url: './info',
+      caption: 'Info'
+    }
+  ];
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

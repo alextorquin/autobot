@@ -26,8 +26,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   public title = 'autobot';
-  public version = '2-spa';
-  public tag = '2.0.0';
+  public version = '3-data';
+  public tag = '3.0.0';
   constructor() {}
 
   ngOnInit() {}
