@@ -9,29 +9,23 @@
         content="Angular Sample Tutorial Ejemplo">
   <meta name="author"
         content="Alberto Basalo">
-  <title>AutoBot 1-base</title>
+  <title>AutoBot 2-spa</title>
   <base href="/">
   <meta name="viewport"
         content="width=device-width, initial-scale=1">
   <link rel="icon"
         type="image/x-icon"
         href="favicon.ico">
-  <script type="text/javascript">
-    // Single Page Apps for GitHub Pages
-    var segmentCount = 0;
-    var l = window.location;
-    l.replace(
-      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-      l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=/' +
-      l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~') +
-      (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-      l.hash
-    );
+  <script>
+    sessionStorage.redirect = location.href;
   </script>
+
+  <meta http-equiv="refresh"
+        content="0;URL='/autobot'">
+  </meta>
 </head>
 
 <body>
-  <app-root></app-root>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async
           src="https://www.googletagmanager.com/gtag/js?id=UA-123905833-1"></script>
