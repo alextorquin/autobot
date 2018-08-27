@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Car } from '../../core/store/models/car.model';
 
 @Component({
   selector: 'app-home',
@@ -17,10 +18,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
       Cars in your garage
     </p>
     <ul class="menu-list">
-      <li><a [routerLink]="['/car', 'Model S']">Model S</a></li>
-      <li><a [routerLink]="['/car', 'Model X']">Model X</a></li>
-      <li><a [routerLink]="['/car', 'Model 3']">Model 3</a></li>
-      <li><a [routerLink]="['/car', 'Roadster']">Roadster</a></li>
+      <li *ngFor="let car of cars"><a [routerLink]="['/car', car.link.url]">{{ car.link.caption }}</a></li>
     </ul>
   </aside>
   `,
@@ -28,22 +26,42 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
-  public cars = [
+  public cars: Car[] = [
     {
-      url: 'Model S',
-      caption: 'Model S'
+      model: 'Model S',
+      maxSpeed: 200,
+      distance: 0,
+      link: {
+        url: 'Model S',
+        caption: 'Model S'
+      }
     },
     {
-      url: 'Model X',
-      caption: 'Model X'
+      model: 'Model X',
+      maxSpeed: 200,
+      distance: 0,
+      link: {
+        url: 'Model X',
+        caption: 'Model X'
+      }
     },
     {
-      url: 'Model 3',
-      caption: 'Model 3'
+      model: 'Model 3',
+      maxSpeed: 200,
+      distance: 0,
+      link: {
+        url: 'Model 3',
+        caption: 'Model 3'
+      }
     },
     {
-      url: 'Roadster',
-      caption: 'Roadster'
+      model: 'Roadster',
+      maxSpeed: 200,
+      distance: 0,
+      link: {
+        url: 'Roadster',
+        caption: 'Roadster'
+      }
     }
   ];
   public title = 'autobot';

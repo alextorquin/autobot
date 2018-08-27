@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Link } from '../../core/store/models/link.model';
 
 @Component({
   selector: 'app-about',
@@ -17,7 +18,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AboutComponent implements OnInit {
-  public links = [
+  public links: Link[] = [
     {
       url: './links',
       caption: 'Links'

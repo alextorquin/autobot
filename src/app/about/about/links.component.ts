@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Link } from '../../core/store/models/link.model';
 
 @Component({
   selector: 'app-links',
@@ -13,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class LinksComponent implements OnInit {
-  public links = [
+  public links: Link[] = [
     {
       url: 'https://academia-binaria.com/hola-angular-cli/',
       caption: 'Tutorial en español'
