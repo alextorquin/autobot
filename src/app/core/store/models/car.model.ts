@@ -6,5 +6,6 @@ export interface Car {
   currentSpeed: number;
   maxDistance: number;
   distanceTraveled: number;
+  distanceRemaining?: number;
   link: Link;
 }

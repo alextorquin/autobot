@@ -7,6 +7,7 @@ export const Cars: Car[] = [
     currentSpeed: 0,
     maxDistance: 490,
     distanceTraveled: 0,
+    distanceRemaining: 490,
     link: {
       url: 'model-s',
       caption: 'Model S'
@@ -18,6 +19,7 @@ export const Cars: Car[] = [
     currentSpeed: 0,
     maxDistance: 417,
     distanceTraveled: 0,
+    distanceRemaining: 417,
     link: {
       url: 'model-x',
       caption: 'Model X'
@@ -29,6 +31,7 @@ export const Cars: Car[] = [
     currentSpeed: 0,
     maxDistance: 354,
     distanceTraveled: 0,
+    distanceRemaining: 354,
     link: {
       url: 'model-3',
       caption: 'Model 3'
@@ -40,6 +43,7 @@ export const Cars: Car[] = [
     currentSpeed: 0,
     maxDistance: 998,
     distanceTraveled: 0,
+    distanceRemaining: 998,
     link: {
       url: 'roadster',
       caption: 'Roadster'

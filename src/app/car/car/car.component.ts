@@ -18,13 +18,16 @@ import { Car } from '../../core/store/models/car.model';
       <div class="content">
         <div>
           Current speed : {{ car.currentSpeed }} km/h of {{ car.maxSpeed }} km/h maximum
-          <progress class="progress is-success" [value]="car.currentSpeed" [max]="car.maxSpeed"></progress>
+          <progress class="progress is-info" [value]="car.currentSpeed" [max]="car.maxSpeed"></progress>
         </div>
         <div>
-          Traveled : {{ car.distanceTraveled }} km of {{ car.maxDistance }} km maximum
-          <progress [ngClass]="['progress', distanceClass]" [value]="car.maxDistance - car.distanceTraveled" [max]="car.maxDistance"></progress>
+          Battery
+          <progress [ngClass]="['progress', distanceClass]" [value]="car.distanceRemaining" [max]="car.maxDistance"></progress>
         </div>
-        <form *ngIf="isOutOfFuel" #rechargingForm="ngForm" (ngSubmit)="onRecharge()">
+        <div>
+          Total Traveled : {{ car.distanceTraveled }} km
+        </div>
+        <form *ngIf="!hasBattery()" #rechargingForm="ngForm" (ngSubmit)="onRecharge()">
           <div class="field">
             <label class="label">Kilometers to recharge</label>
             <div class="control">
@@ -35,12 +38,12 @@ import { Car } from '../../core/store/models/car.model';
         </form>
       </div>
     </div>
-    <footer class="card-footer" >
+    <footer class="card-footer" *ngIf="hasBattery()" >
       <div class="card-footer-item">
-        <button class="button is-danger is-outlined" [disabled]="isOutOfFuel" (click)="onBrake()">Brake</button>
+        <button class="button is-danger is-outlined" [disabled]="this.car.currentSpeed <= 0" (click)="onBrake()">Brake</button>
       </div>
       <div class="card-footer-item">
-        <button class="button is-primary is-outlined" [disabled]="isOutOfFuel" (click)="onThrottle()">Throttle</button>
+        <button class="button is-primary is-outlined" [disabled]="this.car.currentSpeed >= this.car.maxSpeed" (click)="onThrottle()">Throttle</button>
       </div>
     </footer>
   </div>
@@ -50,8 +53,7 @@ import { Car } from '../../core/store/models/car.model';
 })
 export class CarComponent implements OnInit {
   public car: Car;
-  public isOutOfFuel = false;
-  public distanceClass = 'is-info';
+  public distanceClass = 'is-success';
   public rechargedDistance = 0;
 
   constructor(private route: ActivatedRoute) {}
@@ -62,55 +64,51 @@ export class CarComponent implements OnInit {
   }
 
   public onBrake() {
-    if (this.car.currentSpeed > 0) {
-      this.car.currentSpeed--;
-    } else {
-      this.car.currentSpeed = 0;
-    }
-    this.updateDistance();
+    this.car.currentSpeed--;
+    this.checkBattery();
   }
 
   public onThrottle() {
-    if (this.car.currentSpeed < this.car.maxSpeed) {
-      this.car.currentSpeed++;
-    } else {
-      this.car.currentSpeed = this.car.maxSpeed;
-    }
-    this.updateDistance();
+    this.car.currentSpeed++;
+    this.checkBattery();
   }
 
   public onRecharge() {
-    if (this.rechargedDistance > 0) {
-      this.car.maxDistance = this.rechargedDistance;
-      this.car.distanceTraveled = 0;
-      this.isOutOfFuel = false;
+    if (this.rechargedDistance > this.car.maxDistance) {
+      this.rechargedDistance = this.car.maxDistance;
     }
+    this.car.distanceRemaining = this.rechargedDistance;
+    this.checkBattery();
   }
 
-  private updateDistance() {
-    this.car.distanceTraveled += this.car.currentSpeed;
-    this.checkFuel();
-  }
-  private checkFuel() {
-    const remainingDistance = this.car.maxDistance - this.car.distanceTraveled;
+  public hasBattery = () => this.car.distanceRemaining > 0;
+
+  private checkBattery() {
     switch (true) {
-      case remainingDistance <= 0:
+      case this.car.distanceRemaining <= this.car.currentSpeed:
         this.stopCar();
         break;
-      case remainingDistance <= 100:
+      case this.car.distanceRemaining <= 100:
         this.distanceClass = 'is-danger';
+        this.travelDistance();
         break;
-      case remainingDistance <= 150:
+      case this.car.distanceRemaining <= 150:
         this.distanceClass = 'is-warning';
+        this.travelDistance();
         break;
       default:
-        this.distanceClass = 'is-info';
+        this.distanceClass = 'is-success';
+        this.travelDistance();
         break;
     }
   }
   private stopCar() {
     this.car.currentSpeed = 0;
-    this.car.distanceTraveled = this.car.maxDistance;
-    this.isOutOfFuel = true;
+    this.car.distanceTraveled += this.car.distanceRemaining;
+    this.car.distanceRemaining = 0;
+  }
+  private travelDistance() {
+    this.car.distanceTraveled += this.car.currentSpeed;
+    this.car.distanceRemaining -= this.car.currentSpeed;
   }
 }
