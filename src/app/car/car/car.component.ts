@@ -10,41 +10,45 @@ import { Car } from '../../core/store/models/car.model';
   <div class="card">
     <header class="card-header">
       <div class="card-header-title">
-        {{ car.model }}
+        {{ car.model | uppercase }}
       </div>
       <a [routerLink]="['/']"  aria-label="home" class="button is-info is-outlined"> <-   </a>
     </header>
     <div class="card-content">
       <div class="content">
         <div>
-          Current speed : {{ car.currentSpeed }} km/h of {{ car.maxSpeed }} km/h maximum
-          <progress class="progress is-info" [value]="car.currentSpeed" [max]="car.maxSpeed"></progress>
+          Current speed : {{ car.currentSpeed }} km/h of {{ car.topSpeed }} km/h top speed
+          <progress class="progress is-info" [value]="car.currentSpeed" [max]="car.topSpeed"></progress>
         </div>
+        <br>
         <div>
-          Battery
-          <progress [ngClass]="['progress', distanceClass]" [value]="car.distanceRemaining" [max]="car.maxDistance"></progress>
+          Total traveled : {{ car.distanceTraveled }} km. You can travel {{ car.remainingBattery }} km.
+          <progress [ngClass]="['progress', batteryClass]" [value]="car.remainingBattery" [max]="car.totalBattery"></progress>
         </div>
-        <div>
-          Total Traveled : {{ car.distanceTraveled }} km
-        </div>
-        <form *ngIf="!hasBattery()" #rechargingForm="ngForm" (ngSubmit)="onRecharge()">
-          <div class="field">
-            <label class="label">Kilometers to recharge</label>
-            <div class="control">
-              <input [(ngModel)]="rechargedDistance" name="rechargedDistance" type="number" required>
-            </div>
-          </div>
-          <button type="submit" class="button is-primary" [disabled]="rechargingForm.form.invalid">Recharge</button>
-        </form>
       </div>
     </div>
-    <footer class="card-footer" *ngIf="hasBattery()" >
-      <div class="card-footer-item">
-        <button class="button is-danger is-outlined" [disabled]="this.car.currentSpeed <= 0" (click)="onBrake()">Brake</button>
-      </div>
-      <div class="card-footer-item">
-        <button class="button is-primary is-outlined" [disabled]="this.car.currentSpeed >= this.car.maxSpeed" (click)="onThrottle()">Throttle</button>
-      </div>
+    <footer >
+      <section *ngIf="hasBattery(); else rechargingSection"  class="card-footer">
+        <div class="card-footer-item">
+          <button class="button is-danger is-outlined" [disabled]="this.car.currentSpeed <= 0" (click)="onBrake()">Brake</button>
+        </div>
+        <div class="card-footer-item">
+          <button class="button is-primary is-outlined" [disabled]="this.car.currentSpeed >= this.car.topSpeed" (click)="onThrottle()">Throttle</button>
+        </div>
+      </section>
+      <ng-template #rechargingSection>
+        <form #rechargingForm="ngForm" (ngSubmit)="onRecharge()"  class="card-footer">
+          <div class="card-footer-item field is-horizontal has-addons">
+            <label class="field-label is-normal">Kilometers to recharge: </label>
+            <div class="control">
+              <input [(ngModel)]="rechargedDistance" name="rechargedDistance" type="number" required class="input" >
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-primary" [disabled]="rechargingForm.form.invalid">Recharge</button>
+            </div>
+          </div>
+        </form>
+      </ng-template>
     </footer>
   </div>
   `,
@@ -53,7 +57,7 @@ import { Car } from '../../core/store/models/car.model';
 })
 export class CarComponent implements OnInit {
   public car: Car;
-  public distanceClass = 'is-success';
+  public batteryClass = 'is-success';
   public rechargedDistance = 0;
 
   constructor(private route: ActivatedRoute) {}
@@ -74,41 +78,41 @@ export class CarComponent implements OnInit {
   }
 
   public onRecharge() {
-    if (this.rechargedDistance > this.car.maxDistance) {
-      this.rechargedDistance = this.car.maxDistance;
+    if (this.rechargedDistance > this.car.totalBattery) {
+      this.rechargedDistance = this.car.totalBattery;
     }
-    this.car.distanceRemaining = this.rechargedDistance;
+    this.car.remainingBattery = this.rechargedDistance;
     this.checkBattery();
   }
 
-  public hasBattery = () => this.car.distanceRemaining > 0;
+  public hasBattery = () => this.car.remainingBattery > 0;
 
   private checkBattery() {
     switch (true) {
-      case this.car.distanceRemaining <= this.car.currentSpeed:
+      case this.car.remainingBattery <= this.car.currentSpeed:
         this.stopCar();
         break;
-      case this.car.distanceRemaining <= 100:
-        this.distanceClass = 'is-danger';
+      case this.car.remainingBattery <= 100:
+        this.batteryClass = 'is-danger';
         this.travelDistance();
         break;
-      case this.car.distanceRemaining <= 150:
-        this.distanceClass = 'is-warning';
+      case this.car.remainingBattery <= 150:
+        this.batteryClass = 'is-warning';
         this.travelDistance();
         break;
       default:
-        this.distanceClass = 'is-success';
+        this.batteryClass = 'is-success';
         this.travelDistance();
         break;
     }
   }
   private stopCar() {
     this.car.currentSpeed = 0;
-    this.car.distanceTraveled += this.car.distanceRemaining;
-    this.car.distanceRemaining = 0;
+    this.car.distanceTraveled += this.car.remainingBattery;
+    this.car.remainingBattery = 0;
   }
   private travelDistance() {
     this.car.distanceTraveled += this.car.currentSpeed;
-    this.car.distanceRemaining -= this.car.currentSpeed;
+    this.car.remainingBattery -= this.car.currentSpeed;
   }
 }
