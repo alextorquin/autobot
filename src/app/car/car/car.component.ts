@@ -17,12 +17,12 @@ import { Car } from '../../core/store/models/car.model';
     <div class="card-content">
       <div class="content">
         <div>
-          Current speed : {{ car.currentSpeed }} km/h of {{ car.topSpeed }} km/h top speed
-          <progress class="progress is-info" [value]="car.currentSpeed" [max]="car.topSpeed"></progress>
+          Current speed : {{ car.currentSpeed | number:'1.0-0' }} km/h of {{ car.topSpeed }} km/h top speed
+          <progress [ngClass]="['progress', speedClass]" [value]="car.currentSpeed" [max]="car.topSpeed"></progress>
         </div>
         <br>
         <div>
-          Total traveled : {{ car.distanceTraveled }} km. You can travel {{ car.remainingBattery }} km.
+          Total traveled : {{ car.distanceTraveled | number:'1.2-2' }} km. You can travel {{ car.remainingBattery | number:'1.2-2' }} km.
           <progress [ngClass]="['progress', batteryClass]" [value]="car.remainingBattery" [max]="car.totalBattery"></progress>
         </div>
       </div>
@@ -53,10 +53,11 @@ import { Car } from '../../core/store/models/car.model';
   </div>
   `,
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class CarComponent implements OnInit {
   public car: Car;
+  public speedClass = 'is-info';
   public batteryClass = 'is-success';
   public rechargedDistance = 0;
 
@@ -65,16 +66,15 @@ export class CarComponent implements OnInit {
   ngOnInit() {
     const carId = this.route.snapshot.params['carId'];
     this.car = Cars.find(c => c.link.url === carId);
+    setInterval(() => this.timeGoesBy(), 1000);
   }
 
   public onBrake() {
-    this.car.currentSpeed--;
-    this.checkBattery();
+    this.car.currentSpeed -= 1 + (this.car.topSpeed - this.car.currentSpeed) / 10;
   }
 
   public onThrottle() {
-    this.car.currentSpeed++;
-    this.checkBattery();
+    this.car.currentSpeed += 1 + (this.car.topSpeed - this.car.currentSpeed) / 10;
   }
 
   public onRecharge() {
@@ -82,14 +82,30 @@ export class CarComponent implements OnInit {
       this.rechargedDistance = this.car.totalBattery;
     }
     this.car.remainingBattery = this.rechargedDistance;
-    this.checkBattery();
   }
 
   public hasBattery = () => this.car.remainingBattery > 0;
 
+  private timeGoesBy() {
+    this.checkSpeed();
+    this.checkBattery();
+  }
+  private checkSpeed() {
+    if (this.car.currentSpeed <= 1) {
+      this.car.currentSpeed = 0;
+    }
+    const speedRate = this.car.currentSpeed / this.car.topSpeed;
+    if (speedRate >= 0.9) {
+      this.speedClass = 'is-danger';
+    } else if (speedRate >= 0.7) {
+      this.speedClass = 'is-warning';
+    } else {
+      this.speedClass = 'is-info';
+    }
+  }
   private checkBattery() {
     switch (true) {
-      case this.car.remainingBattery <= this.car.currentSpeed:
+      case this.car.remainingBattery <= this.car.currentSpeed / 60:
         this.stopCar();
         break;
       case this.car.remainingBattery <= 100:
@@ -112,7 +128,7 @@ export class CarComponent implements OnInit {
     this.car.remainingBattery = 0;
   }
   private travelDistance() {
-    this.car.distanceTraveled += this.car.currentSpeed;
-    this.car.remainingBattery -= this.car.currentSpeed;
+    this.car.distanceTraveled += this.car.currentSpeed / 60;
+    this.car.remainingBattery -= this.car.currentSpeed / 60;
   }
 }

@@ -16,10 +16,19 @@ import { Car } from '../../core/store/models/car.model';
   </header>
   <aside class="menu">
     <p class="menu-label">
-      Cars in your garage
+      Cars in your garage:
     </p>
     <ul class="menu-list">
-      <li *ngFor="let car of cars"><a [routerLink]="['/car', car.link.url]">{{ car.link.caption }}</a></li>
+      <li *ngFor="let car of cars">
+        <a [routerLink]="['/car', car.link.url]">
+          <strong>
+            {{ car.link.caption }}
+          </strong>
+          <span class="is-pulled-right">
+            {{ car.cost | currency:'EUR' }}
+          </span>
+        </a>
+      </li>
     </ul>
   </aside>
   `,
