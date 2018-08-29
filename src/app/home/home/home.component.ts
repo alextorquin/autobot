@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Cars } from '../../core/store/cars';
+import { CARS } from '../../core/store/cars';
 import { Car } from '../../core/store/models/car.model';
 
 @Component({
@@ -36,7 +36,7 @@ import { Car } from '../../core/store/models/car.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
-  public cars: Car[] = Cars;
+  public cars: Car[] = CARS;
   public title = 'autobot';
   public subtitle = '3-data';
   constructor() {}

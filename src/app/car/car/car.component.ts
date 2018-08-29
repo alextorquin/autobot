@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
-import { Cars } from '../../core/store/cars';
+import { CARS } from '../../core/store/cars';
 import { Car } from '../../core/store/models/car.model';
 
 @Component({
@@ -88,7 +88,7 @@ export class CarComponent implements OnInit {
 
   ngOnInit() {
     const carId = this.route.snapshot.params['carId'];
-    this.car = Cars.find(c => c.link.url === carId);
+    this.car = CARS.find(c => c.link.url === carId);
     setInterval(() => this.timeGoesBy(), environment.refreshInterval);
   }
 

@@ -1,6 +1,6 @@
 import { Car } from './models/car.model';
 
-export const Cars: Car[] = [
+export const CARS: Car[] = [
   {
     model: 'Model S',
     cost: 96680,
@@ -30,11 +30,11 @@ export const Cars: Car[] = [
   {
     model: 'Model 3',
     cost: 29868.13,
-    topSpeed: 354,
+    topSpeed: 254,
     currentSpeed: 0,
-    totalBattery: 354,
+    totalBattery: 400,
     distanceTraveled: 0,
-    remainingBattery: 354,
+    remainingBattery: 400,
     link: {
       url: 'model-3',
       caption: 'Model 3'
