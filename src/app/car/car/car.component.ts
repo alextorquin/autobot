@@ -59,14 +59,14 @@ import { Car } from '../../core/store/models/car.model';
         </div>
       </section>
       <ng-template #rechargingSection>
-        <form #rechargingForm="ngForm" (ngSubmit)="onRecharge()"  class="card-footer">
+        <form (ngSubmit)="onRecharge()" class="card-footer">
           <div class="card-footer-item ">
             <div class="field has-addons">
               <div class="control">
-                <input [(ngModel)]="rechargedDistance" name="rechargedDistance" type="number" required class="input" placeholder="Kilometers">
+                <input [(ngModel)]="rechargedDistance" name="rechargedDistance" type="number" class="input" placeholder="Kilometers">
               </div>
               <div class="control">
-                <button type="submit" class="button is-primary" [disabled]="rechargingForm.form.invalid">Recharge</button>
+                <button type="submit" class="button is-primary">Recharge</button>
               </div>
             </div>
           </div>
@@ -101,6 +101,9 @@ export class CarComponent implements OnInit {
   }
 
   public onRecharge() {
+    if (!this.rechargedDistance || this.rechargedDistance < 0) {
+      return;
+    }
     if (this.rechargedDistance > this.car.totalBattery) {
       this.rechargedDistance = this.car.totalBattery;
     }
