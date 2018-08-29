@@ -1,4 +1,5 @@
-git tag -a v2.0.0 -m "2-Páginas y rutas Angular SPA"
+git merge 3-data
+git tag -a v3.0.0 -m "3-Formularios, tablas y modelos de datos en Angular"
 git push origin master --tag
 
 
