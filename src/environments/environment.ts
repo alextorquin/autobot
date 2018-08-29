@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  refreshInterval: 2000,
+  dangerSpeedRate: 0.9,
+  warningSpeedRate: 0.7,
+  dangerKmsBattery: 100,
+  warningKmsBattery: 150
 };
 
 /*

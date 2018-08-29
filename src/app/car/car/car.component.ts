@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../environments/environment';
 import { Cars } from '../../core/store/cars';
 import { Car } from '../../core/store/models/car.model';
 
@@ -88,7 +89,7 @@ export class CarComponent implements OnInit {
   ngOnInit() {
     const carId = this.route.snapshot.params['carId'];
     this.car = Cars.find(c => c.link.url === carId);
-    setInterval(() => this.timeGoesBy(), 2000);
+    setInterval(() => this.timeGoesBy(), environment.refreshInterval);
   }
 
   public onBrake() {
@@ -117,9 +118,9 @@ export class CarComponent implements OnInit {
       this.car.currentSpeed = 0;
     }
     const speedRate = this.car.currentSpeed / this.car.topSpeed;
-    if (speedRate >= 0.9) {
+    if (speedRate >= environment.dangerSpeedRate) {
       this.speedClass = 'is-danger';
-    } else if (speedRate >= 0.7) {
+    } else if (speedRate >= environment.warningSpeedRate) {
       this.speedClass = 'is-warning';
     } else {
       this.speedClass = 'is-info';
@@ -130,11 +131,11 @@ export class CarComponent implements OnInit {
       case this.car.remainingBattery <= this.car.currentSpeed:
         this.stopCar();
         break;
-      case this.car.remainingBattery <= 100:
+      case this.car.remainingBattery <= environment.dangerKmsBattery:
         this.batteryClass = 'is-danger';
         this.travelDistance();
         break;
-      case this.car.remainingBattery <= 150:
+      case this.car.remainingBattery <= environment.warningKmsBattery:
         this.batteryClass = 'is-warning';
         this.travelDistance();
         break;
