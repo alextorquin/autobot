@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,7 @@ import { Component, OnInit } from '@angular/core';
       <div class="navbar-end">
         <a class="navbar-item"
           rel="noopener"
-          href="https://github.com/AcademiaBinaria/astrobot/releases/tag/v{{ tag }}/"
+          href="https://github.com/AcademiaBinaria/{{title}}/releases/tag/v{{ tag }}/"
           target="_blank">v: {{ version }}</a>
       </div>
     </div>
@@ -25,9 +26,9 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class HeaderComponent implements OnInit {
-  public title = 'autobot';
-  public version = '3-data';
-  public tag = '3.0.0';
+  public title = environment.title;
+  public version = environment.version;
+  public tag = environment.tag;
   constructor() {}
 
   ngOnInit() {}

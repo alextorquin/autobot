@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
       <a routerLink="about"><strong> Autobot.</strong> </a><i>-A simple Angular project for playing with cars... while learning Angular ;-)</i>.
     </div>
     <div>
-      <a href="https://github.com/AcademiaBinaria/astrobot/releases/tag/v{{ tag }}/"
+      <a href="https://github.com/AcademiaBinaria/{{title}}/tree/{{version}}/"
         rel="noopener" target="_blank">
           v: {{ version }}
       </a>
@@ -19,9 +20,9 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class FooterComponent implements OnInit {
-  public title = 'autobot';
-  public version = '3-data';
-  public tag = '3.0.0';
+  public title = environment.title;
+  public version = environment.version;
+
   constructor() {}
 
   ngOnInit() {}
