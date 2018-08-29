@@ -12,19 +12,40 @@ import { Car } from '../../core/store/models/car.model';
       <div class="card-header-title">
         {{ car.model | uppercase }}
       </div>
-      <a [routerLink]="['/']"  aria-label="home" class="button is-info is-outlined"> <-   </a>
+      <span class="card-header-icon">{{ car.cost | currency:'EUR' }}</span>
     </header>
     <div class="card-content">
       <div class="content">
-        <div>
-          Current speed : {{ car.currentSpeed | number:'1.0-0' }} km/h of {{ car.topSpeed }} km/h top speed
-          <progress [ngClass]="['progress', speedClass]" [value]="car.currentSpeed" [max]="car.topSpeed"></progress>
+        <div class="field is-grouped is-grouped-multiline">
+          <div class="control">
+            <div class="tags has-addons">
+              <span class="tag is-dark">Speed</span>
+              <span class="tag is-info">{{ car.currentSpeed | number:'1.0-0' }}</span>
+            </div>
+          </div>
+          <div class="control">
+            <div class="tags has-addons">
+              <span class="tag is-dark">Top</span>
+              <span class="tag is-danger">{{ car.topSpeed }}</span>
+            </div>
+          </div>
         </div>
-        <br>
-        <div>
-          Total traveled : {{ car.distanceTraveled | number:'1.2-2' }} km. You can travel {{ car.remainingBattery | number:'1.2-2' }} km.
-          <progress [ngClass]="['progress', batteryClass]" [value]="car.remainingBattery" [max]="car.totalBattery"></progress>
+        <progress [ngClass]="['progress', speedClass]" [value]="car.currentSpeed" [max]="car.topSpeed"></progress>
+        <div class="field is-grouped is-grouped-multiline">
+          <div class="control">
+            <div class="tags has-addons">
+              <span class="tag is-dark">Traveled</span>
+              <span class="tag is-success">{{ car.distanceTraveled | number:'1.2-2' }}</span>
+            </div>
+          </div>
+          <div class="control">
+            <div class="tags has-addons">
+              <span class="tag is-dark">Reamining</span>
+              <span class="tag is-danger">{{ car.remainingBattery | number:'1.2-2' }}</span>
+            </div>
+          </div>
         </div>
+        <progress [ngClass]="['progress', batteryClass]" [value]="car.remainingBattery" [max]="car.totalBattery"></progress>
       </div>
     </div>
     <footer >
@@ -38,13 +59,14 @@ import { Car } from '../../core/store/models/car.model';
       </section>
       <ng-template #rechargingSection>
         <form #rechargingForm="ngForm" (ngSubmit)="onRecharge()"  class="card-footer">
-          <div class="card-footer-item field is-horizontal has-addons">
-            <label class="field-label is-normal">Kilometers to recharge: </label>
-            <div class="control">
-              <input [(ngModel)]="rechargedDistance" name="rechargedDistance" type="number" required class="input" >
-            </div>
-            <div class="control">
-              <button type="submit" class="button is-primary" [disabled]="rechargingForm.form.invalid">Recharge</button>
+          <div class="card-footer-item ">
+            <div class="field has-addons">
+              <div class="control">
+                <input [(ngModel)]="rechargedDistance" name="rechargedDistance" type="number" required class="input" placeholder="Kilometers">
+              </div>
+              <div class="control">
+                <button type="submit" class="button is-primary" [disabled]="rechargingForm.form.invalid">Recharge</button>
+              </div>
             </div>
           </div>
         </form>
@@ -59,14 +81,14 @@ export class CarComponent implements OnInit {
   public car: Car;
   public speedClass = 'is-info';
   public batteryClass = 'is-success';
-  public rechargedDistance = 0;
+  public rechargedDistance;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     const carId = this.route.snapshot.params['carId'];
     this.car = Cars.find(c => c.link.url === carId);
-    setInterval(() => this.timeGoesBy(), 1000);
+    setInterval(() => this.timeGoesBy(), 2000);
   }
 
   public onBrake() {
@@ -105,7 +127,7 @@ export class CarComponent implements OnInit {
   }
   private checkBattery() {
     switch (true) {
-      case this.car.remainingBattery <= this.car.currentSpeed / 60:
+      case this.car.remainingBattery <= this.car.currentSpeed:
         this.stopCar();
         break;
       case this.car.remainingBattery <= 100:
@@ -128,7 +150,7 @@ export class CarComponent implements OnInit {
     this.car.remainingBattery = 0;
   }
   private travelDistance() {
-    this.car.distanceTraveled += this.car.currentSpeed / 60;
-    this.car.remainingBattery -= this.car.currentSpeed / 60;
+    this.car.distanceTraveled += this.car.currentSpeed;
+    this.car.remainingBattery -= this.car.currentSpeed;
   }
 }
