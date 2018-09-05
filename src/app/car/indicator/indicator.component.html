@@ -1,0 +1,13 @@
+<div class="field is-grouped is-grouped-multiline">
+  <div *ngFor="let tag of tags"
+       class="control">
+    <app-data-tag [caption]="tag.caption"
+                  [value]="tag.value"
+                  [tagClass]="tag.class">
+    </app-data-tag>
+  </div>
+</div>
+<progress [value]="value"
+          [max]="max"
+          [ngClass]="['progress', indicatorClass]">
+</progress>

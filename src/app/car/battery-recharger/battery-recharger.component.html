@@ -1,0 +1,17 @@
+<form (ngSubmit)="recharge.next(rechargedDistance)">
+  <div>
+    <div class="field has-addons">
+      <div class="control">
+        <input [(ngModel)]="rechargedDistance"
+               name="rechargedDistance"
+               type="number"
+               class="input"
+               placeholder="Kilometers">
+      </div>
+      <div class="control">
+        <button type="submit"
+                class="button is-primary">Recharge</button>
+      </div>
+    </div>
+  </div>
+</form>

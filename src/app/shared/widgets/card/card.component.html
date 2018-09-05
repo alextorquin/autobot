@@ -1,0 +1,18 @@
+<article class="card">
+  <header class="card-header">
+    <div class="card-header-title">
+      <ng-content select="[caption]"></ng-content>
+    </div>
+    <span class="card-header-icon"><ng-content select="[value]"></ng-content></span>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      <ng-content select="main"></ng-content>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="card-footer-item">
+      <ng-content select="footer"></ng-content>
+    </div>
+  </div>
+</article>

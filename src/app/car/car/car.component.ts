@@ -6,75 +6,7 @@ import { Car } from '../../core/store/models/car.model';
 
 @Component({
   selector: 'app-car',
-  template: `
-  <br>
-  <div class="card">
-    <header class="card-header">
-      <div class="card-header-title">
-        {{ car.model | uppercase }}
-      </div>
-      <span class="card-header-icon">{{ car.cost | currency:'EUR' }}</span>
-    </header>
-    <div class="card-content">
-      <div class="content">
-        <div class="field is-grouped is-grouped-multiline">
-          <div class="control">
-            <div class="tags has-addons">
-              <span class="tag is-dark">Speed</span>
-              <span class="tag is-info">{{ car.currentSpeed | number:'1.0-0' }}</span>
-            </div>
-          </div>
-          <div class="control">
-            <div class="tags has-addons">
-              <span class="tag is-dark">Top</span>
-              <span class="tag is-danger">{{ car.topSpeed }}</span>
-            </div>
-          </div>
-        </div>
-        <progress [ngClass]="['progress', speedClass]" [value]="car.currentSpeed" [max]="car.topSpeed"></progress>
-        <div class="field is-grouped is-grouped-multiline">
-          <div class="control">
-            <div class="tags has-addons">
-              <span class="tag is-dark">Traveled</span>
-              <span class="tag is-success">{{ car.distanceTraveled | number:'1.2-2' }}</span>
-            </div>
-          </div>
-          <div class="control">
-            <div class="tags has-addons">
-              <span class="tag is-dark">Reamining</span>
-              <span class="tag is-danger">{{ car.remainingBattery | number:'1.2-2' }}</span>
-            </div>
-          </div>
-        </div>
-        <progress [ngClass]="['progress', batteryClass]" [value]="car.remainingBattery" [max]="car.totalBattery"></progress>
-      </div>
-    </div>
-    <footer >
-      <section *ngIf="hasBattery(); else rechargingSection"  class="card-footer">
-        <div class="card-footer-item">
-          <button class="button is-danger is-outlined" [disabled]="this.car.currentSpeed <= 0" (click)="onBrake()">Brake</button>
-        </div>
-        <div class="card-footer-item">
-          <button class="button is-primary is-outlined" [disabled]="this.car.currentSpeed >= this.car.topSpeed" (click)="onThrottle()">Throttle</button>
-        </div>
-      </section>
-      <ng-template #rechargingSection>
-        <form (ngSubmit)="onRecharge()" class="card-footer">
-          <div class="card-footer-item ">
-            <div class="field has-addons">
-              <div class="control">
-                <input [(ngModel)]="rechargedDistance" name="rechargedDistance" type="number" class="input" placeholder="Kilometers">
-              </div>
-              <div class="control">
-                <button type="submit" class="button is-primary">Recharge</button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </ng-template>
-    </footer>
-  </div>
-  `,
+  templateUrl: './car.component.html',
   styles: [],
   changeDetection: ChangeDetectionStrategy.Default
 })
@@ -82,7 +14,6 @@ export class CarComponent implements OnInit {
   public car: Car;
   public speedClass = 'is-info';
   public batteryClass = 'is-success';
-  public rechargedDistance;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -100,14 +31,14 @@ export class CarComponent implements OnInit {
     this.car.currentSpeed += 1 + (this.car.topSpeed - this.car.currentSpeed) / 10;
   }
 
-  public onRecharge() {
-    if (!this.rechargedDistance || this.rechargedDistance < 0) {
+  public onRecharge(rechargedDistance) {
+    if (!rechargedDistance || rechargedDistance < 0) {
       return;
     }
-    if (this.rechargedDistance > this.car.totalBattery) {
-      this.rechargedDistance = this.car.totalBattery;
+    if (rechargedDistance > this.car.totalBattery) {
+      rechargedDistance = this.car.totalBattery;
     }
-    this.car.remainingBattery = this.rechargedDistance;
+    this.car.remainingBattery = rechargedDistance;
   }
 
   public hasBattery = () => this.car.remainingBattery > 0;
