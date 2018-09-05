@@ -7,13 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class IndicatorComponent implements OnInit {
   @Input()
-  tags: any[];
-  @Input()
-  indicatorClass: string;
-  @Input()
-  value: number;
-  @Input()
-  max: number;
+  public indicator: any;
 
   constructor() {}
 

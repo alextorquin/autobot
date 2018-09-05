@@ -1,34 +1,14 @@
 <app-card [caption]="car.model | uppercase"
           [value]="car.cost | currency:'EUR'">
   <main>
-    <app-indicator [value]="car.currentSpeed"
-                   [max]="car.topSpeed"
-                   [indicatorClass]="speedClass"
-                   [tags]="[{
-                    caption:'Speed',
-                    value:car.currentSpeed | number:'1.0-0',
-                    class:'is-info'},{
-                    caption:'Top',
-                    value:car.topSpeed,
-                    class:'is-danger'}]">
-    </app-indicator>
-    <br>
-    <app-indicator [value]="car.remainingBattery"
-                   [max]="car.totalBattery"
-                   [indicatorClass]="batteryClass"
-                   [tags]="[{
-                    caption:'Traveled',
-                    value:car.distanceTraveled | number:'1.2-2',
-                    class:'is-success'},{
-                    caption:'Remaining',
-                    value:car.remainingBattery | number:'1.2-2',
-                    class:'is-danger'}]">
+    <app-indicator *ngFor="let i of indicators"
+                   [indicator]="i">
     </app-indicator>
   </main>
   <footer>
     <app-speed-controls *ngIf="hasBattery()"
-                        [brakeDisabled]="this.car.currentSpeed <= 0"
-                        [throttleDisabled]="this.car.currentSpeed >= this.car.topSpeed"
+                        [brakeDisabled]="isBrakeDisabled()"
+                        [throttleDisabled]="isThrottleDisabled()"
                         (brake)="onBrake()"
                         (throttle)="onThrottle()">
     </app-speed-controls>

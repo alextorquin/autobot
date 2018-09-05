@@ -12,15 +12,66 @@ import { Car } from '../../core/store/models/car.model';
 })
 export class CarComponent implements OnInit {
   public car: Car;
-  public speedClass = 'is-info';
-  public batteryClass = 'is-success';
+  public indicators = [];
+  private speedIndicator = {
+    value: 0,
+    max: 0,
+    class: 'is-info',
+    tags: [
+      {
+        caption: 'Speed',
+        value: 0,
+        class: 'is-info'
+      },
+      {
+        caption: 'Top',
+        value: 0,
+        class: 'is-danger'
+      }
+    ]
+  };
+  private batteryIndicator = {
+    value: 0,
+    max: 0,
+    class: 'is-success',
+    tags: [
+      {
+        caption: 'Traveled',
+        value: 0,
+        class: 'is-success'
+      },
+      {
+        caption: 'Remaining',
+        value: 0,
+        class: 'is-danger'
+      }
+    ]
+  };
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     const carId = this.route.snapshot.params['carId'];
     this.car = CARS.find(c => c.link.url === carId);
+    this.initilizeIndicators();
     setInterval(() => this.timeGoesBy(), environment.refreshInterval);
+  }
+
+  private initilizeIndicators() {
+    this.speedIndicator.max = this.car.topSpeed;
+    this.speedIndicator.tags[1].value = this.car.topSpeed;
+    this.batteryIndicator.max = this.car.totalBattery;
+    this.updateIndicators();
+    this.indicators.push(this.speedIndicator, this.batteryIndicator);
+  }
+  private updateIndicators() {
+    this.speedIndicator.value = this.car.currentSpeed;
+    this.speedIndicator.class = this.getSpeedClass();
+    this.speedIndicator.tags[0].value = this.car.currentSpeed;
+    this.batteryIndicator.value = this.car.remainingBattery;
+    this.batteryIndicator.class = this.getBatteryClass();
+    this.batteryIndicator.tags[0].value = this.car.distanceTraveled;
+    this.batteryIndicator.tags[1].value = this.car.remainingBattery;
   }
 
   public onBrake() {
@@ -42,43 +93,49 @@ export class CarComponent implements OnInit {
   }
 
   public hasBattery = () => this.car.remainingBattery > 0;
+  public isBrakeDisabled = () => this.car.currentSpeed <= 0;
+  public isThrottleDisabled = () => this.car.currentSpeed >= this.car.topSpeed;
 
   private timeGoesBy() {
     this.checkSpeed();
     this.checkBattery();
+    this.updateIndicators();
   }
   private checkSpeed() {
     if (this.car.currentSpeed <= 1) {
       this.car.currentSpeed = 0;
     }
+  }
+  private getSpeedClass() {
     const speedRate = this.car.currentSpeed / this.car.topSpeed;
     if (speedRate >= environment.dangerSpeedRate) {
-      this.speedClass = 'is-danger';
+      return 'is-danger';
     } else if (speedRate >= environment.warningSpeedRate) {
-      this.speedClass = 'is-warning';
+      return 'is-warning';
     } else {
-      this.speedClass = 'is-info';
+      return 'is-info';
     }
   }
+
   private checkBattery() {
-    switch (true) {
-      case this.car.remainingBattery <= this.car.currentSpeed:
-        this.stopCar();
-        break;
-      case this.car.remainingBattery <= environment.dangerKmsBattery:
-        this.batteryClass = 'is-danger';
-        this.travelDistance();
-        break;
-      case this.car.remainingBattery <= environment.warningKmsBattery:
-        this.batteryClass = 'is-warning';
-        this.travelDistance();
-        break;
-      default:
-        this.batteryClass = 'is-success';
-        this.travelDistance();
-        break;
+    if (this.car.remainingBattery <= this.car.currentSpeed) {
+      this.stopCar();
+    } else {
+      this.travelDistance();
     }
   }
+
+  private getBatteryClass() {
+    switch (true) {
+      case this.car.remainingBattery <= environment.dangerKmsBattery:
+        return 'is-danger';
+      case this.car.remainingBattery <= environment.warningKmsBattery:
+        return 'is-warning';
+      default:
+        return 'is-success';
+    }
+  }
+
   private stopCar() {
     this.car.currentSpeed = 0;
     this.car.distanceTraveled += this.car.remainingBattery;
