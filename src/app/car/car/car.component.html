@@ -1,6 +1,5 @@
-<app-card>
-  <span caption>{{ car.model | uppercase }}</span>
-  <span value>{{ car.cost | currency:'EUR' }}</span>
+<app-card [caption]="car.model | uppercase"
+          [value]="car.cost | currency:'EUR'">
   <main>
     <app-indicator [value]="car.currentSpeed"
                    [max]="car.topSpeed"
