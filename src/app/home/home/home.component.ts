@@ -1,5 +1,6 @@
 import { formatNumber } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { CARS } from '../../core/store/cars';
 import { Car } from '../../core/store/models/car.model';
 import { Link } from '../../core/store/models/link.model';
@@ -11,8 +12,8 @@ import { Link } from '../../core/store/models/link.model';
     <div class="hero-body has-text-centered">
       <h1 class="title"> Welcome to {{title}} </h1>
       <h2 class="subtitle"> Version: {{subtitle}} </h2>
-      <a target="_blank" rel="noopener" href="https://academia-binaria.com/">
-        <img width="100" src="./assets/logo.png">
+      <a target="_blank" rel="noopener" href="https://academiabinaria.github.io/autobot/">
+        <img width="80" src="./assets/logo.png">
       </a>
     </div>
   </header>
@@ -26,8 +27,8 @@ import { Link } from '../../core/store/models/link.model';
 export class HomeComponent implements OnInit {
   public cars: Car[] = CARS;
   public links: Link[];
-  public title = 'autobot';
-  public subtitle = '3-data';
+  public title = environment.title;
+  public subtitle = environment.version;
   constructor() {}
 
   public ngOnInit() {
