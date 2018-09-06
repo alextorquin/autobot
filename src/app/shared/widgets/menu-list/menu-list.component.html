@@ -1,0 +1,19 @@
+<nav class="menu">
+  <p class="menu-label">{{ caption }}</p>
+  <ul class="menu-list">
+    <li *ngFor="let link of links">
+      <a *ngIf="link.href"
+         target="_blank"
+         rel="noopener"
+         [href]="link.href">
+        <span class="has-text-link">{{ link.caption }}</span>
+        <span class="is-pulled-right">{{ link.value }}</span>
+      </a>
+      <a *ngIf="link.routerLink"
+         [routerLink]="link.routerLink">
+        <span class="has-text-link">{{ link.caption }}</span>
+        <span class="is-pulled-right">{{ link.value }}</span>
+      </a>
+    </li>
+  </ul>
+</nav>

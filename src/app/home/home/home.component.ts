@@ -1,6 +1,8 @@
+import { formatNumber } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CARS } from '../../core/store/cars';
 import { Car } from '../../core/store/models/car.model';
+import { Link } from '../../core/store/models/link.model';
 
 @Component({
   selector: 'app-home',
@@ -14,32 +16,27 @@ import { Car } from '../../core/store/models/car.model';
       </a>
     </div>
   </header>
-  <aside class="menu">
-    <p class="menu-label">
-      Cars in your garage:
-    </p>
-    <ul class="menu-list">
-      <li *ngFor="let car of cars">
-        <a [routerLink]="['/car', car.link.url]">
-          <strong>
-            {{ car.link.caption }}
-          </strong>
-          <span class="is-pulled-right">
-            {{ car.cost | currency:'EUR' }}
-          </span>
-        </a>
-      </li>
-    </ul>
-  </aside>
+  <app-menu-list caption="Cars in your garage:"
+    [links]="links">
+  </app-menu-list>
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
   public cars: Car[] = CARS;
+  public links: Link[];
   public title = 'autobot';
   public subtitle = '3-data';
   constructor() {}
 
-  ngOnInit() {}
+  public ngOnInit() {
+    this.links = this.cars.map(c => {
+      return {
+        caption: c.link.caption,
+        routerLink: '/car/' + c.link.routerLink,
+        value: formatNumber(c.cost, 'en-US') + ' EUR'
+      };
+    });
+  }
 }

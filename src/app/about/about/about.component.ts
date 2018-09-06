@@ -8,7 +8,7 @@ import { Link } from '../../core/store/models/link.model';
     <nav class="navbar" role="navigation" aria-label="about nested navigation">
       <div class="navbar-menu is-active">
         <div class="navbar-start">
-          <a *ngFor="let link of links" class="navbar-item"  [routerLink]="link.url">{{ link.caption }}</a>
+          <a *ngFor="let link of links" class="navbar-item"  [routerLink]="link.routerLink">{{ link.caption }}</a>
         </div>
       </div>
     </nav>
@@ -20,11 +20,11 @@ import { Link } from '../../core/store/models/link.model';
 export class AboutComponent implements OnInit {
   public links: Link[] = [
     {
-      url: './links',
+      routerLink: './links',
       caption: 'Links'
     },
     {
-      url: './info',
+      routerLink: './info',
       caption: 'Info'
     }
   ];

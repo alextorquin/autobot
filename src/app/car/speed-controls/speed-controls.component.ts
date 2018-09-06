@@ -11,9 +11,9 @@ export class SpeedControlsComponent implements OnInit {
   @Input()
   public throttleDisabled = false;
   @Output()
-  brake = new EventEmitter<void>();
+  public brake = new EventEmitter<void>();
   @Output()
-  throttle = new EventEmitter<void>();
+  public throttle = new EventEmitter<void>();
   constructor() {}
 
   ngOnInit() {}

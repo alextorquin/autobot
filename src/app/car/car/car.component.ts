@@ -22,7 +22,7 @@ export class CarComponent implements OnInit {
 
   public ngOnInit() {
     const carId = this.route.snapshot.params['carId'];
-    this.car = CARS.find(c => c.link.url === carId);
+    this.car = CARS.find(c => c.link.routerLink === carId);
     this.initilizeIndicators();
     setInterval(() => this.timeGoesBy(), environment.refreshInterval);
   }
@@ -50,7 +50,7 @@ export class CarComponent implements OnInit {
     this.speedIndicator.tags[1].value = this.car.topSpeed;
     this.batteryIndicator.max = this.car.totalBattery;
     this.updateIndicators();
-    this.indicators.push(this.speedIndicator, this.batteryIndicator);
+    this.timeGoesBy();
   }
   private updateIndicators() {
     this.speedIndicator.value = this.car.currentSpeed;

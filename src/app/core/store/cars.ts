@@ -10,7 +10,7 @@ export const CARS: Car[] = [
     distanceTraveled: 0,
     remainingBattery: 490,
     link: {
-      url: 'model-s',
+      routerLink: 'model-s',
       caption: 'Model S'
     }
   },
@@ -23,7 +23,7 @@ export const CARS: Car[] = [
     distanceTraveled: 0,
     remainingBattery: 417,
     link: {
-      url: 'model-x',
+      routerLink: 'model-x',
       caption: 'Model X'
     }
   },
@@ -36,7 +36,7 @@ export const CARS: Car[] = [
     distanceTraveled: 0,
     remainingBattery: 400,
     link: {
-      url: 'model-3',
+      routerLink: 'model-3',
       caption: 'Model 3'
     }
   },
@@ -49,7 +49,7 @@ export const CARS: Car[] = [
     distanceTraveled: 0,
     remainingBattery: 998,
     link: {
-      url: 'roadster',
+      routerLink: 'roadster',
       caption: 'Roadster'
     }
   }
