@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Indicator } from '../../core/store/models/indicator.model';
 
 @Component({
   selector: 'app-indicator',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class IndicatorComponent implements OnInit {
   @Input()
-  public indicator: any;
+  public indicator: Indicator;
 
   constructor() {}
 
