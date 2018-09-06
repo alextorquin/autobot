@@ -1,8 +1,12 @@
-<section>
-  <button class="button is-danger is-outlined"
-          [disabled]="brakeDisabled"
-          (click)="brake.next()">Brake</button>
-  <button class="button is-primary is-outlined"
-          [disabled]="throttleDisabled"
-          (click)="throttle.next()">Throttle</button>
+<section class="field is-grouped">
+  <span class="control">
+    <button class="button is-danger is-outlined is-large"
+            [disabled]="brakeDisabled"
+            (click)="brake.next()">Brake</button>
+  </span>
+  <span class="control">
+    <button class="button is-primary is-outlined is-large"
+            [disabled]="throttleDisabled"
+            (click)="throttle.next()">Throttle</button>
+  </span>
 </section>
