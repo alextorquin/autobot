@@ -1,5 +1,5 @@
-git merge 4-flow
-git tag -a v4.0.0 -m "4-Flujo de datos entre componentes Angular"
+git merge 5-inject
+git tag -a v5.0.0 -m "5-Servicios inyectables en Angular"
 git push origin master --tag
 
 
