@@ -1,8 +1,7 @@
 import { formatNumber } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { CARS } from '../../core/store/cars';
-import { Car } from '../../core/store/models/car.model';
+import { CarsService } from '../../core/cars.service';
 import { Link } from '../../core/store/models/link.model';
 
 @Component({
@@ -18,21 +17,20 @@ import { Link } from '../../core/store/models/link.model';
     </div>
   </header>
   <app-menu-list caption="Cars in your garage:"
-    [links]="links">
+    [links]="carLinks">
   </app-menu-list>
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
-  public cars: Car[] = CARS;
-  public links: Link[];
+  public carLinks: Link[];
   public title = environment.title;
   public subtitle = environment.version;
-  constructor() {}
+  constructor(private carsService: CarsService) {}
 
   public ngOnInit() {
-    this.links = this.cars.map(c => {
+    this.carLinks = this.carsService.getCars().map(c => {
       return {
         caption: c.link.caption,
         routerLink: '/car/' + c.link.routerLink,

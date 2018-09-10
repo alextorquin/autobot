@@ -3,7 +3,7 @@ export const environment = {
   title: 'autobot',
   version: '5-inject',
   tag: '5.0.0',
-  refreshInterval: 2000,
+  refreshInterval: 1000,
   dangerSpeedRate: 0.9,
   warningSpeedRate: 0.7,
   dangerKmsBattery: 100,

@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
-import { CARS } from '../../core/store/cars';
+import { CarsService } from '../../core/cars.service';
 import { INDICATORS } from '../../core/store/indicators';
 import { Car } from '../../core/store/models/car.model';
 import { statusClass } from '../../core/store/models/status-class';
+import { EngineService } from '../engine.service';
 
 @Component({
   selector: 'app-car',
@@ -18,19 +19,19 @@ export class CarComponent implements OnInit {
   private speedIndicator = this.indicators[0];
   private batteryIndicator = this.indicators[1];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private carsService: CarsService, private engine: EngineService) {}
 
   public ngOnInit() {
     const carId = this.route.snapshot.params['carId'];
-    this.car = CARS.find(c => c.link.routerLink === carId);
+    this.car = this.carsService.getCarByLinkId(carId);
     this.initilizeIndicators();
     setInterval(() => this.timeGoesBy(), environment.refreshInterval);
   }
   public onBrake() {
-    this.car.currentSpeed -= 1 + (this.car.topSpeed - this.car.currentSpeed) / 10;
+    this.engine.brake(this.car);
   }
   public onThrottle() {
-    this.car.currentSpeed += 1 + (this.car.topSpeed - this.car.currentSpeed) / 10;
+    this.engine.throttle(this.car);
   }
   public onRecharge(rechargedDistance) {
     if (!rechargedDistance || rechargedDistance < 0) {
