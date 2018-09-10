@@ -36,7 +36,13 @@ Versión desplegada: [AutoBot](https://academiabinaria.github.io/autobot/)
 
 - Artículo: [Flujo de datos entre componentes Angular](https://academia-binaria.com/flujo-de-datos-entre-componentes-angular/)
 
-- [Instrucciones paso a paso:](./1-base.md)
+- [Instrucciones paso a paso:](./4-flow.md)
+
+### 5-inject
+
+- Artículo: [Servicios inyectables en Angular](https://academia-binaria.com/servicios-inyectables-en-Angular/)
+
+- [Instrucciones paso a paso:](./5-inject.md)
 
 ## Autor
 
