@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Indicator } from '../../core/store/models/indicator.model';
+import { Indicator } from '../store/models/indicator.model';
 
 @Component({
   selector: 'app-indicator',

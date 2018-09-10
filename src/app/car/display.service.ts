@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { INDICATORS } from '../core/store/indicators';
 import { Car } from '../core/store/models/car.model';
 import { statusClass } from '../core/store/models/status-class';
+import { INDICATORS } from './store/indicators';
 
 @Injectable()
 export class DisplayService {

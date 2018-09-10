@@ -7,13 +7,18 @@ export class EngineService {
   private readonly oneHour = 3600;
   constructor() {}
 
-  public hasBattery = (car: Car) => car.remainingBattery > 0;
-  public isBrakeDisabled = (car: Car) => car.currentSpeed <= 0;
-  public isThrottleDisabled = (car: Car) => car.currentSpeed >= car.topSpeed;
-  private rawDeltaSpeed = (car: Car) => 1 + (car.topSpeed - car.currentSpeed);
+  public hasBattery = (car: Car): boolean => car.remainingBattery > 0;
+  public isBrakeDisabled = (car: Car): boolean => car.currentSpeed <= 0;
+  public isThrottleDisabled = (car: Car): boolean => car.currentSpeed >= car.topSpeed;
 
   public brake(car: Car) {
-    car.currentSpeed -= this.rawDeltaSpeed(car) / environment.factorSpeed;
+    car.currentSpeed -= this.deltaSpeed(car);
+  }
+  public throttle(car: Car) {
+    car.currentSpeed += this.deltaSpeed(car);
+  }
+  public recharge(rechargedDistance: number, car: Car) {
+    car.remainingBattery = this.getValidatedRecharging(rechargedDistance, car);
   }
   public checkBattery(car: Car) {
     if (car.remainingBattery <= car.currentSpeed) {
@@ -27,12 +32,9 @@ export class EngineService {
       car.currentSpeed = 0;
     }
   }
-  public recharge(rechargedDistance: number, car: Car) {
-    car.remainingBattery = this.validateRecharging(rechargedDistance, car);
-  }
-  public throttle(car: Car) {
-    car.currentSpeed += this.rawDeltaSpeed(car) / environment.factorSpeed;
-  }
+
+  private rawDeltaSpeed = (car: Car): number => 1 + (car.topSpeed - car.currentSpeed);
+  private deltaSpeed = (car: Car): number => this.rawDeltaSpeed(car) / environment.factorSpeed;
   private stopCar(car: Car) {
     car.currentSpeed = 0;
     car.distanceTraveled += car.remainingBattery;
@@ -42,7 +44,7 @@ export class EngineService {
     car.distanceTraveled += (car.currentSpeed / this.oneHour) * environment.timeTravel;
     car.remainingBattery -= (car.currentSpeed / this.oneHour) * environment.timeTravel;
   }
-  private validateRecharging(rechargedDistance: number, car: Car) {
+  private getValidatedRecharging(rechargedDistance: number, car: Car) {
     let validatedRecharging = rechargedDistance;
     if (!rechargedDistance || rechargedDistance < 0) {
       validatedRecharging = 0;

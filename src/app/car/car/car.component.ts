@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { CarsService } from '../../core/cars.service';
-import { INDICATORS } from '../../core/store/indicators';
 import { Car } from '../../core/store/models/car.model';
 import { DisplayService } from '../display.service';
 import { EngineService } from '../engine.service';
@@ -15,7 +14,7 @@ import { EngineService } from '../engine.service';
 })
 export class CarComponent implements OnInit {
   public car: Car;
-  public indicators = INDICATORS;
+  public indicators;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +27,7 @@ export class CarComponent implements OnInit {
     const carId = this.route.snapshot.params['carId'];
     this.car = this.carsService.getCarByLinkId(carId);
     this.initilizeIndicators();
+    this.timeGoesBy();
     setInterval(() => this.timeGoesBy(), environment.refreshInterval);
   }
   public onBrake = () => this.engine.brake(this.car);
@@ -38,18 +38,14 @@ export class CarComponent implements OnInit {
   public isBrakeDisabled = () => this.engine.isBrakeDisabled(this.car);
   public isThrottleDisabled = () => this.engine.isThrottleDisabled(this.car);
 
-  private initilizeIndicators() {
-    this.indicators = this.displayService.initilizeIndicators(this.car);
-    this.timeGoesBy();
-  }
-  private updateIndicators() {
-    this.indicators = this.displayService.updateIndicators(this.car);
-  }
+  private initilizeIndicators = () => (this.indicators = this.displayService.initilizeIndicators(this.car));
+  private updateIndicators = () => (this.indicators = this.displayService.updateIndicators(this.car));
+  private checkSpeed = () => this.engine.checkSpeed(this.car);
+  private checkBattery = () => this.engine.checkBattery(this.car);
+
   private timeGoesBy() {
     this.checkSpeed();
     this.checkBattery();
     this.updateIndicators();
   }
-  private checkSpeed = () => this.engine.checkSpeed(this.car);
-  private checkBattery = () => this.engine.checkBattery(this.car);
 }
