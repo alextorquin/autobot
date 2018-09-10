@@ -5,26 +5,15 @@ import { Car } from '../core/store/models/car.model';
 @Injectable()
 export class EngineService {
   private readonly oneHour = 3600;
-
   constructor() {}
 
-  public brake(car: Car) {
-    car.currentSpeed -= this.rawDeltaSpeed(car) / environment.factorSpeed;
-  }
-  public throttle(car: Car) {
-    car.currentSpeed += this.rawDeltaSpeed(car) / environment.factorSpeed;
-  }
-  public recharge(rechargedDistance: number, car: Car) {
-    car.remainingBattery = this.validateRecharging(rechargedDistance, car);
-  }
   public hasBattery = (car: Car) => car.remainingBattery > 0;
   public isBrakeDisabled = (car: Car) => car.currentSpeed <= 0;
   public isThrottleDisabled = (car: Car) => car.currentSpeed >= car.topSpeed;
+  private rawDeltaSpeed = (car: Car) => 1 + (car.topSpeed - car.currentSpeed);
 
-  public checkSpeed(car: Car) {
-    if (car.currentSpeed <= 1) {
-      car.currentSpeed = 0;
-    }
+  public brake(car: Car) {
+    car.currentSpeed -= this.rawDeltaSpeed(car) / environment.factorSpeed;
   }
   public checkBattery(car: Car) {
     if (car.remainingBattery <= car.currentSpeed) {
@@ -33,7 +22,17 @@ export class EngineService {
       this.travelDistance(car);
     }
   }
-
+  public checkSpeed(car: Car) {
+    if (car.currentSpeed <= 1) {
+      car.currentSpeed = 0;
+    }
+  }
+  public recharge(rechargedDistance: number, car: Car) {
+    car.remainingBattery = this.validateRecharging(rechargedDistance, car);
+  }
+  public throttle(car: Car) {
+    car.currentSpeed += this.rawDeltaSpeed(car) / environment.factorSpeed;
+  }
   private stopCar(car: Car) {
     car.currentSpeed = 0;
     car.distanceTraveled += car.remainingBattery;
@@ -52,5 +51,4 @@ export class EngineService {
     }
     return validatedRecharging;
   }
-  private rawDeltaSpeed = (car: Car) => 1 + (car.topSpeed - car.currentSpeed);
 }

@@ -7,8 +7,9 @@ import { statusClass } from '../core/store/models/status-class';
 @Injectable()
 export class DisplayService {
   public indicators = INDICATORS;
-  private speedIndicator = this.indicators[0];
   private batteryIndicator = this.indicators[1];
+  private speedIndicator = this.indicators[0];
+
   constructor() {}
 
   public initilizeIndicators(car: Car) {
@@ -28,16 +29,6 @@ export class DisplayService {
     this.batteryIndicator.tags[1].value = car.remainingBattery;
     return this.indicators;
   }
-  private getSpeedClass(car: Car): statusClass {
-    const speedRate = car.currentSpeed / car.topSpeed;
-    if (speedRate >= environment.dangerSpeedRate) {
-      return 'is-danger';
-    }
-    if (speedRate >= environment.warningSpeedRate) {
-      return 'is-warning';
-    }
-    return 'is-info';
-  }
 
   private getBatteryClass(car: Car): statusClass {
     if (car.remainingBattery <= environment.dangerKmsBattery) {
@@ -47,5 +38,15 @@ export class DisplayService {
       return 'is-warning';
     }
     return 'is-success';
+  }
+  private getSpeedClass(car: Car): statusClass {
+    const speedRate = car.currentSpeed / car.topSpeed;
+    if (speedRate >= environment.dangerSpeedRate) {
+      return 'is-danger';
+    }
+    if (speedRate >= environment.warningSpeedRate) {
+      return 'is-warning';
+    }
+    return 'is-info';
   }
 }
