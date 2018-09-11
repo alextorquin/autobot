@@ -18,14 +18,14 @@ export class CarComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private carsService: CarsService,
-    private displayService: DisplayService,
+    private cars: CarsService,
+    private display: DisplayService,
     private engine: EngineService
   ) {}
 
   public ngOnInit() {
     const carId = this.route.snapshot.params['carId'];
-    this.car = this.carsService.getCarByLinkId(carId);
+    this.car = this.cars.getCarByLinkId(carId);
     this.initilizeIndicators();
     this.timeGoesBy();
     setInterval(() => this.timeGoesBy(), environment.refreshInterval);
@@ -38,8 +38,8 @@ export class CarComponent implements OnInit {
   public isBrakeDisabled = () => this.engine.isBrakeDisabled(this.car);
   public isThrottleDisabled = () => this.engine.isThrottleDisabled(this.car);
 
-  private initilizeIndicators = () => (this.indicators = this.displayService.initilizeIndicators(this.car));
-  private updateIndicators = () => (this.indicators = this.displayService.updateIndicators(this.car));
+  private initilizeIndicators = () => (this.indicators = this.display.initilizeIndicators(this.car));
+  private updateIndicators = () => (this.indicators = this.display.updateIndicators(this.car));
   private checkSpeed = () => this.engine.checkSpeed(this.car);
   private checkBattery = () => this.engine.checkBattery(this.car);
 
