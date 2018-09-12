@@ -5,11 +5,15 @@
 - Get Data
 `/assets/*.json*`
 
-### 6.1.1 REST
+- async vs unsubscribe
+
+- pipe tap map switchMap
+
+
+## 6.2 REST
 - App base
 `appbase/`
 
-## 6.2 Interceptores
 
 
 
