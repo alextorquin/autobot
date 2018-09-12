@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { interval } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { CarsService } from '../../core/cars.service';
 import { Car } from '../../core/store/models/car.model';
@@ -24,14 +26,18 @@ export class CarComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    const carId = this.route.snapshot.params['carId'];
-    this.cars.getCarByLinkId$(carId).subscribe(car => {
-      this.car = car;
-      this.initilizeIndicators();
-      this.timeGoesBy();
-      setInterval(() => this.timeGoesBy(), environment.refreshInterval);
-    });
+    this.route.params
+      .pipe(
+        map(params => params['carId']),
+        switchMap(carId => this.cars.getCarByLinkId$(carId))
+      )
+      .pipe(
+        tap(car => this.onCarGotted(car)),
+        switchMap(() => interval(environment.refreshInterval))
+      )
+      .subscribe(() => this.timeGoesBy());
   }
+
   public onBrake = () => this.engine.brake(this.car);
   public onThrottle = () => this.engine.throttle(this.car);
   public onRecharge = rechargedDistance => this.engine.recharge(rechargedDistance, this.car);
@@ -44,6 +50,12 @@ export class CarComponent implements OnInit {
   private updateIndicators = () => (this.indicators = this.display.updateIndicators(this.car));
   private checkSpeed = () => this.engine.checkSpeed(this.car);
   private checkBattery = () => this.engine.checkBattery(this.car);
+
+  private onCarGotted(car: Car) {
+    this.car = car;
+    this.initilizeIndicators();
+    this.timeGoesBy();
+  }
 
   private timeGoesBy() {
     this.checkSpeed();

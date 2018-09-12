@@ -32,14 +32,14 @@ export class HomeComponent implements OnInit {
   constructor(private carsService: CarsService) {}
 
   public ngOnInit() {
-    this.carLinks$ = this.carsService.getCars$().pipe(
-      map(cars =>
-        cars.map(c => ({
-          caption: c.link.caption,
-          routerLink: '/car/' + c.link.routerLink,
-          value: formatNumber(c.cost, 'en-US') + ' EUR'
-        }))
-      )
-    );
+    this.carLinks$ = this.carsService.getCars$().pipe(map(this.transformCars));
+  }
+  private transformCars = cars => cars.map(this.transformCar);
+  private transformCar(car) {
+    return {
+      caption: car.link.caption,
+      routerLink: '/car/' + car.link.routerLink,
+      value: formatNumber(car.cost, 'en-US') + ' EUR'
+    };
   }
 }
