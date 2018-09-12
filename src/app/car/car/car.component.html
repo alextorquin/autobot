@@ -1,4 +1,5 @@
-<app-card [caption]="car.name | uppercase"
+<app-card *ngIf="car; else loading"
+          [caption]="car.name | uppercase"
           [value]="car.cost | currency:'EUR'">
   <main>
     <app-indicator *ngFor="let i of indicators"
@@ -17,3 +18,8 @@
     </app-battery-recharger>
   </footer>
 </app-card>
+<ng-template #loading>
+  <h1>
+    Loading car...
+  </h1>
+</ng-template>

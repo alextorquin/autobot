@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { interval } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { CarsService } from '../../core/cars.service';
 import { Car } from '../../core/store/models/car.model';
 import { DisplayService } from '../display.service';
 import { EngineService } from '../engine.service';
+import { Indicator } from '../store/models/indicator.model';
 
 @Component({
   selector: 'app-car',
@@ -14,9 +15,10 @@ import { EngineService } from '../engine.service';
   styles: [],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class CarComponent implements OnInit {
+export class CarComponent implements OnInit, OnDestroy {
   public car: Car;
-  public indicators;
+  public indicators: Indicator[];
+  private subscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +28,7 @@ export class CarComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    this.route.params
+    this.subscription = this.route.params
       .pipe(
         map(params => params['carId']),
         switchMap(carId => this.cars.getCarByLinkId$(carId))
@@ -36,6 +38,10 @@ export class CarComponent implements OnInit {
         switchMap(() => interval(environment.refreshInterval))
       )
       .subscribe(() => this.timeGoesBy());
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   public onBrake = () => this.engine.brake(this.car);
@@ -61,5 +67,6 @@ export class CarComponent implements OnInit {
     this.checkSpeed();
     this.checkBattery();
     this.updateIndicators();
+    // console.log('car', this.car);
   }
 }
