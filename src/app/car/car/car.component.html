@@ -1,4 +1,4 @@
-<app-card [caption]="car.model | uppercase"
+<app-card [caption]="car.name | uppercase"
           [value]="car.cost | currency:'EUR'">
   <main>
     <app-indicator *ngFor="let i of indicators"

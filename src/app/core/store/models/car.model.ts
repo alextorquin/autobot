@@ -1,7 +1,7 @@
 import { Link } from './link.model';
 
 export interface Car {
-  model: string;
+  name: string;
   cost: number;
   topSpeed: number;
   currentSpeed: number;

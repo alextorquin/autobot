@@ -25,10 +25,12 @@ export class CarComponent implements OnInit {
 
   public ngOnInit() {
     const carId = this.route.snapshot.params['carId'];
-    this.car = this.cars.getCarByLinkId(carId);
-    this.initilizeIndicators();
-    this.timeGoesBy();
-    setInterval(() => this.timeGoesBy(), environment.refreshInterval);
+    this.cars.getCarByLinkId$(carId).subscribe(car => {
+      this.car = car;
+      this.initilizeIndicators();
+      this.timeGoesBy();
+      setInterval(() => this.timeGoesBy(), environment.refreshInterval);
+    });
   }
   public onBrake = () => this.engine.brake(this.car);
   public onThrottle = () => this.engine.throttle(this.car);

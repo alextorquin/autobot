@@ -1,15 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CARS } from './store/cars';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Car } from './store/models/car.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarsService {
-  private cars: Car[] = CARS;
-  constructor() {}
+  private readonly url = './assets/data/cars.json';
 
-  public getCars = () => this.cars;
+  constructor(private http: HttpClient) {}
 
-  public getCarByLinkId = carId => this.cars.find(c => c.link.routerLink === carId);
+  public getCars$ = (): Observable<Car[]> => this.http.get<Car[]>(this.url);
+
+  public getCarByLinkId$(carId: string): Observable<Car> {
+    return this.getCars$().pipe(map(cars => cars.find(car => this.findCar(car, carId))));
+  }
+
+  private findCar = (car, carId: string): boolean => car.link.routerLink === carId;
 }

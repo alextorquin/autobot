@@ -2,7 +2,7 @@ import { Car } from './models/car.model';
 
 export const CARS: Car[] = [
   {
-    model: 'Model S',
+    name: 'Model S',
     cost: 96680,
     topSpeed: 225,
     currentSpeed: 0,
@@ -15,7 +15,7 @@ export const CARS: Car[] = [
     }
   },
   {
-    model: 'Model X',
+    name: 'Model X',
     cost: 89530,
     topSpeed: 210,
     currentSpeed: 0,
@@ -28,7 +28,7 @@ export const CARS: Car[] = [
     }
   },
   {
-    model: 'Model 3',
+    name: 'Model 3',
     cost: 29868.13,
     topSpeed: 254,
     currentSpeed: 0,
@@ -41,7 +41,7 @@ export const CARS: Car[] = [
     }
   },
   {
-    model: 'Roadster',
+    name: 'Roadster',
     cost: 172000,
     topSpeed: 400,
     currentSpeed: 0,
