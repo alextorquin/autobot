@@ -1,5 +1,5 @@
-git merge 5-inject
-git tag -a v5.0.0 -m "5-Servicios inyectables en Angular"
+git merge 6-http
+git tag -a v6.0.0 -m "6-Comunicaciones http en Angular"
 git push origin master --tag
 
 

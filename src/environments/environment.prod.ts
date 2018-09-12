@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
   title: 'autobot',
-  version: '5-inject',
-  tag: '5.0.0',
+  version: '6-http',
+  tag: '6.0.0',
   refreshInterval: 1000,
   factorSpeed: 10,
   timeTravel: 10,
