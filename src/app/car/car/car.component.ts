@@ -44,29 +44,24 @@ export class CarComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  public onBrake = () => this.engine.brake(this.car);
-  public onThrottle = () => this.engine.throttle(this.car);
-  public onRecharge = rechargedDistance => this.engine.recharge(rechargedDistance, this.car);
+  public onBrake = (): void => this.engine.brake(this.car);
+  public onThrottle = (): void => this.engine.throttle(this.car);
+  public onRecharge = (rechargedDistance: number): void => this.engine.recharge(rechargedDistance, this.car);
 
-  public hasBattery = () => this.engine.hasBattery(this.car);
-  public isBrakeDisabled = () => this.engine.isBrakeDisabled(this.car);
-  public isThrottleDisabled = () => this.engine.isThrottleDisabled(this.car);
-
-  private initilizeIndicators = () => (this.indicators = this.display.initilizeIndicators(this.car));
-  private updateIndicators = () => (this.indicators = this.display.updateIndicators(this.car));
-  private checkSpeed = () => this.engine.checkSpeed(this.car);
-  private checkBattery = () => this.engine.checkBattery(this.car);
+  public hasBattery = (): boolean => this.engine.hasBattery(this.car);
+  public isBrakeDisabled = (): boolean => this.engine.isBrakeDisabled(this.car);
+  public isThrottleDisabled = (): boolean => this.engine.isThrottleDisabled(this.car);
 
   private onCarGotted = (car: Car): void => {
     this.car = car;
-    this.initilizeIndicators();
+    this.indicators = this.display.initilizeIndicators(this.car);
     this.timeGoesBy();
   };
 
   private timeGoesBy = (): void => {
-    this.checkSpeed();
-    this.checkBattery();
-    this.updateIndicators();
+    this.engine.checkSpeed(this.car);
+    this.engine.checkBattery(this.car);
+    this.indicators = this.display.updateIndicators(this.car);
     // console.log('car', this.car);
   };
 }

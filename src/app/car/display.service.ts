@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Car } from '../core/store/models/car.model';
 import { statusClass } from '../core/store/models/status-class';
 import { INDICATORS } from './store/indicators';
+import { Indicator } from './store/models/indicator.model';
 
 @Injectable()
 export class DisplayService {
@@ -12,14 +13,14 @@ export class DisplayService {
 
   constructor() {}
 
-  public initilizeIndicators(car: Car) {
+  public initilizeIndicators(car: Car): Indicator[] {
     this.speedIndicator.max = car.topSpeed;
     this.speedIndicator.tags[1].value = car.topSpeed;
     this.batteryIndicator.max = car.totalBattery;
     this.updateIndicators(car);
     return this.indicators;
   }
-  public updateIndicators(car: Car) {
+  public updateIndicators(car: Car): Indicator[] {
     this.speedIndicator.value = car.currentSpeed;
     this.speedIndicator.class = this.getSpeedClass(car);
     this.speedIndicator.tags[0].value = car.currentSpeed;
