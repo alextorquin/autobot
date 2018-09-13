@@ -11,5 +11,5 @@ export const environment = {
   dangerKmsBattery: 100,
   warningKmsBattery: 150,
   assetsUrl: './assets/data/',
-  apiUrl: 'http://api-base.escuelabinaria.com/api/'
+  apiUrl: 'https://api-base.escuelabinaria.com/api/'
 };
