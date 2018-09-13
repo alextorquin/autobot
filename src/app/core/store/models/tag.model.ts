@@ -1,4 +1,4 @@
-import { statusClass } from './status-class';
+import { statusClass } from './status-class.type';
 
 export interface Tag {
   caption: string;

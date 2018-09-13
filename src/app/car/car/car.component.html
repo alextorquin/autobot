@@ -1,23 +1,41 @@
-<app-card *ngIf="car; else loading"
-          [caption]="car.name | uppercase"
-          [value]="car.cost | currency:'EUR'">
-  <main>
-    <app-indicator *ngFor="let i of indicators"
-                   [indicator]="i">
-    </app-indicator>
-  </main>
-  <footer>
-    <app-speed-controls *ngIf="hasBattery()"
-                        [brakeDisabled]="isBrakeDisabled()"
-                        [throttleDisabled]="isThrottleDisabled()"
-                        (brake)="onBrake()"
-                        (throttle)="onThrottle()">
-    </app-speed-controls>
-    <app-battery-recharger *ngIf="!hasBattery()"
-                           (recharge)="onRecharge($event)">
-    </app-battery-recharger>
-  </footer>
-</app-card>
+<article *ngIf="car; else loading">
+  <app-card [caption]="car.name | uppercase"
+            [value]="car.cost | currency:'EUR'">
+    <main>
+      <app-indicator *ngFor="let i of indicators"
+                     [indicator]="i">
+      </app-indicator>
+    </main>
+    <footer>
+      <app-speed-controls *ngIf="hasBattery()"
+                          [brakeDisabled]="isBrakeDisabled()"
+                          [throttleDisabled]="isThrottleDisabled()"
+                          (brake)="onBrake()"
+                          (throttle)="onThrottle()">
+      </app-speed-controls>
+      <app-battery-recharger *ngIf="!hasBattery()"
+                             (recharge)="onRecharge($event)">
+      </app-battery-recharger>
+    </footer>
+  </app-card>
+  <hr>
+  <section>
+    <div class="field is-grouped">
+      <p class="control">
+        <a class="button is-success"
+           (click)="onSaveTravel()">
+          Save travel
+        </a>
+      </p>
+      <p class="control">
+        <a class="button is-danger"
+           (click)="onDeleteTravel()">
+          Delete travel
+        </a>
+      </p>
+    </div>
+  </section>
+</article>
 <ng-template #loading>
   <h1>
     Loading car...

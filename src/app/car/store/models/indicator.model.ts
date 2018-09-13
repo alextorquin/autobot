@@ -1,4 +1,4 @@
-import { statusClass } from '../../../core/store/models/status-class';
+import { statusClass } from '../../../core/store/models/status-class.type';
 import { Tag } from '../../../core/store/models/tag.model';
 
 export interface Indicator {

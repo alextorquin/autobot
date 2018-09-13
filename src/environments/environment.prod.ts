@@ -9,5 +9,7 @@ export const environment = {
   dangerSpeedRate: 0.9,
   warningSpeedRate: 0.7,
   dangerKmsBattery: 100,
-  warningKmsBattery: 150
+  warningKmsBattery: 150,
+  assetsUrl: './assets/data/',
+  apiUrl: 'http://api-base.escuelabinaria.com/api/'
 };

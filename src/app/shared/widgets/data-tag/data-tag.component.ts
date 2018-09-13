@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { statusClass } from '../../../core/store/models/status-class';
+import { statusClass } from '../../../core/store/models/status-class.type';
 
 @Component({
   selector: 'app-data-tag',

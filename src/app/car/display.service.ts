@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Car } from '../core/store/models/car.model';
-import { statusClass } from '../core/store/models/status-class';
+import { statusClass } from '../core/store/models/status-class.type';
 import { INDICATORS } from './store/indicators';
 import { Indicator } from './store/models/indicator.model';
 
