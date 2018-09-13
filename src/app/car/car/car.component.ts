@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -30,14 +30,14 @@ export class CarComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     this.subscription = this.route.params
       .pipe(
-        map(params => params['carId']),
-        switchMap(carId => this.cars.getCarByLinkId$(carId))
+        map((params: Params) => params['carId']),
+        switchMap((carId: string) => this.cars.getCarByLinkId$(carId))
       )
       .pipe(
-        tap(car => this.onCarGotted(car)),
+        tap(this.onCarGotted),
         switchMap(() => interval(environment.refreshInterval))
       )
-      .subscribe(() => this.timeGoesBy());
+      .subscribe(this.timeGoesBy);
   }
 
   public ngOnDestroy(): void {
@@ -57,16 +57,16 @@ export class CarComponent implements OnInit, OnDestroy {
   private checkSpeed = () => this.engine.checkSpeed(this.car);
   private checkBattery = () => this.engine.checkBattery(this.car);
 
-  private onCarGotted(car: Car) {
+  private onCarGotted = (car: Car): void => {
     this.car = car;
     this.initilizeIndicators();
     this.timeGoesBy();
-  }
+  };
 
-  private timeGoesBy() {
+  private timeGoesBy = (): void => {
     this.checkSpeed();
     this.checkBattery();
     this.updateIndicators();
     // console.log('car', this.car);
-  }
+  };
 }

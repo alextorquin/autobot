@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { CarsService } from '../../core/cars.service';
+import { Car } from '../../core/store/models/car.model';
 import { Link } from '../../core/store/models/link.model';
 
 @Component({
@@ -29,13 +30,12 @@ export class HomeComponent implements OnInit {
   public carLinks$: Observable<Link[]>;
   public title = environment.title;
   public subtitle = environment.version;
-  constructor(private carsService: CarsService) {}
+  constructor(private cars: CarsService) {}
 
   public ngOnInit() {
-    this.carLinks$ = this.carsService.getCars$().pipe(map(this.transformCars));
+    this.carLinks$ = this.cars.getCars$().pipe(map(cars => cars.map(this.getLinkFromCar)));
   }
-  private transformCars = cars => cars.map(this.transformCar);
-  private transformCar(car) {
+  private getLinkFromCar(car: Car): Link {
     return {
       caption: car.link.caption,
       routerLink: '/car/' + car.link.routerLink,
