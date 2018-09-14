@@ -8,8 +8,8 @@ import { Indicator } from './store/models/indicator.model';
 @Injectable()
 export class DisplayService {
   public indicators = INDICATORS;
-  private batteryIndicator = this.indicators[1];
   private speedIndicator = this.indicators[0];
+  private batteryIndicator = this.indicators[1];
 
   constructor() {}
 

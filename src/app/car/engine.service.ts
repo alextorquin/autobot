@@ -4,7 +4,7 @@ import { Car } from '../core/store/models/car.model';
 
 @Injectable()
 export class EngineService {
-  private readonly oneHourMillisecs: number = 3600;
+  private readonly oneHourSecs: number = 3600;
   constructor() {}
 
   public hasBattery = (car: Car): boolean => car.remainingBattery > 0;
@@ -13,9 +13,15 @@ export class EngineService {
 
   public brake(car: Car): void {
     car.currentSpeed -= this.deltaSpeed(car);
+    if (car.currentSpeed <= 1) {
+      car.currentSpeed = 0;
+    }
   }
   public throttle(car: Car): void {
     car.currentSpeed += this.deltaSpeed(car);
+    if (car.currentSpeed > car.topSpeed) {
+      car.currentSpeed = car.topSpeed;
+    }
   }
   public recharge(rechargedDistance: number, car: Car): void {
     car.remainingBattery = this.getValidatedRecharging(rechargedDistance, car);
@@ -27,22 +33,18 @@ export class EngineService {
       this.travelDistance(car);
     }
   }
-  public checkSpeed(car: Car): void {
-    if (car.currentSpeed <= 1) {
-      car.currentSpeed = 0;
-    }
-  }
 
-  private rawDeltaSpeed = (car: Car): number => 1 + (car.topSpeed - car.currentSpeed);
   private deltaSpeed = (car: Car): number => this.rawDeltaSpeed(car) / environment.factorSpeed;
+  private rawDeltaSpeed = (car: Car): number => 1 + (car.topSpeed - car.currentSpeed);
   private stopCar(car: Car): void {
     car.currentSpeed = 0;
     car.distanceTraveled += car.remainingBattery;
     car.remainingBattery = 0;
   }
   private travelDistance = (car: Car): void => {
-    car.distanceTraveled += (car.currentSpeed / this.oneHourMillisecs) * environment.timeTravel;
-    car.remainingBattery -= (car.currentSpeed / this.oneHourMillisecs) * environment.timeTravel;
+    const distance = (car.currentSpeed * environment.timeTravel) / this.oneHourSecs;
+    car.distanceTraveled += distance;
+    car.remainingBattery -= distance;
   };
   private getValidatedRecharging = (rechargedDistance: number, car: Car): number => {
     let validatedRecharging = rechargedDistance;
