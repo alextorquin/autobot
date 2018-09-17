@@ -1,9 +1,8 @@
 import { formatNumber } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { CarsService } from '../../core/cars.service';
 import { Car } from '../../core/store/models/car.model';
 import { Link } from '../../core/store/models/link.model';
 
@@ -20,7 +19,7 @@ import { Link } from '../../core/store/models/link.model';
     </div>
   </header>
   <app-menu-list caption="Cars in your garage:"
-    [links]="carLinks$ | async">
+    [links]="carLinks$">
   </app-menu-list>
   `,
   styles: [],
@@ -30,10 +29,10 @@ export class HomeComponent implements OnInit {
   public carLinks$: Observable<Link[]>;
   public title = environment.title;
   public subtitle = environment.version;
-  constructor(private cars: CarsService) {}
+  constructor(private route: ActivatedRoute) {}
 
   public ngOnInit() {
-    this.carLinks$ = this.cars.getCars$().pipe(map(cars => cars.map(this.getLinkFromCar)));
+    this.carLinks$ = this.route.snapshot.data.cars.map(this.getLinkFromCar);
   }
   private getLinkFromCar(car: Car): Link {
     return {
