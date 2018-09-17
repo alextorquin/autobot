@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-footer',
   template: `
   <footer class="footer has-text-centered">
+    <div>{{ message }}</div>
     <div>
       <a routerLink="about"><strong> Autobot.</strong> </a><i>-A simple Angular project for playing with cars... while learning Angular ;-)</i>.
     </div>
@@ -22,7 +23,8 @@ import { environment } from '../../../environments/environment';
 export class FooterComponent implements OnInit {
   public title = environment.title;
   public version = environment.version;
-
+  @Input()
+  public message: string;
   constructor() {}
 
   ngOnInit() {}

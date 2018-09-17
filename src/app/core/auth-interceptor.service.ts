@@ -9,7 +9,11 @@ import { GlobalStoreService } from './global-store.service';
 })
 export class AuthInterceptorService implements HttpInterceptor {
   private token: string;
+  constructor(private globalStore: GlobalStoreService) {
+    this.globalStore.selectToken$().subscribe((token: string) => (this.token = token));
+  }
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log(req.url);
     const authReq = req.clone({
       setHeaders: { Authorization: `Bearer ${this.token}` }
     });
@@ -21,8 +25,5 @@ export class AuthInterceptorService implements HttpInterceptor {
         }
       })
     );
-  }
-  constructor(private globalStore: GlobalStoreService) {
-    this.globalStore.selectToken$().subscribe((token: string) => (this.token = token));
   }
 }

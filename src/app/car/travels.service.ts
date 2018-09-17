@@ -10,7 +10,7 @@ import { Travel } from '../core/store/models/travel.model';
   providedIn: 'root'
 })
 export class TravelsService {
-  private readonly travelsUrl: string = environment.apiUrl + 'pub/items';
+  private readonly travelsUrl: string = environment.apiUrl + 'priv/items';
 
   constructor(private http: HttpClient) {}
 
