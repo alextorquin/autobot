@@ -21,7 +21,7 @@ export class CarComponent implements OnInit, OnDestroy {
   public car: Car;
   public indicators: Indicator[];
   private subscription: Subscription;
-  private hasPendingChanges = false;
+  private hasPendingChanges = undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,10 +48,12 @@ export class CarComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
   public canBeDeactivated() {
-    if (this.hasPendingChanges) {
-      this.globalStore.dispatchUserMessage('Save or delete travel!');
-    } else {
-      this.globalStore.dispatchUserMessage('You can travel ;-)');
+    if (this.hasPendingChanges !== undefined) {
+      if (this.hasPendingChanges) {
+        this.globalStore.dispatchUserMessage('Save or delete before travel !!');
+      } else {
+        this.globalStore.dispatchUserMessage('You can travel away ;-)');
+      }
     }
     return !this.hasPendingChanges;
   }
@@ -81,6 +83,5 @@ export class CarComponent implements OnInit, OnDestroy {
   private timeGoesBy = (intervalNumber: number): void => {
     this.engine.checkBattery(this.car);
     this.indicators = this.display.updateIndicators(this.car);
-    this.hasPendingChanges = this.car.currentSpeed > 0;
   };
 }
