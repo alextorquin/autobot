@@ -4,6 +4,7 @@ import { interval, Observable, Subscription } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { CarsService } from '../../core/cars.service';
+import { GlobalStoreService } from '../../core/global-store.service';
 import { Car } from '../../core/store/models/car.model';
 import { DisplayService } from '../display.service';
 import { EngineService } from '../engine.service';
@@ -20,13 +21,15 @@ export class CarComponent implements OnInit, OnDestroy {
   public car: Car;
   public indicators: Indicator[];
   private subscription: Subscription;
+  private canDeactivate = true;
 
   constructor(
     private route: ActivatedRoute,
     private cars: CarsService,
     private display: DisplayService,
     private engine: EngineService,
-    private travels: TravelsService
+    private travels: TravelsService,
+    private globalStore: GlobalStoreService
   ) {}
 
   public ngOnInit() {
@@ -44,12 +47,27 @@ export class CarComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+  public canBeDeactivate() {
+    if (!this.canDeactivate) {
+      this.globalStore.dispatchUserMessage('Save or delete travel!');
+    } else {
+      this.globalStore.dispatchUserMessage('You can travel ;-)');
+    }
+    return this.canDeactivate;
+  }
 
-  public onBrake = (): void => this.engine.brake(this.car);
-  public onThrottle = (): void => this.engine.throttle(this.car);
+  public onBrake = (): void => {
+    this.canDeactivate = false;
+    this.engine.brake(this.car);
+  };
+  public onThrottle = (): void => {
+    this.canDeactivate = false;
+    this.engine.throttle(this.car);
+  };
   public onRecharge = (rechargedDistance: number): void => this.engine.recharge(rechargedDistance, this.car);
-  public onSaveTravel = () => this.travels.putCarTravel$(this.car).subscribe();
-  public onDeleteTravel = () => this.travels.deleteCarTravel$(this.car).subscribe();
+  public onSaveTravel = () => this.travels.putCarTravel$(this.car).subscribe(null, null, () => (this.canDeactivate = true));
+  public onDeleteTravel = () =>
+    this.travels.deleteCarTravel$(this.car).subscribe(null, null, () => (this.canDeactivate = true));
 
   public hasBattery = (): boolean => this.engine.hasBattery(this.car);
   public isBrakeDisabled = (): boolean => this.engine.isBrakeDisabled(this.car);

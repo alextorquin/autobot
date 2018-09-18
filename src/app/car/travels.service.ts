@@ -10,7 +10,7 @@ import { Travel } from '../core/store/models/travel.model';
   providedIn: 'root'
 })
 export class TravelsService {
-  private readonly travelsUrl: string = environment.apiUrl + 'priv/items';
+  private readonly travelsUrl: string = environment.apiUrl + 'priv/travels';
 
   constructor(private http: HttpClient) {}
 
@@ -30,16 +30,18 @@ export class TravelsService {
       _id: this.getTravelId(car),
       currentSpeed: car.currentSpeed,
       remainingBattery: car.remainingBattery,
-      distanceTraveled: car.distanceTraveled
+      distanceTraveled: car.distanceTraveled,
+      owner: car.owner
     };
   };
   private getCarWithTravel = (car: Car, travel: Travel): Car => {
     car.currentSpeed = travel.currentSpeed;
     car.remainingBattery = travel.remainingBattery;
     car.distanceTraveled = travel.distanceTraveled;
+    car.owner = travel.owner;
     return car;
   };
-  private getTravelId = (car: Car): string => `@${car.link.routerLink}`;
+  private getTravelId = (car: Car): string => `${car.link.routerLink}`;
   private postIfNotFound = (err: HttpErrorResponse, car: Car): Observable<Travel> =>
     err.status === 404 ? this.postCarTravel$(car) : throwError(err);
 }

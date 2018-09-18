@@ -8,5 +8,6 @@ export interface Car {
   totalBattery: number;
   remainingBattery: number;
   distanceTraveled: number;
+  owner?: string;
   link: Link;
 }

@@ -3,4 +3,5 @@ export interface Travel {
   currentSpeed: number;
   remainingBattery: number;
   distanceTraveled: number;
+  owner?: string;
 }

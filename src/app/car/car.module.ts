@@ -8,10 +8,11 @@ import { DisplayService } from './display.service';
 import { EngineService } from './engine.service';
 import { IndicatorComponent } from './indicator/indicator.component';
 import { SpeedControlsComponent } from './speed-controls/speed-controls.component';
+import { TravelGuard } from './travel.guard';
 
 @NgModule({
   imports: [CommonModule, CarRoutingModule, SharedModule],
   declarations: [CarComponent, IndicatorComponent, SpeedControlsComponent, BatteryRechargerComponent],
-  providers: [DisplayService, EngineService]
+  providers: [DisplayService, EngineService, TravelGuard]
 })
 export class CarModule {}
