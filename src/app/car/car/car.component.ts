@@ -21,7 +21,7 @@ export class CarComponent implements OnInit, OnDestroy {
   public car: Car;
   public indicators: Indicator[];
   private subscription: Subscription;
-  private canDeactivate = true;
+  private hasPendingChanges = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,27 +47,28 @@ export class CarComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-  public canBeDeactivate() {
-    if (!this.canDeactivate) {
+  public canBeDeactivated() {
+    if (this.hasPendingChanges) {
       this.globalStore.dispatchUserMessage('Save or delete travel!');
     } else {
       this.globalStore.dispatchUserMessage('You can travel ;-)');
     }
-    return this.canDeactivate;
+    return !this.hasPendingChanges;
   }
 
   public onBrake = (): void => {
-    this.canDeactivate = false;
+    this.hasPendingChanges = true;
     this.engine.brake(this.car);
   };
   public onThrottle = (): void => {
-    this.canDeactivate = false;
+    this.hasPendingChanges = true;
     this.engine.throttle(this.car);
   };
   public onRecharge = (rechargedDistance: number): void => this.engine.recharge(rechargedDistance, this.car);
-  public onSaveTravel = () => this.travels.putCarTravel$(this.car).subscribe(null, null, () => (this.canDeactivate = true));
+  public onSaveTravel = () =>
+    this.travels.putCarTravel$(this.car).subscribe(null, null, () => (this.hasPendingChanges = false));
   public onDeleteTravel = () =>
-    this.travels.deleteCarTravel$(this.car).subscribe(null, null, () => (this.canDeactivate = true));
+    this.travels.deleteCarTravel$(this.car).subscribe(null, null, () => (this.hasPendingChanges = false));
 
   public hasBattery = (): boolean => this.engine.hasBattery(this.car);
   public isBrakeDisabled = (): boolean => this.engine.isBrakeDisabled(this.car);
@@ -80,5 +81,6 @@ export class CarComponent implements OnInit, OnDestroy {
   private timeGoesBy = (intervalNumber: number): void => {
     this.engine.checkBattery(this.car);
     this.indicators = this.display.updateIndicators(this.car);
+    this.hasPendingChanges = this.car.currentSpeed > 0;
   };
 }

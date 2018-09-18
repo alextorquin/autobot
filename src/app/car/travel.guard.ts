@@ -11,6 +11,6 @@ export class TravelGuard implements CanDeactivate<CarComponent> {
     currentState: RouterStateSnapshot,
     nextState: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    return component.canBeDeactivate();
+    return component.canBeDeactivated();
   }
 }
