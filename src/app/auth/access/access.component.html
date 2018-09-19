@@ -11,10 +11,13 @@
           <input name="email"
                  [(ngModel)]="credentials.email"
                  type="email"
-                 class="input is-danger"
-                 placeholder="Email input">
+                 class="input"
+                 placeholder="Email input"
+                 #emailModel="ngModel"
+                 required>
         </div>
-        <p class="help is-danger">This email is invalid</p>
+        <p *ngIf="emailModel.errors"
+           class="help is-danger">We need a valid email</p>
       </div>
       <div class="field">
         <label for="password"
@@ -23,10 +26,14 @@
           <input name="password"
                  [(ngModel)]="credentials.password"
                  type="password"
-                 class="input is-danger"
-                 placeholder="4 digits password">
+                 class="input"
+                 placeholder="4 digits password"
+                 #passwordModel="ngModel"
+                 required
+                 minlength="4">
         </div>
-        <p class="help is-danger">This password is invalid</p>
+        <p *ngIf="passwordModel.errors"
+           class="help is-danger">We need a valid password</p>
       </div>
     </form>
   </main>
@@ -34,10 +41,12 @@
     <section class="field is-grouped">
       <span class="control">
         <button class="button is-warning is-outlined is-large"
+                [disabled]="!credentialForm.form.valid"
                 (click)="onLogin()">Login</button>
       </span>
       <span class="control">
         <button class="button is-info is-outlined is-large"
+                [disabled]="!credentialForm.form.valid"
                 (click)="onRegister()">Register</button>
       </span>
     </section>

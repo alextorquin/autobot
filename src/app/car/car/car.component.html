@@ -6,16 +6,23 @@
                      [indicator]="i">
       </app-indicator>
     </main>
-    <footer *ngIf="hasTravelData">
-      <app-speed-controls *ngIf="hasBattery()"
-                          [brakeDisabled]="isBrakeDisabled()"
-                          [throttleDisabled]="isThrottleDisabled()"
-                          (brake)="onBrake()"
-                          (throttle)="onThrottle()">
-      </app-speed-controls>
-      <app-battery-recharger *ngIf="!hasBattery()"
-                             (recharge)="onRecharge($event)">
-      </app-battery-recharger>
+    <footer>
+      <section *ngIf="hasTravelData; else loadingTravel">
+        <app-speed-controls *ngIf="hasBattery()"
+                            [brakeDisabled]="isBrakeDisabled()"
+                            [throttleDisabled]="isThrottleDisabled()"
+                            (brake)="onBrake()"
+                            (throttle)="onThrottle()">
+        </app-speed-controls>
+        <app-battery-recharger *ngIf="!hasBattery()"
+                               (recharge)="onRecharge($event)">
+        </app-battery-recharger>
+      </section>
+      <ng-template #loadingTravel>
+        <h1>
+          Loading travel data...
+        </h1>
+      </ng-template>
     </footer>
   </app-card>
   <hr>

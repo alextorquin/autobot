@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
   selector: 'app-footer',
   template: `
   <footer class="footer has-text-centered">
-    <div>{{ message }}</div>
+    <div class="has-text-primary has-text-weight-bold">{{ message }}</div>
     <div>
       <a routerLink="about"><strong> Autobot.</strong> </a><i>-A simple Angular project for playing with cars... while learning Angular ;-)</i>.
     </div>

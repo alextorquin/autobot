@@ -12,7 +12,7 @@ export class GlobalStoreService {
   private userMessage$ = new BehaviorSubject<string>(this.state.userMessage);
   private loginNeeded$ = new BehaviorSubject<boolean>(this.state.loginNeeded);
 
-  private readonly clearMessageDelayMs = 3000;
+  private readonly clearMessageDelayMs = 5000;
 
   constructor() {}
 
