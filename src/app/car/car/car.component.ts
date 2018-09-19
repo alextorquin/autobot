@@ -20,6 +20,7 @@ import { TravelsService } from '../travels.service';
 export class CarComponent implements OnInit, OnDestroy {
   public car: Car;
   public indicators: Indicator[];
+  public hasTravelData = false;
   private subscription: Subscription;
   private hasPendingChanges = undefined;
 
@@ -39,6 +40,7 @@ export class CarComponent implements OnInit, OnDestroy {
         switchMap((carId: string): Observable<Car> => this.cars.getCarByLinkId$(carId)),
         tap(this.onCarGotten),
         switchMap((car: Car): Observable<Car> => this.travels.getCarTravel$(car)),
+        tap(this.onCarTravelGotten),
         switchMap((car: Car): Observable<number> => interval(environment.refreshInterval))
       )
       .subscribe(this.timeGoesBy);
@@ -80,6 +82,7 @@ export class CarComponent implements OnInit, OnDestroy {
     this.car = car;
     this.indicators = this.display.initilizeIndicators(this.car);
   };
+  private onCarTravelGotten = (car: Car) => (this.hasTravelData = true);
   private timeGoesBy = (intervalNumber: number): void => {
     this.engine.checkBattery(this.car);
     this.indicators = this.display.updateIndicators(this.car);

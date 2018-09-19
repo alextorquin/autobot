@@ -6,7 +6,7 @@
                      [indicator]="i">
       </app-indicator>
     </main>
-    <footer>
+    <footer *ngIf="hasTravelData">
       <app-speed-controls *ngIf="hasBattery()"
                           [brakeDisabled]="isBrakeDisabled()"
                           [throttleDisabled]="isThrottleDisabled()"
