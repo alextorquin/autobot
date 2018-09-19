@@ -1,4 +1,4 @@
-# 7 - Vigilancia y seguridad en Angularar
+# 7 - Vigilancia y seguridad en Angular
 
 ## 7.1 Resolver
 cars/cars-resolver.service.ts
