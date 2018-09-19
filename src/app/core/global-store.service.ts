@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, timer } from 'rxjs';
+import { GlobalState } from './store/models/global-state.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalStoreService {
-  private state = { token: '', userMessage: '', loginNeeded: false }; // Global = globalInitialState;
+  private state: GlobalState = { token: '', userMessage: '', loginNeeded: false };
 
   private token$ = new BehaviorSubject<string>(this.state.token);
   private userMessage$ = new BehaviorSubject<string>(this.state.userMessage);

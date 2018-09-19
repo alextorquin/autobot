@@ -13,17 +13,23 @@ export class AuthInterceptorService implements HttpInterceptor {
     this.globalStore.selectToken$().subscribe((token: string) => (this.token = token));
   }
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(req.url);
-    const authReq = req.clone({
+    const authReq = this.getReqWithAuthorization(req);
+    return next.handle(authReq).pipe(tap(null, this.handleError));
+  }
+  private getReqWithAuthorization = (req: HttpRequest<any>) =>
+    req.clone({
       setHeaders: { Authorization: `Bearer ${this.token}` }
     });
-    return next.handle(authReq).pipe(
-      tap(null, err => {
-        if (err instanceof HttpErrorResponse && err.status === 401) {
-          this.globalStore.dispatchUserMessage('Authorization needed');
-          this.globalStore.dispatchLoginNeeded(true);
-        }
-      })
-    );
-  }
+  private handleError = err => {
+    let userMessage = 'Fatal error';
+    if (err instanceof HttpErrorResponse) {
+      if (err.status === 401) {
+        userMessage = 'Authorization needed';
+        this.globalStore.dispatchLoginNeeded(true);
+      } else {
+        userMessage = 'Comunications error';
+      }
+    }
+    this.globalStore.dispatchUserMessage(userMessage);
+  };
 }

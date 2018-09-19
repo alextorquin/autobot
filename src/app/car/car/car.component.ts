@@ -50,21 +50,21 @@ export class CarComponent implements OnInit, OnDestroy {
   public canBeDeactivated() {
     if (this.hasPendingChanges !== undefined) {
       if (this.hasPendingChanges) {
-        this.globalStore.dispatchUserMessage('Save or delete before travel !!');
+        this.globalStore.dispatchUserMessage('Save or delete before exit !!');
       } else {
-        this.globalStore.dispatchUserMessage('You can travel away ;-)');
+        this.globalStore.dispatchUserMessage('You can go your own away ;-)');
       }
     }
     return !this.hasPendingChanges;
   }
 
   public onBrake = (): void => {
-    this.hasPendingChanges = true;
     this.engine.brake(this.car);
+    this.hasPendingChanges = true;
   };
   public onThrottle = (): void => {
-    this.hasPendingChanges = true;
     this.engine.throttle(this.car);
+    this.hasPendingChanges = true;
   };
   public onRecharge = (rechargedDistance: number): void => this.engine.recharge(rechargedDistance, this.car);
   public onSaveTravel = () =>
