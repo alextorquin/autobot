@@ -22,7 +22,7 @@ export class CarComponent implements OnInit, OnDestroy {
   public indicators: Indicator[];
   public hasTravelData = false;
   private subscription: Subscription;
-  private hasPendingChanges = undefined;
+  private hasPendingChanges = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -50,14 +50,16 @@ export class CarComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
   public canBeDeactivated() {
-    if (this.hasPendingChanges !== undefined) {
-      if (this.hasPendingChanges) {
-        this.globalStore.dispatchUserMessage('Save or delete before exit !!');
-      } else {
-        this.globalStore.dispatchUserMessage('You can go your own away ;-)');
-      }
+    if (!this.hasTravelData) {
+      return true;
     }
-    return !this.hasPendingChanges;
+    if (this.hasPendingChanges) {
+      this.globalStore.dispatchUserMessage('Save or delete before exit !!');
+      return false;
+    } else {
+      this.globalStore.dispatchUserMessage('You can go your own away ;-)');
+      return true;
+    }
   }
 
   public onBrake = (): void => {
