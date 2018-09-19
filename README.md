@@ -44,6 +44,18 @@ Versión desplegada: [AutoBot](https://academiabinaria.github.io/autobot/)
 
 - [Instrucciones paso a paso:](./5-inject.md)
 
+### 6-http
+
+- Artículo: [Comunicaciones http en Angular](https://academia-binaria.com/comunicaciones-http-en-Angular/)
+
+- [Instrucciones paso a paso:](./6-http.md)
+
+### 7-watch
+
+- Artículo: [Vigilancia y seguridad en Angular](https://academia-binaria.com/vigilancia-y-seguridad-en-Angular/)
+
+- [Instrucciones paso a paso:](./7-watch.md)
+
 ## Autor
 
 * **Alberto Basalo** - *Consultor e instructor* - [@albertobasalo](https://twitter.com/albertobasalo)
