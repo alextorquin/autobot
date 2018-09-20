@@ -1,7 +1,7 @@
 # 7 - Vigilancia y seguridad en Angular
 
 ## 7.1 Resolver
-cars/cars-resolver.service.ts
+home/cars-resolver.service.ts
 
 ## 7.2 Interceptor
 core/auth-interceptor.service.ts
