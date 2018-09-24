@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-battery-recharger',
@@ -8,10 +9,13 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class BatteryRechargerComponent implements OnInit {
   @Output()
   public recharge = new EventEmitter<number>();
+  public form: FormGroup;
 
-  public rechargedDistance = 0;
+  constructor(private fb: FormBuilder) {}
 
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.form = this.fb.group({
+      rechargedDistance: 0
+    });
+  }
 }

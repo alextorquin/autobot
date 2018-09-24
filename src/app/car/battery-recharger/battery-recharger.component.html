@@ -1,8 +1,9 @@
-<form (ngSubmit)="recharge.next(rechargedDistance)">
+<form [formGroup]="form"
+      (ngSubmit)="recharge.next(form.value.rechargedDistance)">
   <div>
     <div class="field has-addons">
       <div class="control">
-        <input [(ngModel)]="rechargedDistance"
+        <input formControlName="rechargedDistance"
                name="rechargedDistance"
                type="number"
                class="input"

@@ -1,22 +1,34 @@
 <app-card caption="Access to autobot">
   <main>
-    <form #credentialForm="ngForm">
+    <form [formGroup]="form">
       <legend>
         Use your account or create a new one
       </legend>
+      <div *ngIf="isNewAccount"
+           class="field">
+        <label for="name"
+               class="label">Name</label>
+        <div class="control">
+          <input name="name"
+                 formControlName="name"
+                 type="text "
+                 class="input"
+                 placeholder="Name input">
+        </div>
+        <p *ngIf="form.controls['name'].errors"
+           class="help is-danger">We need a name</p>
+      </div>
       <div class="field">
         <label for="email"
                class="label">Email</label>
         <div class="control">
           <input name="email"
-                 [(ngModel)]="credentials.email"
+                 formControlName="email"
                  type="email"
                  class="input"
-                 placeholder="Email input"
-                 #emailModel="ngModel"
-                 required>
+                 placeholder="Email input">
         </div>
-        <p *ngIf="emailModel.errors"
+        <p *ngIf="form.controls['email'].errors"
            class="help is-danger">We need a valid email</p>
       </div>
       <div class="field">
@@ -24,30 +36,57 @@
                class="label">Password</label>
         <div class="control">
           <input name="password"
-                 [(ngModel)]="credentials.password"
+                 formControlName="password"
                  type="password"
                  class="input"
-                 placeholder="4 digits password"
-                 #passwordModel="ngModel"
-                 required
-                 minlength="4">
+                 placeholder="4 digits password">
         </div>
-        <p *ngIf="passwordModel.errors"
-           class="help is-danger">We need a valid password</p>
+        <p *ngIf="form.controls['password'].errors?.required"
+           class="help is-danger">We need a password</p>
+        <p *ngIf="form.controls['password'].errors?.minlength"
+           class="help is-danger">We need at least {{form.controls['password'].errors.minlength.requiredLength}} digits</p>
+        <p *ngIf="form.controls['password'].errors?.passwordMustHaveNumbers"
+           class="help is-danger">{{form.controls['password'].errors?.passwordMustHaveNumbers}}</p>
+      </div>
+      <div *ngIf="isNewAccount"
+           class="field">
+        <label for="confirmPassword"
+               class="label">Confirm Password</label>
+        <div class="control">
+          <input name="confirmPassword"
+                 formControlName="confirmPassword"
+                 type="password"
+                 class="input"
+                 placeholder="repeat password">
+        </div>
+        <p *ngIf="form.controls['confirmPassword'].errors?.MatchPassword"
+           class="help is-danger">Passwords do not match</p>
       </div>
     </form>
   </main>
   <footer>
     <section class="field is-grouped">
-      <span class="control">
-        <button class="button is-warning is-outlined is-large"
-                [disabled]="!credentialForm.form.valid"
+      <span *ngIf="!isNewAccount"
+            class="control">
+        <button class="button is-warning is-large"
+                [disabled]="form.invalid"
                 (click)="onLogin()">Login</button>
       </span>
-      <span class="control">
-        <button class="button is-info is-outlined is-large"
-                [disabled]="!credentialForm.form.valid"
+      <span *ngIf="isNewAccount"
+            class="control">
+        <button class="button is-info is-large"
+                [disabled]="form.invalid"
                 (click)="onRegister()">Register</button>
+      </span>
+      <span *ngIf="!isNewAccount"
+            class="control">
+        <button class="button is-outlined is-large"
+                (click)="onNoAccount()">I don´t have an account yet.</button>
+      </span>
+      <span *ngIf="isNewAccount"
+            class="control">
+        <button class="button is-outlined is-large"
+                (click)="onAccount()">I already have an account.</button>
       </span>
     </section>
   </footer>
