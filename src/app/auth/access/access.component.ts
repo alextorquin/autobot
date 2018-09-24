@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { GlobalStoreService } from '../../core/global-store.service';
 import { CustomValidators } from '../../shared/custom.validators';
+import { FormToolsService } from '../../shared/form-tools.service';
 
 @Component({
   selector: 'app-access',
@@ -14,7 +15,12 @@ export class AccessComponent implements OnInit {
   public form: FormGroup;
   public isNewAccount = false;
   private url = environment.apiUrl + 'pub/credentials/';
-  constructor(private fb: FormBuilder, private http: HttpClient, private globalStore: GlobalStoreService) {}
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private formTools: FormToolsService,
+    private globalStore: GlobalStoreService
+  ) {}
 
   public ngOnInit() {
     this.onAccount();
@@ -52,27 +58,15 @@ export class AccessComponent implements OnInit {
   }
 
   public getErrors(controlName: string): any {
-    const control = this.form.controls[controlName];
-    return control.errors;
+    return this.formTools.getErrors(this.form, controlName);
   }
 
   public mustShowError(controlName: string) {
-    const control = this.form.controls[controlName];
-    if (control.invalid && (control.dirty || control.touched)) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.formTools.mustShowError(this.form, controlName);
   }
 
   public hasError(controlName: string, errorCode: string): any {
-    const control = this.form.controls[controlName];
-    const error = control.getError(errorCode);
-    if (error) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.formTools.hasError(this.form, controlName, errorCode);
   }
 
   private onSuccess = (authResponse: { token: string }) => {

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormToolsService } from '../../shared/form-tools.service';
 
 @Component({
   selector: 'app-battery-recharger',
@@ -13,7 +14,7 @@ export class BatteryRechargerComponent implements OnInit {
   public totalBattery = 100;
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private formTools: FormToolsService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -22,26 +23,14 @@ export class BatteryRechargerComponent implements OnInit {
   }
 
   public getErrors(controlName: string): any {
-    const control = this.form.controls[controlName];
-    return control.errors;
+    return this.formTools.getErrors(this.form, controlName);
   }
 
   public mustShowError(controlName: string) {
-    const control = this.form.controls[controlName];
-    if (control.invalid && (control.dirty || control.touched)) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.formTools.mustShowError(this.form, controlName);
   }
 
   public hasError(controlName: string, errorCode: string): any {
-    const control = this.form.controls[controlName];
-    const error = control.getError(errorCode);
-    if (error) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.formTools.hasError(this.form, controlName, errorCode);
   }
 }
