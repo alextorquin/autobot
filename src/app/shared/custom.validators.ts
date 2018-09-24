@@ -12,7 +12,7 @@ export class CustomValidators {
     const password = control.get('password').value;
     const confirmPassword = control.get('confirmPassword').value;
     if (password !== confirmPassword) {
-      control.get('confirmPassword').setErrors({ MatchPassword: true });
+      control.get('confirmPassword').setErrors({ matchPassword: true });
     } else {
       return null;
     }

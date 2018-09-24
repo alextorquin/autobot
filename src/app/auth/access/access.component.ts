@@ -51,6 +51,30 @@ export class AccessComponent implements OnInit {
     this.http.post(this.url + 'registration', this.form.value).subscribe(this.onSuccess, this.onError);
   }
 
+  public getErrors(controlName: string): any {
+    const control = this.form.controls[controlName];
+    return control.errors;
+  }
+
+  public mustShowError(controlName: string) {
+    const control = this.form.controls[controlName];
+    if (control.invalid && (control.dirty || control.touched)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public hasError(controlName: string, errorCode: string): any {
+    const control = this.form.controls[controlName];
+    const error = control.getError(errorCode);
+    if (error) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   private onSuccess = (authResponse: { token: string }) => {
     this.globalStore.dispatchUserMessage('Wellcome');
     this.globalStore.dispatchToken(authResponse.token);
@@ -59,6 +83,7 @@ export class AccessComponent implements OnInit {
   private onError = err => {
     if (this.isNewAccount) {
       this.globalStore.dispatchUserMessage('Account already exists');
+      this.form.reset();
     } else {
       this.globalStore.dispatchUserMessage('Invalid credentials');
     }

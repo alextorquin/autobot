@@ -13,10 +13,11 @@
                  formControlName="name"
                  type="text "
                  class="input"
-                 placeholder="Name input">
+                 placeholder="Your name, please">
         </div>
-        <p *ngIf="form.controls['name'].errors"
-           class="help is-danger">We need a name</p>
+        <span *ngIf="mustShowError('name')">
+          <p class="help is-danger">We need a name</p>
+        </span>
       </div>
       <div class="field">
         <label for="email"
@@ -26,10 +27,11 @@
                  formControlName="email"
                  type="email"
                  class="input"
-                 placeholder="Email input">
+                 placeholder="Email address">
         </div>
-        <p *ngIf="form.controls['email'].errors"
-           class="help is-danger">We need a valid email</p>
+        <span *ngIf="mustShowError('email')">
+          <p class="help is-danger">We need a valid email</p>
+        </span>
       </div>
       <div class="field">
         <label for="password"
@@ -41,12 +43,15 @@
                  class="input"
                  placeholder="4 digits password">
         </div>
-        <p *ngIf="form.controls['password'].errors?.required"
-           class="help is-danger">We need a password</p>
-        <p *ngIf="form.controls['password'].errors?.minlength"
-           class="help is-danger">We need at least {{form.controls['password'].errors.minlength.requiredLength}} digits</p>
-        <p *ngIf="form.controls['password'].errors?.passwordMustHaveNumbers"
-           class="help is-danger">{{form.controls['password'].errors?.passwordMustHaveNumbers}}</p>
+        <span *ngIf="mustShowError('password')">
+          <p *ngIf="hasError('password', 'required')"
+             class="help is-danger">We need a password</p>
+          <p *ngIf="hasError('password', 'minlength')"
+             class="help is-danger">We need at least {{getErrors('password').minlength.requiredLength}}
+            digits</p>
+          <p *ngIf="hasError('password', 'passwordMustHaveNumbers')"
+             class="help is-danger">{{getErrors('password').passwordMustHaveNumbers}}</p>
+        </span>
       </div>
       <div *ngIf="isNewAccount"
            class="field">
@@ -59,8 +64,10 @@
                  class="input"
                  placeholder="repeat password">
         </div>
-        <p *ngIf="form.controls['confirmPassword'].errors?.MatchPassword"
-           class="help is-danger">Passwords do not match</p>
+        <span *ngIf="mustShowError('confirmPassword')">
+          <p *ngIf="hasError('confirmPassword', 'matchPassword')"
+             class="help is-danger">Passwords do not match</p>
+        </span>
       </div>
     </form>
   </main>
