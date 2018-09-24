@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, timer } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { GlobalState } from './store/models/global-state.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalStoreService {
-  private state: GlobalState = { token: '', userMessage: '', loginNeeded: false };
+  private state: GlobalState = { token: sessionStorage['token'], userMessage: '', loginNeeded: false };
 
   private token$ = new BehaviorSubject<string>(this.state.token);
   private userMessage$ = new BehaviorSubject<string>(this.state.userMessage);
   private loginNeeded$ = new BehaviorSubject<boolean>(this.state.loginNeeded);
 
-  private readonly clearMessageDelayMs = 5000;
+  private readonly clearMessageDelayMs = environment.clearMessageDelayMs;
 
   constructor() {}
 
@@ -22,6 +23,7 @@ export class GlobalStoreService {
 
   public dispatchToken = (token: string) => {
     this.state.token = token;
+    sessionStorage['token'] = token;
     this.token$.next(this.state.token);
   };
   public dispatchUserMessage = (userMessage: string) => {

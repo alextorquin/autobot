@@ -1,6 +1,7 @@
 <app-card caption="Access to autobot">
   <main>
-    <form [formGroup]="form">
+    <form [formGroup]="form"
+          (keyup.enter)="isNewAccount?onRegister():onLogin()">
       <legend>
         Use your account or create a new one
       </legend>

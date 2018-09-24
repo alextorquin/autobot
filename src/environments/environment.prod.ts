@@ -3,6 +3,7 @@ export const environment = {
   title: 'autobot',
   version: '8-reactive',
   tag: '8.0.0',
+  clearMessageDelayMs: 5000,
   refreshInterval: 1000,
   factorSpeed: 10,
   timeTravel: 10,

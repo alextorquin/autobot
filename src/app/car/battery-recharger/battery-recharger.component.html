@@ -1,5 +1,5 @@
 <form [formGroup]="form"
-      (ngSubmit)="recharge.next(form.value.rechargedDistance)">
+      (keyup.enter)="recharge.next(form.value.rechargedDistance)">
   <div>
     <div class="field has-addons">
       <div class="control">
@@ -8,9 +8,14 @@
                type="number"
                class="input"
                placeholder="Kilometers">
+        <p *ngIf="hasError('rechargedDistance', 'min')"
+           class="help is-danger">Fill more than {{getErrors('rechargedDistance').min.min}}</p>
+        <p *ngIf="hasError('rechargedDistance', 'max')"
+           class="help is-danger">Fill less than {{getErrors('rechargedDistance').max.max}}</p>
       </div>
       <div class="control">
-        <button type="submit"
+        <button [disabled]="form.invalid"
+                (click)="recharge.next(form.value.rechargedDistance)"
                 class="button is-primary">Recharge</button>
       </div>
     </div>
