@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
+import { AbstractControl, FormGroup } from '@angular/forms';
 
 @Injectable()
 export class FormToolsService {
   constructor() {}
-  public getErrors(form, controlName: string): any {
-    const control = form.controls[controlName];
+  public getErrors(form: FormGroup, controlName: string): any {
+    const control = this.getControl(form, controlName);
     return control.errors;
   }
 
-  public mustShowError(form, controlName: string) {
-    const control = form.controls[controlName];
+  public mustShowError(form: FormGroup, controlName: string) {
+    const control = this.getControl(form, controlName);
     if (control.invalid && (control.dirty || control.touched)) {
       return true;
     } else {
@@ -17,8 +18,8 @@ export class FormToolsService {
     }
   }
 
-  public hasError(form, controlName: string, errorCode: string): any {
-    const control = form.controls[controlName];
+  public hasError(form: FormGroup, controlName: string, errorCode: string): any {
+    const control = this.getControl(form, controlName);
     const error = control.getError(errorCode);
     if (error) {
       return true;
@@ -26,4 +27,5 @@ export class FormToolsService {
       return false;
     }
   }
+  private getControl = (form: FormGroup, controlName: string): AbstractControl => form.controls[controlName];
 }

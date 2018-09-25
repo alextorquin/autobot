@@ -13,12 +13,13 @@ export class BatteryRechargerComponent implements OnInit {
   @Input()
   public totalBattery = 100;
   public form: FormGroup;
+  private readonly minimumBattery = 10;
 
   constructor(private fb: FormBuilder, private formTools: FormToolsService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
-      rechargedDistance: [0, [Validators.required, Validators.min(1), Validators.max(this.totalBattery)]]
+      rechargedDistance: [0, [Validators.required, Validators.min(this.minimumBattery), Validators.max(this.totalBattery)]]
     });
   }
 

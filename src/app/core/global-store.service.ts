@@ -7,7 +7,7 @@ import { GlobalState } from './store/models/global-state.model';
   providedIn: 'root'
 })
 export class GlobalStoreService {
-  private state: GlobalState = { token: sessionStorage['token'], userMessage: '', loginNeeded: false };
+  private state: GlobalState = { token: sessionStorage['token'], userMessage: 'AutoBot', loginNeeded: false };
 
   private token$ = new BehaviorSubject<string>(this.state.token);
   private userMessage$ = new BehaviorSubject<string>(this.state.userMessage);
@@ -29,9 +29,10 @@ export class GlobalStoreService {
   public dispatchUserMessage = (userMessage: string) => {
     this.state.userMessage = userMessage;
     this.userMessage$.next(this.state.userMessage);
-    timer(this.clearMessageDelayMs).subscribe(() => {
+    const subs = timer(this.clearMessageDelayMs).subscribe(() => {
       this.state.userMessage = '';
       this.userMessage$.next(this.state.userMessage);
+      subs.unsubscribe();
     });
   };
   public dispatchLoginNeeded = (loginNeeded: boolean) => {

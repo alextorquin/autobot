@@ -34,6 +34,7 @@ export class CarComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit() {
+    this.globalStore.dispatchUserMessage('Loading travel data !!');
     this.subscription = this.route.params
       .pipe(
         map((params: Params): string => params['carId']),
@@ -84,7 +85,10 @@ export class CarComponent implements OnInit, OnDestroy {
     this.car = car;
     this.indicators = this.display.initilizeIndicators(this.car);
   };
-  private onCarTravelGotten = (car: Car) => (this.hasTravelData = true);
+  private onCarTravelGotten = (car: Car) => {
+    this.hasTravelData = true;
+    this.globalStore.dispatchUserMessage('Ride like the wind!!');
+  };
   private timeGoesBy = (intervalNumber: number): void => {
     this.engine.checkBattery(this.car);
     this.indicators = this.display.updateIndicators(this.car);
