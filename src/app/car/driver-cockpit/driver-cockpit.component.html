@@ -1,0 +1,20 @@
+<app-card [caption]="car.name | uppercase"
+          [value]="car.cost | currency:'EUR'">
+  <main>
+    <app-indicator *ngFor="let i of indicators"
+                   [indicator]="i">
+    </app-indicator>
+  </main>
+  <footer>
+    <app-speed-controls *ngIf="hasBattery"
+                        [brakeDisabled]="isBrakeDisabled"
+                        [throttleDisabled]="isThrottleDisabled"
+                        (brake)="brake.next()"
+                        (throttle)="throttle.next()">
+    </app-speed-controls>
+    <app-battery-recharger *ngIf="!hasBattery"
+                           [totalBattery]="car.totalBattery"
+                           (recharge)="recharge.next($event)">
+    </app-battery-recharger>
+  </footer>
+</app-card>

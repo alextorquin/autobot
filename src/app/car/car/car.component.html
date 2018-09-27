@@ -1,48 +1,17 @@
 <article *ngIf="car; else loading">
-  <app-card [caption]="car.name | uppercase"
-            [value]="car.cost | currency:'EUR'">
-    <main>
-      <app-indicator *ngFor="let i of indicators"
-                     [indicator]="i">
-      </app-indicator>
-    </main>
-    <footer>
-      <section *ngIf="hasTravelData; else loadingTravel">
-        <app-speed-controls *ngIf="hasBattery()"
-                            [brakeDisabled]="isBrakeDisabled()"
-                            [throttleDisabled]="isThrottleDisabled()"
-                            (brake)="onBrake()"
-                            (throttle)="onThrottle()">
-        </app-speed-controls>
-        <app-battery-recharger *ngIf="!hasBattery()"
-                               [totalBattery]="car.totalBattery"
-                               (recharge)="onRecharge($event)">
-        </app-battery-recharger>
-      </section>
-      <ng-template #loadingTravel>
-        <h1>
-          Loading travel data...
-        </h1>
-      </ng-template>
-    </footer>
-  </app-card>
+  <app-driver-cockpit [car]="car"
+                      [indicators]="indicators"
+                      [hasBattery]="hasBattery()"
+                      [isBrakeDisabled]="isBrakeDisabled()"
+                      [isThrottleDisabled]="isThrottleDisabled()"
+                      (brake)="onBrake()"
+                      (throttle)="onThrottle()"
+                      (recharge)="onRecharge($event)">
+  </app-driver-cockpit>
   <hr>
-  <section>
-    <div class="field is-grouped">
-      <p class="control">
-        <a class="button is-success"
-           (click)="onSaveTravel()">
-          Save travel
-        </a>
-      </p>
-      <p class="control">
-        <a class="button is-danger"
-           (click)="onDeleteTravel()">
-          Delete travel
-        </a>
-      </p>
-    </div>
-  </section>
+  <app-travel-manager (save)="onSaveTravel()"
+                      (delete)="onDeleteTravel()">
+  </app-travel-manager>
 </article>
 <ng-template #loading>
   <h1>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { interval, Observable, Subscription } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { TravelsService } from '../travels.service';
   selector: 'app-car',
   templateUrl: './car.component.html',
   styles: [],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarComponent implements OnInit, OnDestroy {
   public car: Car;
@@ -30,7 +30,8 @@ export class CarComponent implements OnInit, OnDestroy {
     private display: DisplayService,
     private engine: EngineService,
     private travels: TravelsService,
-    private globalStore: GlobalStoreService
+    private globalStore: GlobalStoreService,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   public ngOnInit() {
@@ -66,10 +67,12 @@ export class CarComponent implements OnInit, OnDestroy {
   public onBrake = (): void => {
     this.engine.brake(this.car);
     this.hasPendingChanges = true;
+    this.timeGoesBy(0);
   };
   public onThrottle = (): void => {
     this.engine.throttle(this.car);
     this.hasPendingChanges = true;
+    this.timeGoesBy(0);
   };
   public onRecharge = (rechargedDistance: number): void => this.engine.recharge(rechargedDistance, this.car);
   public onSaveTravel = () =>
@@ -84,13 +87,20 @@ export class CarComponent implements OnInit, OnDestroy {
   private onCarGotten = (car: Car): void => {
     this.car = car;
     this.indicators = this.display.initilizeIndicators(this.car);
+    this.sendChanges();
   };
   private onCarTravelGotten = (car: Car) => {
+    this.car = car;
     this.hasTravelData = true;
     this.globalStore.dispatchUserMessage('Ride like the wind!!');
+    this.sendChanges();
   };
   private timeGoesBy = (intervalNumber: number): void => {
     this.engine.checkBattery(this.car);
-    this.indicators = this.display.updateIndicators(this.car);
+    this.sendChanges();
   };
+  private sendChanges() {
+    this.indicators = this.display.updateIndicators(this.car);
+    this.cdRef.detectChanges();
+  }
 }

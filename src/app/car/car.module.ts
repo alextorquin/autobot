@@ -9,10 +9,12 @@ import { EngineService } from './engine.service';
 import { IndicatorComponent } from './indicator/indicator.component';
 import { SpeedControlsComponent } from './speed-controls/speed-controls.component';
 import { TravelGuard } from './travel.guard';
+import { DriverCockpitComponent } from './driver-cockpit/driver-cockpit.component';
+import { TravelManagerComponent } from './travel-manager/travel-manager.component';
 
 @NgModule({
   imports: [CommonModule, CarRoutingModule, SharedModule],
-  declarations: [CarComponent, IndicatorComponent, SpeedControlsComponent, BatteryRechargerComponent],
+  declarations: [CarComponent, IndicatorComponent, SpeedControlsComponent, BatteryRechargerComponent, DriverCockpitComponent, TravelManagerComponent],
   providers: [DisplayService, EngineService, TravelGuard]
 })
 export class CarModule {}
