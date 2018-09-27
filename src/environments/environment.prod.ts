@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
   title: 'autobot',
-  version: '8-reactive',
-  tag: '8.0.0',
+  version: '9-change',
+  tag: '9.0.0',
   clearMessageDelayMs: 5000,
   refreshInterval: 1000,
   factorSpeed: 10,
