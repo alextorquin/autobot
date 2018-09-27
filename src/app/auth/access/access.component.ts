@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { GlobalStoreService } from '../../core/global-store.service';
@@ -7,6 +7,7 @@ import { CustomValidators } from '../../shared/custom.validators';
 import { FormToolsService } from '../../shared/form-tools.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-access',
   templateUrl: './access.component.html',
   styles: []

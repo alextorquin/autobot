@@ -6,13 +6,13 @@
 
 ### 9.1.2 Inmutabilidad
 
-## 9.2 El estado de la aplicación
+# A - El estado de la aplicación
 
-### 9.2.1 El Store
+## A.1 El Store
 
-### 9.2.2 Las Actions
+## A.2 Las Actions
 
-### 9.2.2 Los Reducers
+## A.3 Los Reducers
 
 
 

@@ -17,21 +17,31 @@ import { Link } from '../../core/store/models/link.model';
       </a>
     </div>
   </header>
+  <button (click)="onClick()" >Laod</button>
   <app-menu-list caption="Cars in your garage:"
     [links]="carLinks">
   </app-menu-list>
   `,
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class HomeComponent implements OnInit {
-  public carLinks: Link[];
+  public carLinks: Link[] = [];
   public title = environment.title;
   public subtitle = environment.version;
+  private temp;
   constructor(private route: ActivatedRoute) {}
 
   public ngOnInit() {
-    this.carLinks = this.route.snapshot.data.cars.map(this.getLinkFromCar);
+    // to push or not to push
+    this.temp = this.route.snapshot.data.cars.map(this.getLinkFromCar);
+    setTimeout(() => {
+      this.temp.forEach(link => this.carLinks.push(link));
+      // this.carLinks = [...this.temp];
+    }, 2000);
+  }
+  public onClick() {
+    this.temp.forEach(link => this.carLinks.push(link));
   }
   private getLinkFromCar(car: Car): Link {
     return {
