@@ -1,12 +1,14 @@
 import { formatNumber } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { CarsService } from '../../core/cars.service';
 import { Car } from '../../core/store/models/car.model';
 import { Link } from '../../core/store/models/link.model';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-a',
   template: `
   <header class="hero">
     <div class="hero-body has-text-centered">
@@ -17,32 +19,27 @@ import { Link } from '../../core/store/models/link.model';
       </a>
     </div>
   </header>
-  <button (click)="onClick()" >Laod</button>
-  <app-menu-list caption="Cars in your garage:"
+  <app-menu-list caption="subscribe: Cars in your garage:"
     [links]="carLinks">
   </app-menu-list>
-  <a routerLink="/a"> Home-Async </a>
+  <app-menu-list caption="async: Cars in your garage:"
+    [links]="carLinks$ | async">
+  </app-menu-list>
+  <a routerLink="/"> Home-Resolve </a>
   `,
   styles: [],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit {
+export class HomeAComponent implements OnInit {
   public carLinks: Link[] = [];
+  public carLinks$: Observable<Link[]>;
   public title = environment.title;
   public subtitle = environment.version;
-  private temp;
-  constructor(private route: ActivatedRoute) {}
+  constructor(private cars: CarsService) {}
 
   public ngOnInit() {
-    // to push or not to push
-    this.temp = this.route.snapshot.data.cars.map(this.getLinkFromCar);
-    setTimeout(() => {
-      this.temp.forEach(link => this.carLinks.push(link));
-      // this.carLinks = [...this.temp];
-    }, 2000);
-  }
-  public onClick() {
-    this.temp.forEach(link => this.carLinks.push(link));
+    this.carLinks$ = this.cars.getCars$().pipe(map(cars => cars.map(this.getLinkFromCar)));
+    this.carLinks$.subscribe(carLinks => (this.carLinks = carLinks));
   }
   private getLinkFromCar(car: Car): Link {
     return {

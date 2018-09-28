@@ -6,6 +6,16 @@
 
 ### 9.1.2 Inmutabilidad
 
+Modos de cargar los coches
+- con resolver 
+  - timer
+- sin resolver
+  - async
+  - subscribe
+
+Blog refrito de las presentaciones de training it
+---
+
 # A - El estado de la aplicación
 
 ## A.1 El Store
