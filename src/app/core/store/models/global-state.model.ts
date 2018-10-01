@@ -3,3 +3,5 @@ export interface GlobalState {
   userMessage: string;
   loginNeeded: boolean;
 }
+
+export const globalInitialState: GlobalState = { token: sessionStorage['token'], userMessage: 'AutoBot', loginNeeded: false };
