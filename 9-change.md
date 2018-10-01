@@ -13,16 +13,7 @@ Modos de cargar los coches
   - async
   - subscribe
 
-Blog refrito de las presentaciones de training it
----
 
-# A - El estado de la aplicación
-
-## A.1 El Store
-
-## A.2 Las Actions
-
-## A.3 Los Reducers
 
 
 
