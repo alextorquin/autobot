@@ -87,19 +87,19 @@ export class CarComponent implements OnInit, OnDestroy {
   private onCarGotten = (car: Car): void => {
     this.car = car;
     this.indicators = this.display.initilizeIndicators(this.car);
-    this.sendChanges();
+    this.updateChanges();
   };
   private onCarTravelGotten = (car: Car) => {
     this.car = car;
     this.hasTravelData = true;
     this.globalStore.dispatchUserMessage('Ride like the wind!!');
-    this.sendChanges();
+    this.updateChanges();
   };
   private timeGoesBy = (intervalNumber: number): void => {
     this.engine.checkBattery(this.car);
-    this.sendChanges();
+    this.updateChanges();
   };
-  private sendChanges() {
+  private updateChanges() {
     this.indicators = this.display.updateIndicators(this.car);
     this.cdRef.detectChanges();
   }

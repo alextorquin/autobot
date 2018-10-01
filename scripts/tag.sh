@@ -1,5 +1,5 @@
-git merge 8-reactive
-git tag -a v8.0.0 -m "8-Formularios reactivos con Angular"
+git merge 9-change
+git tag -a v9.0.0 -m "9-Detección del cambio en Angular"
 git push origin master --tag
 
 # git push --delete origin v0.0.0
