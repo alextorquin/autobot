@@ -14,6 +14,7 @@ import { MainComponent } from './navigator/main.component';
 import { NavigatorComponent } from './navigator/navigator.component';
 import { AppEffects } from './store/app.effects';
 import { metaReducers, reducers } from './store/reducers';
+import * as fromGlobal from './store/global/reducers';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { metaReducers, reducers } from './store/reducers';
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects])
+    EffectsModule.forRoot([AppEffects]),
+    StoreModule.forFeature('global', fromGlobal.reducers, { metaReducers: fromGlobal.metaReducers })
   ],
   declarations: [NavigatorComponent, HeaderComponent, MainComponent, FooterComponent],
   exports: [NavigatorComponent],
