@@ -7,6 +7,6 @@ export function reducer(state = initialState, action: GlobalActions): Global {
       console.log(action);
       return { ...state, userMessage: action.payload };
     default:
-      return initialState;
+      return state;
   }
 }
