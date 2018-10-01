@@ -1,7 +1,3 @@
-export interface GlobalState {
-  token: string;
-  userMessage: string;
-  loginNeeded: boolean;
-}
+import { Global } from '../global/global-state.model';
 
-export const globalInitialState: GlobalState = { token: sessionStorage['token'], userMessage: 'AutoBot', loginNeeded: false };
+export const globalInitialState: Global = { token: sessionStorage['token'], userMessage: 'AutoBot', loginNeeded: false };

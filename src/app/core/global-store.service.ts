@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable, timer } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { GlobalState } from './store/models/global-state.model';
+import { Global } from './store/global/global-state.model';
+import { SendUserMesage } from './store/global/global.actions';
+import { State } from './store/state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalStoreService {
-  private state: GlobalState = { token: sessionStorage['token'], userMessage: 'AutoBot', loginNeeded: false };
+  private state: Global = { token: sessionStorage['token'], userMessage: 'AutoBot', loginNeeded: false };
 
   private token$ = new BehaviorSubject<string>(this.state.token);
-  private userMessage$ = new BehaviorSubject<string>(this.state.userMessage);
+  // private userMessage$ = new BehaviorSubject<string>(this.state.userMessage);
   private loginNeeded$ = new BehaviorSubject<boolean>(this.state.loginNeeded);
 
   private readonly clearMessageDelayMs = environment.clearMessageDelayMs;
 
-  constructor() {}
+  constructor(private store: Store<State>) {}
 
   public selectToken$ = (): Observable<string> => this.token$.asObservable();
-  public selectUserMessage$ = (): Observable<string> => this.userMessage$.asObservable();
+  // public selectUserMessage$ = (): Observable<string> => this.userMessage$.asObservable();
   public selectLoginNeeded$ = (): Observable<boolean> => this.loginNeeded$.asObservable();
 
   public dispatchToken = (token: string) => {
@@ -27,11 +30,13 @@ export class GlobalStoreService {
     this.token$.next(this.state.token);
   };
   public dispatchUserMessage = (userMessage: string) => {
-    this.state.userMessage = userMessage;
-    this.userMessage$.next(this.state.userMessage);
+    this.store.dispatch(new SendUserMesage(userMessage));
+    // this.state.userMessage = userMessage;
+    // this.userMessage$.next(this.state.userMessage);
     const subs = timer(this.clearMessageDelayMs).subscribe(() => {
-      this.state.userMessage = '';
-      this.userMessage$.next(this.state.userMessage);
+      // this.store.dispatch(new SendUserMesage(''));
+      // this.state.userMessage = '';
+      // this.userMessage$.next(this.state.userMessage);
       subs.unsubscribe();
     });
   };

@@ -13,8 +13,11 @@ import { HeaderComponent } from './navigator/header.component';
 import { MainComponent } from './navigator/main.component';
 import { NavigatorComponent } from './navigator/navigator.component';
 import { AppEffects } from './store/app.effects';
-import { metaReducers, reducers } from './store/reducers';
-import * as fromGlobal from './store/global/reducers';
+import { metaReducers, reducers } from './store/state';
+
+/*
+ https://itnext.io/ngrx-best-practices-for-enterprise-angular-applications-6f00bcdf36d7
+*/
 
 @NgModule({
   imports: [
@@ -24,8 +27,8 @@ import * as fromGlobal from './store/global/reducers';
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects]),
-    StoreModule.forFeature('global', fromGlobal.reducers, { metaReducers: fromGlobal.metaReducers })
+    EffectsModule.forRoot([AppEffects])
+    // StoreModule.forFeature('global', fromGlobal.reducers, { metaReducers: fromGlobal.metaReducers })
   ],
   declarations: [NavigatorComponent, HeaderComponent, MainComponent, FooterComponent],
   exports: [NavigatorComponent],
