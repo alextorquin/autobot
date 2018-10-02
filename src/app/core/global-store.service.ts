@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable, timer } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { SendUserMesage } from './store/state/global/global.actions';
-import { Global, userMessageSelector } from './store/state/global/global.state';
+import { IsLoginNeeded, SendUserMesage, StoreToken } from './store/state/global/global.actions';
+import { Global, loginNeededSelector, tokenSelector, userMessageSelector } from './store/state/global/global.state';
 import { RootState } from './store/state/root/root.state';
 
 @Injectable({
@@ -19,14 +19,13 @@ export class GlobalStoreService {
 
   constructor(private store: Store<RootState>) {}
 
-  public selectToken$ = (): Observable<string> => this.token$.asObservable();
+  public selectToken$ = (): Observable<string> => this.store.select(tokenSelector);
   public selectUserMessage$ = (): Observable<string> => this.store.select(userMessageSelector);
-  public selectLoginNeeded$ = (): Observable<boolean> => this.loginNeeded$.asObservable();
+  public selectLoginNeeded$ = (): Observable<boolean> => this.store.select(loginNeededSelector);
 
   public dispatchToken = (token: string) => {
-    this.state.token = token;
     sessionStorage['token'] = token;
-    this.token$.next(this.state.token);
+    this.store.dispatch(new StoreToken(token));
   };
   public dispatchUserMessage = (userMessage: string) => {
     this.store.dispatch(new SendUserMesage(userMessage));
@@ -36,7 +35,6 @@ export class GlobalStoreService {
     });
   };
   public dispatchLoginNeeded = (loginNeeded: boolean) => {
-    this.state.loginNeeded = loginNeeded;
-    this.loginNeeded$.next(this.state.loginNeeded);
+    this.store.dispatch(new IsLoginNeeded(loginNeeded));
   };
 }

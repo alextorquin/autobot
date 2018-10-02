@@ -10,3 +10,5 @@ export const initialState: Global = { token: sessionStorage['token'], userMessag
 
 export const globalFeatureSelector = createFeatureSelector('global');
 export const userMessageSelector = createSelector(globalFeatureSelector, (state: Global) => state.userMessage);
+export const loginNeededSelector = createSelector(globalFeatureSelector, (state: Global) => state.loginNeeded);
+export const tokenSelector = createSelector(globalFeatureSelector, (state: Global) => state.token);
