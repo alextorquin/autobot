@@ -1,5 +1,5 @@
-import { Global, initialState } from './global-state.model';
 import { GlobalActions, GlobalActionTypes } from './global.actions';
+import { Global, initialState } from './global.state';
 
 export function reducer(state = initialState, action: GlobalActions): Global {
   switch (action.type) {

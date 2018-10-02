@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { GlobalStoreService } from '../global-store.service';
-import { SendUserMesage } from '../store/global/global.actions';
-import { selectUserMessage, State } from '../store/state';
 
 @Component({
   selector: 'app-navigator',
@@ -16,7 +13,7 @@ import { selectUserMessage, State } from '../store/state';
 })
 export class NavigatorComponent implements OnInit {
   public userMessage$;
-  constructor(private globalStore: GlobalStoreService, private router: Router, private store: Store<State>) {}
+  constructor(private globalStore: GlobalStoreService, private router: Router) {}
 
   ngOnInit() {
     this.globalStore.selectLoginNeeded$().subscribe(loginNeeded => {
@@ -25,9 +22,7 @@ export class NavigatorComponent implements OnInit {
       } else {
         this.router.navigateByUrl('/');
       }
-      this.store.dispatch(new SendUserMesage('Testing NgRx'));
     });
-    // this.userMessage$ = this.globalStore.selectUserMessage$();
-    this.userMessage$ = this.store.select(selectUserMessage);
+    this.userMessage$ = this.globalStore.selectUserMessage$();
   }
 }

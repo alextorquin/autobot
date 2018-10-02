@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -12,10 +11,10 @@ import { FooterComponent } from './navigator/footer.component';
 import { HeaderComponent } from './navigator/header.component';
 import { MainComponent } from './navigator/main.component';
 import { NavigatorComponent } from './navigator/navigator.component';
-import { AppEffects } from './store/app.effects';
-import { metaReducers, reducers } from './store/state';
+import { metaReducers, rootReducers } from './store/state/root';
 
 /*
+ https://itnext.io/ngrx-best-practices-for-enterprise-angular-applications-6f00bcdf36d7
  https://itnext.io/ngrx-best-practices-for-enterprise-angular-applications-6f00bcdf36d7
 */
 
@@ -24,10 +23,10 @@ import { metaReducers, reducers } from './store/state';
     CommonModule,
     HttpClientModule,
     RouterModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(rootReducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects])
+    !environment.production ? StoreDevtoolsModule.instrument() : []
+    // EffectsModule.forRoot([AppEffects])
     // StoreModule.forFeature('global', fromGlobal.reducers, { metaReducers: fromGlobal.metaReducers })
   ],
   declarations: [NavigatorComponent, HeaderComponent, MainComponent, FooterComponent],
