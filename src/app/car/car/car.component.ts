@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { interval, Observable, Subscription } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
@@ -39,11 +45,18 @@ export class CarComponent implements OnInit, OnDestroy {
     this.subscription = this.route.params
       .pipe(
         map((params: Params): string => params['carId']),
-        switchMap((carId: string): Observable<Car> => this.cars.getCarByLinkId$(carId)),
+        switchMap(
+          (carId: string): Observable<Car> => this.cars.getCarByLinkId$(carId)
+        ),
         tap(this.onCarGotten),
-        switchMap((car: Car): Observable<Car> => this.travels.getCarTravel$(car)),
+        switchMap(
+          (car: Car): Observable<Car> => this.travels.getCarTravel$(car)
+        ),
         tap(this.onCarTravelGotten),
-        switchMap((car: Car): Observable<number> => interval(environment.refreshInterval))
+        switchMap(
+          (car: Car): Observable<number> =>
+            interval(environment.refreshInterval)
+        )
       )
       .subscribe(this.timeGoesBy);
   }
@@ -74,15 +87,21 @@ export class CarComponent implements OnInit, OnDestroy {
     this.hasPendingChanges = true;
     this.timeGoesBy(0);
   };
-  public onRecharge = (rechargedDistance: number): void => this.engine.recharge(rechargedDistance, this.car);
+  public onRecharge = (rechargedDistance: number): void =>
+    this.engine.recharge(rechargedDistance, this.car);
   public onSaveTravel = () =>
-    this.travels.putCarTravel$(this.car).subscribe(null, null, () => (this.hasPendingChanges = false));
+    this.travels
+      .putCarTravel$(this.car)
+      .subscribe(null, null, () => (this.hasPendingChanges = false));
   public onDeleteTravel = () =>
-    this.travels.deleteCarTravel$(this.car).subscribe(null, null, () => (this.hasPendingChanges = false));
+    this.travels
+      .deleteCarTravel$(this.car)
+      .subscribe(null, null, () => (this.hasPendingChanges = false));
 
   public hasBattery = (): boolean => this.engine.hasBattery(this.car);
   public isBrakeDisabled = (): boolean => this.engine.isBrakeDisabled(this.car);
-  public isThrottleDisabled = (): boolean => this.engine.isThrottleDisabled(this.car);
+  public isThrottleDisabled = (): boolean =>
+    this.engine.isThrottleDisabled(this.car);
 
   private onCarGotten = (car: Car): void => {
     this.car = car;
