@@ -1,8 +1,10 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { Car } from '../../../core/store/models/car.model';
+import { Travel } from '../../../core/store/models/travel.model';
 
 export interface CarState {
-  car: any;
-  travel: any;
+  car: Car;
+  travel: Travel;
   loading: boolean;
   loaded: boolean;
   message: string;
@@ -26,4 +28,8 @@ export const carStateSelector = createSelector(
 export const carSelector = createSelector(
   carFeatureSelector,
   (state: CarState) => state.car
+);
+export const travelSelector = createSelector(
+  carFeatureSelector,
+  (state: CarState) => state.travel
 );

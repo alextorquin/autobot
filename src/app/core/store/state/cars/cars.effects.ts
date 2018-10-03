@@ -26,11 +26,4 @@ export class CarsEffects {
       )
     )
   );
-
-  private loadCars$(): Observable<CarsActions> {
-    return this.cars.getCars$().pipe(
-      map((cars: Car[]) => new LoadCarsOK(cars)),
-      catchError(err => of(new LoadCarsError('Error loading cars')))
-    );
-  }
 }

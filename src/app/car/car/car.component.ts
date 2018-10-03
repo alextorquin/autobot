@@ -6,14 +6,18 @@ import {
   OnInit
 } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { interval, Observable, Subscription } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { CarsService } from '../../core/cars.service';
 import { GlobalStoreService } from '../../core/global-store.service';
 import { Car } from '../../core/store/models/car.model';
+import { Travel } from '../../core/store/models/travel.model';
+import { RootState } from '../../core/store/state/root/root.state';
 import { DisplayService } from '../display.service';
 import { EngineService } from '../engine.service';
+import { LoadCar, LoadTravel } from '../store/car/car.actions';
+import { carSelector, travelSelector } from '../store/car/car.state';
 import { Indicator } from '../store/models/indicator.model';
 import { TravelsService } from '../travels.service';
 
@@ -32,12 +36,12 @@ export class CarComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private cars: CarsService,
     private display: DisplayService,
     private engine: EngineService,
     private travels: TravelsService,
     private globalStore: GlobalStoreService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private store: Store<RootState>
   ) {}
 
   public ngOnInit() {
@@ -45,16 +49,25 @@ export class CarComponent implements OnInit, OnDestroy {
     this.subscription = this.route.params
       .pipe(
         map((params: Params): string => params['carId']),
+        tap((carId: string) => this.store.dispatch(new LoadCar(carId))),
         switchMap(
-          (carId: string): Observable<Car> => this.cars.getCarByLinkId$(carId)
+          (carId: string): Observable<Car> =>
+            this.store.select(carSelector).pipe(
+              filter(car => car != null),
+              take(1)
+            )
         ),
         tap(this.onCarGotten),
         switchMap(
-          (car: Car): Observable<Car> => this.travels.getCarTravel$(car)
+          (car: Car): Observable<Travel> =>
+            this.store.select(travelSelector).pipe(
+              filter(travel => travel != null),
+              take(1)
+            )
         ),
         tap(this.onCarTravelGotten),
         switchMap(
-          (car: Car): Observable<number> =>
+          (travel: Travel): Observable<number> =>
             interval(environment.refreshInterval)
         )
       )
@@ -106,10 +119,14 @@ export class CarComponent implements OnInit, OnDestroy {
   private onCarGotten = (car: Car): void => {
     this.car = car;
     this.indicators = this.display.initilizeIndicators(this.car);
+    this.store.dispatch(new LoadTravel(car));
     this.updateChanges();
   };
-  private onCarTravelGotten = (car: Car) => {
-    this.car = car;
+  private onCarTravelGotten = (travel: Travel) => {
+    this.car.currentSpeed = travel.currentSpeed;
+    this.car.remainingBattery = travel.remainingBattery;
+    this.car.distanceTraveled = travel.distanceTraveled;
+    this.car.owner = travel.owner;
     this.hasTravelData = true;
     this.globalStore.dispatchUserMessage('Ride like the wind!!');
     this.updateChanges();
