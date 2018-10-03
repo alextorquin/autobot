@@ -1,20 +1,13 @@
-import { Action } from '@ngrx/store';
 import { CarActions, CarActionTypes } from './car.actions';
+import { CarState, initialCarState } from './car.state';
 
-export interface State {
-
-}
-
-export const initialState: State = {
-
-};
-
-export function reducer(state = initialState, action: CarActions): State {
+export function carReducer(
+  state = initialCarState,
+  action: CarActions
+): CarState {
   switch (action.type) {
-
     case CarActionTypes.LoadCars:
       return state;
-
 
     default:
       return state;

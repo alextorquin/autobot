@@ -8,10 +8,12 @@ import { RootState } from './root.state';
 export const rootReducers: ActionReducerMap<RootState> = {
   router: routerReducer,
   global: fromGlobal.reducer,
-  cars: fromCars.reducer
+  cars: fromCars.carsReducer
 };
 
-export const metaReducers: MetaReducer<RootState>[] = !environment.production ? [] : [];
+export const metaReducers: MetaReducer<RootState>[] = !environment.production
+  ? []
+  : [];
 
 // cars : fromCars.reducer
 

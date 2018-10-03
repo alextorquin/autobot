@@ -21,7 +21,7 @@ import { TravelGuard } from './travel.guard';
     CommonModule,
     CarRoutingModule,
     SharedModule,
-    StoreModule.forFeature('car', fromCar.reducer),
+    StoreModule.forFeature('car', fromCar.carReducer),
     EffectsModule.forFeature([CarEffects])
   ],
   declarations: [

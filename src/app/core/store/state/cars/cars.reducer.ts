@@ -1,7 +1,10 @@
 import { CarsActions, CarsActionTypes } from './cars.actions';
-import { Cars, initialState } from './cars.state';
+import { CarsState, initialCarsState } from './cars.state';
 
-export function reducer(state = initialState, action: CarsActions): Cars {
+export function carsReducer(
+  state = initialCarsState,
+  action: CarsActions
+): CarsState {
   switch (action.type) {
     case CarsActionTypes.LoadCars:
       return {
