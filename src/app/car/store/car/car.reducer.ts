@@ -13,7 +13,7 @@ export function carReducer(
         working: true,
         completed: false,
         message: 'Loading car...',
-        canDeactivate: true
+        canBeDeactivated: true
       };
     case CarActionTypes.LoadCarOK:
       return {
@@ -22,7 +22,7 @@ export function carReducer(
         working: false,
         completed: true,
         message: 'Car Loaded',
-        canDeactivate: true
+        canBeDeactivated: true
       };
     case CarActionTypes.LoadCarError:
       return {
@@ -31,7 +31,7 @@ export function carReducer(
         working: false,
         completed: false,
         message: action.payload,
-        canDeactivate: true
+        canBeDeactivated: true
       };
     case CarActionTypes.LoadTravel:
       return {
@@ -40,7 +40,7 @@ export function carReducer(
         working: true,
         completed: false,
         message: 'Loading Travel...',
-        canDeactivate: true
+        canBeDeactivated: true
       };
     case CarActionTypes.LoadTravelOK:
       return {
@@ -49,7 +49,7 @@ export function carReducer(
         working: false,
         completed: true,
         message: 'Travel Loaded',
-        canDeactivate: false
+        canBeDeactivated: false
       };
     case CarActionTypes.LoadTravelError:
       return {
@@ -58,7 +58,7 @@ export function carReducer(
         working: false,
         completed: false,
         message: action.payload,
-        canDeactivate: true
+        canBeDeactivated: true
       };
     case CarActionTypes.InsertTravel:
       return {
@@ -67,7 +67,7 @@ export function carReducer(
         working: true,
         completed: false,
         message: 'Inserting Travel...',
-        canDeactivate: true
+        canBeDeactivated: true
       };
     case CarActionTypes.InsertTravelOK:
       return {
@@ -76,7 +76,7 @@ export function carReducer(
         working: false,
         completed: true,
         message: 'Travel Inserted',
-        canDeactivate: true
+        canBeDeactivated: true
       };
     case CarActionTypes.InsertTravelError:
       return {
@@ -85,7 +85,7 @@ export function carReducer(
         working: false,
         completed: false,
         message: action.payload,
-        canDeactivate: true
+        canBeDeactivated: true
       };
     case CarActionTypes.UpdateTravel:
       return {
@@ -94,7 +94,7 @@ export function carReducer(
         working: true,
         completed: false,
         message: 'Updating Travel...',
-        canDeactivate: false
+        canBeDeactivated: false
       };
     case CarActionTypes.UpdateTravelOK:
       return {
@@ -103,7 +103,7 @@ export function carReducer(
         working: false,
         completed: true,
         message: 'Travel Updated',
-        canDeactivate: true
+        canBeDeactivated: true
       };
     case CarActionTypes.UpdateTravelError:
       return {
@@ -112,7 +112,7 @@ export function carReducer(
         working: false,
         completed: false,
         message: action.payload,
-        canDeactivate: true
+        canBeDeactivated: true
       };
     case CarActionTypes.DeleteTravel:
       return {
@@ -121,7 +121,7 @@ export function carReducer(
         working: true,
         completed: false,
         message: 'Deleting Travel...',
-        canDeactivate: false
+        canBeDeactivated: false
       };
     case CarActionTypes.DeleteTravelOK:
       return {
@@ -130,7 +130,7 @@ export function carReducer(
         working: false,
         completed: true,
         message: 'Travel Deleted',
-        canDeactivate: true
+        canBeDeactivated: true
       };
     case CarActionTypes.DeleteTravelError:
       return {
@@ -138,7 +138,7 @@ export function carReducer(
         working: false,
         completed: false,
         message: action.payload,
-        canDeactivate: true
+        canBeDeactivated: true
       };
     default:
       return state;

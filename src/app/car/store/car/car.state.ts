@@ -8,7 +8,7 @@ export interface CarState {
   working: boolean;
   completed: boolean;
   message: string;
-  canDeactivate: boolean;
+  canBeDeactivated: boolean;
 }
 
 export const initialCarState: CarState = {
@@ -17,7 +17,7 @@ export const initialCarState: CarState = {
   working: false,
   completed: false,
   message: '',
-  canDeactivate: true
+  canBeDeactivated: true
 };
 
 export const carFeatureSelector = createFeatureSelector('car');
@@ -35,5 +35,5 @@ export const travelSelector = createSelector(
 );
 export const canDeactivateSelector = createSelector(
   carFeatureSelector,
-  (state: CarState) => state.canDeactivate
+  (state: CarState) => state.canBeDeactivated
 );

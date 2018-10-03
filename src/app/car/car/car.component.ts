@@ -51,6 +51,11 @@ export class CarComponent implements OnInit, OnDestroy {
     private store: Store<RootState>
   ) {}
 
+  /*
+  actions for break and throttle
+  use only canBeDeactivateSelector
+  */
+
   public ngOnInit() {
     this.globalStore.dispatchUserMessage('Loading travel data !!');
     this.store
@@ -88,9 +93,6 @@ export class CarComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
   public canBeDeactivated() {
-    // if (!this.hasTravelData) {
-    //   return true;
-    // }
     if (this.hasPendingChanges) {
       this.globalStore.dispatchUserMessage('Save or delete before exit !!');
       return false;
