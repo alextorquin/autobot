@@ -10,15 +10,21 @@ import { TravelsService } from '../../travels.service';
 import {
   CarActions,
   CarActionTypes,
+  DeleteTravel,
+  DeleteTravelError,
+  DeleteTravelOK,
+  InsertTravel,
+  InsertTravelError,
+  InsertTravelOK,
   LoadCar,
   LoadCarError,
   LoadCarOK,
   LoadTravel,
   LoadTravelError,
   LoadTravelOK,
-  PostTravel,
-  PostTravelError,
-  PostTravelOK
+  UpdateTravel,
+  UpdateTravelError,
+  UpdateTravelOK
 } from './car.actions';
 
 @Injectable()
@@ -49,7 +55,7 @@ export class CarEffects {
         catchError(
           (err: HttpErrorResponse): Observable<CarActions> => {
             if (err.status === 404) {
-              return of(new PostTravel(action.payload));
+              return of(new InsertTravel(action.payload));
             } else {
               return of(
                 new LoadTravelError('Error loading travel. Try Insert')
@@ -62,12 +68,34 @@ export class CarEffects {
   );
 
   @Effect()
-  public postTravelEffect$: Observable<CarActions> = this.actions$.pipe(
-    ofType<PostTravel>(CarActionTypes.PostTravel),
-    mergeMap((action: PostTravel) =>
+  public InsertTravelEffect$: Observable<CarActions> = this.actions$.pipe(
+    ofType<InsertTravel>(CarActionTypes.InsertTravel),
+    mergeMap((action: InsertTravel) =>
       this.travels.postCarTravel$(action.payload).pipe(
-        map((travel: Travel) => new PostTravelOK(travel)),
-        catchError(err => of(new PostTravelError('Error porting car')))
+        map((travel: Travel) => new InsertTravelOK(travel)),
+        catchError(err => of(new InsertTravelError('Error inserting travel')))
+      )
+    )
+  );
+
+  @Effect()
+  public UpdateTravelEffect$: Observable<CarActions> = this.actions$.pipe(
+    ofType<UpdateTravel>(CarActionTypes.UpdateTravel),
+    mergeMap((action: UpdateTravel) =>
+      this.travels.putCarTravel$(action.payload).pipe(
+        map((travel: Travel) => new UpdateTravelOK(travel)),
+        catchError(err => of(new UpdateTravelError('Error updating travel')))
+      )
+    )
+  );
+
+  @Effect()
+  public DeleteTravelEffect$: Observable<CarActions> = this.actions$.pipe(
+    ofType<DeleteTravel>(CarActionTypes.DeleteTravel),
+    mergeMap((action: DeleteTravel) =>
+      this.travels.deleteCarTravel$(action.payload).pipe(
+        map(() => new DeleteTravelOK()),
+        catchError(err => of(new DeleteTravelError('Error deleting travel')))
       )
     )
   );

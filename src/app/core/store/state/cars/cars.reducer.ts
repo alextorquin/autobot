@@ -9,22 +9,22 @@ export function carsReducer(
     case CarsActionTypes.LoadCars:
       return {
         cars: null,
-        loading: true,
-        loaded: false,
+        working: true,
+        completed: false,
         message: 'Loading...'
       };
     case CarsActionTypes.LoadCarsOK:
       return {
         cars: action.payload,
-        loading: false,
-        loaded: true,
+        working: false,
+        completed: true,
         message: `${action.payload.length} cars loaded.`
       };
     case CarsActionTypes.LoadCarsError:
       return {
         cars: [],
-        loading: false,
-        loaded: false,
+        working: false,
+        completed: false,
         message: action.payload
       };
     default:

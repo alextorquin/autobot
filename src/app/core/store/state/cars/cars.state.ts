@@ -3,15 +3,15 @@ import { Car } from '../../models/car.model';
 
 export interface CarsState {
   cars: Car[];
-  loading: boolean;
-  loaded: boolean;
+  working: boolean;
+  completed: boolean;
   message: string;
 }
 
 export const initialCarsState: CarsState = {
   cars: [],
-  loading: false,
-  loaded: false,
+  working: false,
+  completed: false,
   message: ''
 };
 

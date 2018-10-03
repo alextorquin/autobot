@@ -9,9 +9,15 @@ export enum CarActionTypes {
   LoadTravel = '[Car] Load Travel',
   LoadTravelOK = '[Car] Load Travel OK',
   LoadTravelError = '[Car] Load Travel Error',
-  PostTravel = '[Car] Post Travel',
-  PostTravelOK = '[Car] Post Travel OK',
-  PostTravelError = '[Car] Post Travel Error'
+  InsertTravel = '[Car] Insert Travel',
+  InsertTravelOK = '[Car] Insert Travel OK',
+  InsertTravelError = '[Car] Insert Travel Error',
+  UpdateTravel = '[Car] Update Travel',
+  UpdateTravelOK = '[Car] Update Travel OK',
+  UpdateTravelError = '[Car] Update Travel Error',
+  DeleteTravel = '[Car] Delete Travel',
+  DeleteTravelOK = '[Car] Delete Travel OK',
+  DeleteTravelError = '[Car] Delete Travel Error'
 }
 
 export class LoadCar implements Action {
@@ -44,18 +50,48 @@ export class LoadTravelError implements Action {
   constructor(public payload: string) {}
 }
 
-export class PostTravel implements Action {
-  readonly type = CarActionTypes.PostTravel;
+export class InsertTravel implements Action {
+  readonly type = CarActionTypes.InsertTravel;
   constructor(public payload: Car) {}
 }
 
-export class PostTravelOK implements Action {
-  readonly type = CarActionTypes.PostTravelOK;
+export class InsertTravelOK implements Action {
+  readonly type = CarActionTypes.InsertTravelOK;
   constructor(public payload: Travel) {}
 }
 
-export class PostTravelError implements Action {
-  readonly type = CarActionTypes.PostTravelError;
+export class InsertTravelError implements Action {
+  readonly type = CarActionTypes.InsertTravelError;
+  constructor(public payload: string) {}
+}
+
+export class UpdateTravel implements Action {
+  readonly type = CarActionTypes.UpdateTravel;
+  constructor(public payload: Car) {}
+}
+
+export class UpdateTravelOK implements Action {
+  readonly type = CarActionTypes.UpdateTravelOK;
+  constructor(public payload: Travel) {}
+}
+
+export class UpdateTravelError implements Action {
+  readonly type = CarActionTypes.UpdateTravelError;
+  constructor(public payload: string) {}
+}
+
+export class DeleteTravel implements Action {
+  readonly type = CarActionTypes.DeleteTravel;
+  constructor(public payload: Car) {}
+}
+
+export class DeleteTravelOK implements Action {
+  readonly type = CarActionTypes.DeleteTravelOK;
+  constructor() {}
+}
+
+export class DeleteTravelError implements Action {
+  readonly type = CarActionTypes.DeleteTravelError;
   constructor(public payload: string) {}
 }
 
@@ -66,6 +102,12 @@ export type CarActions =
   | LoadTravel
   | LoadTravelOK
   | LoadTravelError
-  | PostTravel
-  | PostTravelOK
-  | PostTravelError;
+  | InsertTravel
+  | InsertTravelOK
+  | InsertTravelError
+  | UpdateTravel
+  | UpdateTravelOK
+  | UpdateTravelError
+  | DeleteTravel
+  | DeleteTravelOK
+  | DeleteTravelError;

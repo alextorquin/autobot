@@ -10,8 +10,8 @@ export function carReducer(
       return {
         car: null,
         travel: null,
-        loading: true,
-        loaded: false,
+        working: true,
+        completed: false,
         message: 'Loading car...',
         canDeactivate: true
       };
@@ -19,8 +19,8 @@ export function carReducer(
       return {
         car: action.payload,
         travel: null,
-        loading: false,
-        loaded: true,
+        working: false,
+        completed: true,
         message: 'Car Loaded',
         canDeactivate: true
       };
@@ -28,8 +28,8 @@ export function carReducer(
       return {
         car: null,
         travel: null,
-        loading: false,
-        loaded: false,
+        working: false,
+        completed: false,
         message: action.payload,
         canDeactivate: true
       };
@@ -37,8 +37,8 @@ export function carReducer(
       return {
         ...state,
         travel: null,
-        loading: true,
-        loaded: false,
+        working: true,
+        completed: false,
         message: 'Loading Travel...',
         canDeactivate: true
       };
@@ -46,44 +46,97 @@ export function carReducer(
       return {
         ...state,
         travel: action.payload,
-        loading: false,
-        loaded: true,
+        working: false,
+        completed: true,
         message: 'Travel Loaded',
-        canDeactivate: true
+        canDeactivate: false
       };
     case CarActionTypes.LoadTravelError:
       return {
         ...state,
         travel: null,
-        loading: false,
-        loaded: false,
+        working: false,
+        completed: false,
         message: action.payload,
         canDeactivate: true
       };
-    case CarActionTypes.PostTravel:
+    case CarActionTypes.InsertTravel:
       return {
         ...state,
         travel: null,
-        loading: true,
-        loaded: false,
-        message: 'Posting Travel...',
+        working: true,
+        completed: false,
+        message: 'Inserting Travel...',
         canDeactivate: true
       };
-    case CarActionTypes.PostTravelOK:
+    case CarActionTypes.InsertTravelOK:
       return {
         ...state,
         travel: action.payload,
-        loading: false,
-        loaded: true,
-        message: 'Travel Posted',
+        working: false,
+        completed: true,
+        message: 'Travel Inserted',
         canDeactivate: true
       };
-    case CarActionTypes.PostTravelError:
+    case CarActionTypes.InsertTravelError:
       return {
         ...state,
         travel: null,
-        loading: false,
-        loaded: false,
+        working: false,
+        completed: false,
+        message: action.payload,
+        canDeactivate: true
+      };
+    case CarActionTypes.UpdateTravel:
+      return {
+        ...state,
+        travel: null,
+        working: true,
+        completed: false,
+        message: 'Updating Travel...',
+        canDeactivate: false
+      };
+    case CarActionTypes.UpdateTravelOK:
+      return {
+        ...state,
+        travel: action.payload,
+        working: false,
+        completed: true,
+        message: 'Travel Updated',
+        canDeactivate: true
+      };
+    case CarActionTypes.UpdateTravelError:
+      return {
+        ...state,
+        travel: null,
+        working: false,
+        completed: false,
+        message: action.payload,
+        canDeactivate: true
+      };
+    case CarActionTypes.DeleteTravel:
+      return {
+        ...state,
+        travel: null,
+        working: true,
+        completed: false,
+        message: 'Deleting Travel...',
+        canDeactivate: false
+      };
+    case CarActionTypes.DeleteTravelOK:
+      return {
+        ...state,
+        travel: null,
+        working: false,
+        completed: true,
+        message: 'Travel Deleted',
+        canDeactivate: true
+      };
+    case CarActionTypes.DeleteTravelError:
+      return {
+        ...state,
+        working: false,
+        completed: false,
         message: action.payload,
         canDeactivate: true
       };

@@ -5,8 +5,8 @@ import { Travel } from '../../../core/store/models/travel.model';
 export interface CarState {
   car: Car;
   travel: Travel;
-  loading: boolean;
-  loaded: boolean;
+  working: boolean;
+  completed: boolean;
   message: string;
   canDeactivate: boolean;
 }
@@ -14,8 +14,8 @@ export interface CarState {
 export const initialCarState: CarState = {
   car: null,
   travel: null,
-  loading: false,
-  loaded: false,
+  working: false,
+  completed: false,
   message: '',
   canDeactivate: true
 };
@@ -32,4 +32,8 @@ export const carSelector = createSelector(
 export const travelSelector = createSelector(
   carFeatureSelector,
   (state: CarState) => state.travel
+);
+export const canDeactivateSelector = createSelector(
+  carFeatureSelector,
+  (state: CarState) => state.canDeactivate
 );

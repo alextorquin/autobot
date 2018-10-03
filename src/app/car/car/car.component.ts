@@ -16,10 +16,18 @@ import { Travel } from '../../core/store/models/travel.model';
 import { RootState } from '../../core/store/state/root/root.state';
 import { DisplayService } from '../display.service';
 import { EngineService } from '../engine.service';
-import { LoadCar, LoadTravel } from '../store/car/car.actions';
-import { carSelector, travelSelector } from '../store/car/car.state';
+import {
+  DeleteTravel,
+  LoadCar,
+  LoadTravel,
+  UpdateTravel
+} from '../store/car/car.actions';
+import {
+  canDeactivateSelector,
+  carSelector,
+  travelSelector
+} from '../store/car/car.state';
 import { Indicator } from '../store/models/indicator.model';
-import { TravelsService } from '../travels.service';
 
 @Component({
   selector: 'app-car',
@@ -38,7 +46,6 @@ export class CarComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private display: DisplayService,
     private engine: EngineService,
-    private travels: TravelsService,
     private globalStore: GlobalStoreService,
     private cdRef: ChangeDetectorRef,
     private store: Store<RootState>
@@ -46,6 +53,9 @@ export class CarComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.globalStore.dispatchUserMessage('Loading travel data !!');
+    this.store
+      .select(canDeactivateSelector)
+      .subscribe(canDeactivate => (this.hasPendingChanges = !canDeactivate));
     this.subscription = this.route.params
       .pipe(
         map((params: Params): string => params['carId']),
@@ -78,9 +88,9 @@ export class CarComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
   public canBeDeactivated() {
-    if (!this.hasTravelData) {
-      return true;
-    }
+    // if (!this.hasTravelData) {
+    //   return true;
+    // }
     if (this.hasPendingChanges) {
       this.globalStore.dispatchUserMessage('Save or delete before exit !!');
       return false;
@@ -102,14 +112,10 @@ export class CarComponent implements OnInit, OnDestroy {
   };
   public onRecharge = (rechargedDistance: number): void =>
     this.engine.recharge(rechargedDistance, this.car);
-  public onSaveTravel = () =>
-    this.travels
-      .putCarTravel$(this.car)
-      .subscribe(null, null, () => (this.hasPendingChanges = false));
-  public onDeleteTravel = () =>
-    this.travels
-      .deleteCarTravel$(this.car)
-      .subscribe(null, null, () => (this.hasPendingChanges = false));
+
+  public onSaveTravel = () => this.store.dispatch(new UpdateTravel(this.car));
+
+  public onDeleteTravel = () => this.store.dispatch(new DeleteTravel(this.car));
 
   public hasBattery = (): boolean => this.engine.hasBattery(this.car);
   public isBrakeDisabled = (): boolean => this.engine.isBrakeDisabled(this.car);
