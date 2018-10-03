@@ -1,11 +1,14 @@
 import { formatNumber } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { CarsService } from '../../core/cars.service';
 import { Car } from '../../core/store/models/car.model';
 import { Link } from '../../core/store/models/link.model';
+import { LoadCars } from '../../core/store/state/cars/cars.actions';
+import { carsSelector } from '../../core/store/state/cars/cars.state';
+import { RootState } from '../../core/store/state/root/root.state';
 
 @Component({
   selector: 'app-home-a',
@@ -19,9 +22,6 @@ import { Link } from '../../core/store/models/link.model';
       </a>
     </div>
   </header>
-  <app-menu-list caption="subscribe: Cars in your garage:"
-    [links]="carLinks">
-  </app-menu-list>
   <app-menu-list caption="async: Cars in your garage:"
     [links]="carLinks$ | async">
   </app-menu-list>
@@ -31,15 +31,17 @@ import { Link } from '../../core/store/models/link.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeAComponent implements OnInit {
-  public carLinks: Link[] = [];
   public carLinks$: Observable<Link[]>;
   public title = environment.title;
   public subtitle = environment.version;
-  constructor(private cars: CarsService) {}
+  constructor(private store: Store<RootState>) {}
 
   public ngOnInit() {
-    this.carLinks$ = this.cars.getCars$().pipe(map(cars => cars.map(this.getLinkFromCar)));
-    this.carLinks$.subscribe(carLinks => (this.carLinks = carLinks));
+    this.store.dispatch(new LoadCars());
+    this.carLinks$ = this.store.select(carsSelector).pipe(
+      filter(cars => cars != null),
+      map(cars => cars.map(this.getLinkFromCar))
+    );
   }
   private getLinkFromCar(car: Car): Link {
     return {

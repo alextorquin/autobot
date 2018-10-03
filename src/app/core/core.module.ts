@@ -12,6 +12,8 @@ import { HeaderComponent } from './navigator/header.component';
 import { MainComponent } from './navigator/main.component';
 import { NavigatorComponent } from './navigator/navigator.component';
 import { metaReducers, rootReducers } from './store/state/root';
+import { EffectsModule } from '@ngrx/effects';
+import { CarsEffects } from './store/state/cars/cars.effects';
 
 /*
  https://itnext.io/ngrx-best-practices-for-enterprise-angular-applications-6f00bcdf36d7
@@ -25,7 +27,8 @@ import { metaReducers, rootReducers } from './store/state/root';
     RouterModule,
     StoreModule.forRoot(rootReducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([CarsEffects])
     // EffectsModule.forRoot([AppEffects])
     // StoreModule.forFeature('global', fromGlobal.reducers, { metaReducers: fromGlobal.metaReducers })
   ],
