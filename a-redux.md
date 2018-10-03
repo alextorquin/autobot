@@ -7,12 +7,19 @@
 
 instalación ./scripts/lib/ngrx.sh
 mover importación a core module
-mover reducers a core/store
+mover reducers a core/store/state
+
+
+*Feature modules*
+*Effects*
 
 
 ### a.2.1 El Store
 a partir de global-store.services.ts
-
+root
+ - router
+ - global
+cars
 
 ### a.2.2 Las Actions
 

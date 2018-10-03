@@ -14,8 +14,8 @@ export class CarsService {
   constructor(private http: HttpClient) {}
 
   public getCars$ = (): Observable<Car[]> => this.http.get<Car[]>(this.carsUrl);
-  public getCarByLinkId$ = (carId: string): Observable<Car> => this.filterCars$(this.getCars$(), carId);
+  public getCarByLinkId$ = (carId: string): Observable<Car> => this.findCarById$(this.getCars$(), carId);
 
-  private filterCars$ = (cars$: Observable<Car[]>, carId: string) => cars$.pipe(map(cars => this.filterCars(cars, carId)));
-  private filterCars = (cars: Car[], carId: string): Car => cars.find(car => car.link.routerLink === carId);
+  private findCarById$ = (cars$: Observable<Car[]>, carId: string) => cars$.pipe(map(cars => this.findCarById(cars, carId)));
+  private findCarById = (cars: Car[], carId: string): Car => cars.find(car => car.link.routerLink === carId);
 }
