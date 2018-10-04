@@ -1,4 +1,4 @@
-<article *ngIf="car; else loading">
+<article *ngIf="(travel$ | async) !=null ; else loading">
   <app-driver-cockpit [car]="car"
                       [indicators]="indicators"
                       [hasBattery]="hasBattery()"
@@ -15,6 +15,6 @@
 </article>
 <ng-template #loading>
   <h1>
-    Loading car...
+    Loading car and travel data...
   </h1>
 </ng-template>

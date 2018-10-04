@@ -17,7 +17,9 @@ export enum CarActionTypes {
   UpdateTravelError = '[Car] Update Travel Error',
   DeleteTravel = '[Car] Delete Travel',
   DeleteTravelOK = '[Car] Delete Travel OK',
-  DeleteTravelError = '[Car] Delete Travel Error'
+  DeleteTravelError = '[Car] Delete Travel Error',
+  Brake = '[Car] Brake',
+  Throttle = '[Car] Throttle'
 }
 
 export class LoadCar implements Action {
@@ -95,6 +97,16 @@ export class DeleteTravelError implements Action {
   constructor(public payload: string) {}
 }
 
+export class Brake implements Action {
+  readonly type = CarActionTypes.Brake;
+  constructor(public payload: Car) {}
+}
+
+export class Throttle implements Action {
+  readonly type = CarActionTypes.Throttle;
+  constructor(public payload: Car) {}
+}
+
 export type CarActions =
   | LoadCar
   | LoadCarOK
@@ -110,4 +122,6 @@ export type CarActions =
   | UpdateTravelError
   | DeleteTravel
   | DeleteTravelOK
-  | DeleteTravelError;
+  | DeleteTravelError
+  | Brake
+  | Throttle;

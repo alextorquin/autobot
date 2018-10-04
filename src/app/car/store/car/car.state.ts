@@ -33,7 +33,7 @@ export const travelSelector = createSelector(
   carFeatureSelector,
   (state: CarState) => state.travel
 );
-export const canDeactivateSelector = createSelector(
+export const canBeDeactivatedSelector = createSelector(
   carFeatureSelector,
   (state: CarState) => state.canBeDeactivated
 );

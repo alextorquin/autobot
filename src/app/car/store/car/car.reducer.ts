@@ -49,7 +49,7 @@ export function carReducer(
         working: false,
         completed: true,
         message: 'Travel Loaded',
-        canBeDeactivated: false
+        canBeDeactivated: true
       };
     case CarActionTypes.LoadTravelError:
       return {
@@ -139,6 +139,20 @@ export function carReducer(
         completed: false,
         message: action.payload,
         canBeDeactivated: true
+      };
+    case CarActionTypes.Brake:
+      return {
+        ...state,
+        car: action.payload,
+        message: 'Brake',
+        canBeDeactivated: false
+      };
+    case CarActionTypes.Throttle:
+      return {
+        ...state,
+        car: action.payload,
+        message: 'Throttle',
+        canBeDeactivated: false
       };
     default:
       return state;

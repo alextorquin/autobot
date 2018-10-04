@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit
@@ -17,13 +16,15 @@ import { RootState } from '../../core/store/state/root/root.state';
 import { DisplayService } from '../display.service';
 import { EngineService } from '../engine.service';
 import {
+  Brake,
   DeleteTravel,
   LoadCar,
   LoadTravel,
+  Throttle,
   UpdateTravel
 } from '../store/car/car.actions';
 import {
-  canDeactivateSelector,
+  canBeDeactivatedSelector,
   carSelector,
   travelSelector
 } from '../store/car/car.state';
@@ -38,30 +39,36 @@ import { Indicator } from '../store/models/indicator.model';
 export class CarComponent implements OnInit, OnDestroy {
   public car: Car;
   public indicators: Indicator[];
-  public hasTravelData = false;
-  private subscription: Subscription;
-  private hasPendingChanges = false;
+  public travel$: Observable<Travel>;
+  private intervalSubscription: Subscription;
+  private _canBeDeactivated = true;
+
+  /*
+  // Mejorar la interacción con engine y display
+  // Hacerla más funcional
+  */
 
   constructor(
     private route: ActivatedRoute,
     private display: DisplayService,
     private engine: EngineService,
     private globalStore: GlobalStoreService,
-    private cdRef: ChangeDetectorRef,
     private store: Store<RootState>
   ) {}
 
-  /*
-  actions for break and throttle
-  use only canBeDeactivateSelector
-  */
-
   public ngOnInit() {
     this.globalStore.dispatchUserMessage('Loading travel data !!');
+    this.travel$ = this.store.select(travelSelector).pipe(
+      filter(travel => travel != null),
+      take(1),
+      tap(this.onCarTravelGotten)
+    );
     this.store
-      .select(canDeactivateSelector)
-      .subscribe(canDeactivate => (this.hasPendingChanges = !canDeactivate));
-    this.subscription = this.route.params
+      .select(canBeDeactivatedSelector)
+      .subscribe(
+        canBeDeactivated => (this._canBeDeactivated = canBeDeactivated)
+      );
+    this.intervalSubscription = this.route.params
       .pipe(
         map((params: Params): string => params['carId']),
         tap((carId: string) => this.store.dispatch(new LoadCar(carId))),
@@ -74,15 +81,7 @@ export class CarComponent implements OnInit, OnDestroy {
         ),
         tap(this.onCarGotten),
         switchMap(
-          (car: Car): Observable<Travel> =>
-            this.store.select(travelSelector).pipe(
-              filter(travel => travel != null),
-              take(1)
-            )
-        ),
-        tap(this.onCarTravelGotten),
-        switchMap(
-          (travel: Travel): Observable<number> =>
+          (car: Car): Observable<number> =>
             interval(environment.refreshInterval)
         )
       )
@@ -90,26 +89,25 @@ export class CarComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.intervalSubscription.unsubscribe();
   }
   public canBeDeactivated() {
-    if (this.hasPendingChanges) {
-      this.globalStore.dispatchUserMessage('Save or delete before exit !!');
-      return false;
-    } else {
+    if (this._canBeDeactivated) {
       this.globalStore.dispatchUserMessage('You can go your own away ;-)');
-      return true;
+    } else {
+      this.globalStore.dispatchUserMessage('Save or delete before exit !!');
     }
+    return this._canBeDeactivated;
   }
 
   public onBrake = (): void => {
     this.engine.brake(this.car);
-    this.hasPendingChanges = true;
+    this.store.dispatch(new Brake(this.car));
     this.timeGoesBy(0);
   };
   public onThrottle = (): void => {
     this.engine.throttle(this.car);
-    this.hasPendingChanges = true;
+    this.store.dispatch(new Throttle(this.car));
     this.timeGoesBy(0);
   };
   public onRecharge = (rechargedDistance: number): void =>
@@ -128,23 +126,21 @@ export class CarComponent implements OnInit, OnDestroy {
     this.car = car;
     this.indicators = this.display.initilizeIndicators(this.car);
     this.store.dispatch(new LoadTravel(car));
-    this.updateChanges();
+    this.updateIndicators();
   };
   private onCarTravelGotten = (travel: Travel) => {
     this.car.currentSpeed = travel.currentSpeed;
     this.car.remainingBattery = travel.remainingBattery;
     this.car.distanceTraveled = travel.distanceTraveled;
     this.car.owner = travel.owner;
-    this.hasTravelData = true;
     this.globalStore.dispatchUserMessage('Ride like the wind!!');
-    this.updateChanges();
+    this.updateIndicators();
   };
   private timeGoesBy = (intervalNumber: number): void => {
     this.engine.checkBattery(this.car);
-    this.updateChanges();
+    this.updateIndicators();
   };
-  private updateChanges() {
+  private updateIndicators() {
     this.indicators = this.display.updateIndicators(this.car);
-    this.cdRef.detectChanges();
   }
 }
