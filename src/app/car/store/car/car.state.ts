@@ -1,10 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Car } from '../../../core/store/models/car.model';
 import { Travel } from '../../../core/store/models/travel.model';
+import { Indicator } from '../models/indicator.model';
 
 export interface CarState {
   car: Car;
   travel: Travel;
+  indicators: Indicator[];
   working: boolean;
   completed: boolean;
   message: string;
@@ -14,6 +16,7 @@ export interface CarState {
 export const initialCarState: CarState = {
   car: null,
   travel: null,
+  indicators: [],
   working: false,
   completed: false,
   message: '',
@@ -36,4 +39,8 @@ export const travelSelector = createSelector(
 export const canBeDeactivatedSelector = createSelector(
   carFeatureSelector,
   (state: CarState) => state.canBeDeactivated
+);
+export const indicatorsSelector = createSelector(
+  carFeatureSelector,
+  (state: CarState) => state.indicators
 );

@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Car } from '../../../core/store/models/car.model';
 import { Travel } from '../../../core/store/models/travel.model';
+import { Indicator } from '../models/indicator.model';
 
 export enum CarActionTypes {
   LoadCar = '[Car] Load Car',
@@ -19,7 +20,9 @@ export enum CarActionTypes {
   DeleteTravelOK = '[Car] Delete Travel OK',
   DeleteTravelError = '[Car] Delete Travel Error',
   Brake = '[Car] Brake',
-  Throttle = '[Car] Throttle'
+  Throttle = '[Car] Throttle',
+  Recharge = '[Car] Recharge',
+  UpdateIndicators = '[Car] Update Indicators'
 }
 
 export class LoadCar implements Action {
@@ -107,6 +110,16 @@ export class Throttle implements Action {
   constructor(public payload: Car) {}
 }
 
+export class Recharge implements Action {
+  readonly type = CarActionTypes.Recharge;
+  constructor(public payload: Car) {}
+}
+
+export class UpdateIndicators implements Action {
+  readonly type = CarActionTypes.UpdateIndicators;
+  constructor(public payload: Indicator[]) {}
+}
+
 export type CarActions =
   | LoadCar
   | LoadCarOK
@@ -124,4 +137,6 @@ export type CarActions =
   | DeleteTravelOK
   | DeleteTravelError
   | Brake
-  | Throttle;
+  | Throttle
+  | Recharge
+  | UpdateIndicators;

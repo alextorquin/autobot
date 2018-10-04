@@ -7,7 +7,7 @@ import {
 import { ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { interval, Observable, Subscription } from 'rxjs';
-import { filter, map, switchMap, take, tap } from 'rxjs/operators';
+import { filter, map, take, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { GlobalStoreService } from '../../core/global-store.service';
 import { Car } from '../../core/store/models/car.model';
@@ -20,12 +20,15 @@ import {
   DeleteTravel,
   LoadCar,
   LoadTravel,
+  Recharge,
   Throttle,
+  UpdateIndicators,
   UpdateTravel
 } from '../store/car/car.actions';
 import {
   canBeDeactivatedSelector,
   carSelector,
+  indicatorsSelector,
   travelSelector
 } from '../store/car/car.state';
 import { Indicator } from '../store/models/indicator.model';
@@ -38,14 +41,16 @@ import { Indicator } from '../store/models/indicator.model';
 })
 export class CarComponent implements OnInit, OnDestroy {
   public car: Car;
-  public indicators: Indicator[];
+  public indicators$: Observable<Indicator[]>;
   public travel$: Observable<Travel>;
+  public car$: Observable<Car>;
   private intervalSubscription: Subscription;
   private _canBeDeactivated = true;
 
   /*
   // Mejorar la interacción con engine y display
   // Hacerla más funcional
+  // Refactor ngOnInit
   */
 
   constructor(
@@ -57,7 +62,12 @@ export class CarComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit() {
-    this.globalStore.dispatchUserMessage('Loading travel data !!');
+    this.globalStore.dispatchUserMessage('Loading data !!');
+    this.route.params
+      .pipe(map((params: Params): string => params['carId']))
+      .subscribe((carId: string) => this.store.dispatch(new LoadCar(carId)));
+    this.car$ = this.store.select(carSelector).pipe(tap(this.onCarGotten));
+    this.indicators$ = this.store.select(indicatorsSelector);
     this.travel$ = this.store.select(travelSelector).pipe(
       filter(travel => travel != null),
       take(1),
@@ -68,27 +78,15 @@ export class CarComponent implements OnInit, OnDestroy {
       .subscribe(
         canBeDeactivated => (this._canBeDeactivated = canBeDeactivated)
       );
-    this.intervalSubscription = this.route.params
-      .pipe(
-        map((params: Params): string => params['carId']),
-        tap((carId: string) => this.store.dispatch(new LoadCar(carId))),
-        switchMap(
-          (carId: string): Observable<Car> =>
-            this.store.select(carSelector).pipe(
-              filter(car => car != null),
-              take(1)
-            )
-        ),
-        tap(this.onCarGotten),
-        switchMap(
-          (car: Car): Observable<number> =>
-            interval(environment.refreshInterval)
-        )
-      )
-      .subscribe(this.timeGoesBy);
+    this.intervalSubscription = interval(environment.refreshInterval).subscribe(
+      this.timeGoesBy
+    );
   }
 
   public ngOnDestroy(): void {
+    if (this.intervalSubscription == null) {
+      return;
+    }
     this.intervalSubscription.unsubscribe();
   }
   public canBeDeactivated() {
@@ -103,15 +101,15 @@ export class CarComponent implements OnInit, OnDestroy {
   public onBrake = (): void => {
     this.engine.brake(this.car);
     this.store.dispatch(new Brake(this.car));
-    this.timeGoesBy(0);
   };
   public onThrottle = (): void => {
     this.engine.throttle(this.car);
     this.store.dispatch(new Throttle(this.car));
-    this.timeGoesBy(0);
   };
-  public onRecharge = (rechargedDistance: number): void =>
+  public onRecharge = (rechargedDistance: number): void => {
     this.engine.recharge(rechargedDistance, this.car);
+    this.store.dispatch(new Recharge(this.car));
+  };
 
   public onSaveTravel = () => this.store.dispatch(new UpdateTravel(this.car));
 
@@ -123,9 +121,15 @@ export class CarComponent implements OnInit, OnDestroy {
     this.engine.isThrottleDisabled(this.car);
 
   private onCarGotten = (car: Car): void => {
+    if (car == null) {
+      return;
+    }
+    if (this.car == null) {
+      const indicators = this.display.initilizeIndicators(car);
+      this.store.dispatch(new UpdateIndicators(indicators));
+      this.store.dispatch(new LoadTravel(car));
+    }
     this.car = car;
-    this.indicators = this.display.initilizeIndicators(this.car);
-    this.store.dispatch(new LoadTravel(car));
     this.updateIndicators();
   };
   private onCarTravelGotten = (travel: Travel) => {
@@ -137,10 +141,14 @@ export class CarComponent implements OnInit, OnDestroy {
     this.updateIndicators();
   };
   private timeGoesBy = (intervalNumber: number): void => {
-    this.engine.checkBattery(this.car);
+    if (this.car == null) {
+      return;
+    }
     this.updateIndicators();
   };
   private updateIndicators() {
-    this.indicators = this.display.updateIndicators(this.car);
+    this.engine.checkBattery(this.car);
+    const indicators = this.display.updateIndicators(this.car);
+    this.store.dispatch(new UpdateIndicators(indicators));
   }
 }

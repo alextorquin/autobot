@@ -1,6 +1,6 @@
-<article *ngIf="(travel$ | async) !=null ; else loading">
+<article *ngIf="(car$ | async)!=null && (travel$ | async) !=null ; else loading">
   <app-driver-cockpit [car]="car"
-                      [indicators]="indicators"
+                      [indicators]="indicators$ | async"
                       [hasBattery]="hasBattery()"
                       [isBrakeDisabled]="isBrakeDisabled()"
                       [isThrottleDisabled]="isThrottleDisabled()"

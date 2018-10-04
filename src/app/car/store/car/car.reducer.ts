@@ -10,6 +10,7 @@ export function carReducer(
       return {
         car: null,
         travel: null,
+        indicators: [],
         working: true,
         completed: false,
         message: 'Loading car...',
@@ -19,6 +20,7 @@ export function carReducer(
       return {
         car: action.payload,
         travel: null,
+        indicators: [],
         working: false,
         completed: true,
         message: 'Car Loaded',
@@ -28,6 +30,7 @@ export function carReducer(
       return {
         car: null,
         travel: null,
+        indicators: [],
         working: false,
         completed: false,
         message: action.payload,
@@ -143,16 +146,29 @@ export function carReducer(
     case CarActionTypes.Brake:
       return {
         ...state,
-        car: action.payload,
+        car: { ...action.payload },
         message: 'Brake',
         canBeDeactivated: false
       };
     case CarActionTypes.Throttle:
       return {
         ...state,
-        car: action.payload,
+        car: { ...action.payload },
         message: 'Throttle',
         canBeDeactivated: false
+      };
+    case CarActionTypes.Throttle:
+      return {
+        ...state,
+        car: { ...action.payload },
+        message: 'Recharge',
+        canBeDeactivated: false
+      };
+    case CarActionTypes.UpdateIndicators:
+      return {
+        ...state,
+        indicators: [...action.payload],
+        message: 'Updating Indicators'
       };
     default:
       return state;
