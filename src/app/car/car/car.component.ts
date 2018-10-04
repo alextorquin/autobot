@@ -47,12 +47,6 @@ export class CarComponent implements OnInit, OnDestroy {
   private intervalSubscription: Subscription;
   private _canBeDeactivated = true;
 
-  /*
-  // Mejorar la interacción con engine y display
-  // Hacerla más funcional
-  // Refactor ngOnInit
-  */
-
   constructor(
     private route: ActivatedRoute,
     private display: DisplayService,
@@ -62,10 +56,51 @@ export class CarComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit() {
+    this.loadCar();
+    this.selectData();
+  }
+  public canBeDeactivated() {
+    if (this._canBeDeactivated) {
+      this.globalStore.dispatchUserMessage('You can go your own away ;-)');
+    } else {
+      this.globalStore.dispatchUserMessage('Save or delete before exit !!');
+    }
+    return this._canBeDeactivated;
+  }
+  public ngOnDestroy(): void {
+    if (this.intervalSubscription == null) {
+      return;
+    }
+    this.intervalSubscription.unsubscribe();
+  }
+
+  public onBrake = (): void => {
+    this.engine.brake(this.car);
+    this.store.dispatch(new Brake(this.car));
+  };
+  public onThrottle = (): void => {
+    this.engine.throttle(this.car);
+    this.store.dispatch(new Throttle(this.car));
+  };
+  public onRecharge = (rechargedDistance: number): void => {
+    this.engine.recharge(rechargedDistance, this.car);
+    this.store.dispatch(new Recharge(this.car));
+  };
+  public onSaveTravel = () => this.store.dispatch(new UpdateTravel(this.car));
+  public onDeleteTravel = () => this.store.dispatch(new DeleteTravel(this.car));
+
+  public hasBattery = (): boolean => this.engine.hasBattery(this.car);
+  public isBrakeDisabled = (): boolean => this.engine.isBrakeDisabled(this.car);
+  public isThrottleDisabled = (): boolean =>
+    this.engine.isThrottleDisabled(this.car);
+
+  private loadCar() {
     this.globalStore.dispatchUserMessage('Loading data !!');
     this.route.params
       .pipe(map((params: Params): string => params['carId']))
       .subscribe((carId: string) => this.store.dispatch(new LoadCar(carId)));
+  }
+  private selectData() {
     this.car$ = this.store.select(carSelector).pipe(tap(this.onCarGotten));
     this.indicators$ = this.store.select(indicatorsSelector);
     this.travel$ = this.store.select(travelSelector).pipe(
@@ -82,44 +117,6 @@ export class CarComponent implements OnInit, OnDestroy {
       this.timeGoesBy
     );
   }
-
-  public ngOnDestroy(): void {
-    if (this.intervalSubscription == null) {
-      return;
-    }
-    this.intervalSubscription.unsubscribe();
-  }
-  public canBeDeactivated() {
-    if (this._canBeDeactivated) {
-      this.globalStore.dispatchUserMessage('You can go your own away ;-)');
-    } else {
-      this.globalStore.dispatchUserMessage('Save or delete before exit !!');
-    }
-    return this._canBeDeactivated;
-  }
-
-  public onBrake = (): void => {
-    this.engine.brake(this.car);
-    this.store.dispatch(new Brake(this.car));
-  };
-  public onThrottle = (): void => {
-    this.engine.throttle(this.car);
-    this.store.dispatch(new Throttle(this.car));
-  };
-  public onRecharge = (rechargedDistance: number): void => {
-    this.engine.recharge(rechargedDistance, this.car);
-    this.store.dispatch(new Recharge(this.car));
-  };
-
-  public onSaveTravel = () => this.store.dispatch(new UpdateTravel(this.car));
-
-  public onDeleteTravel = () => this.store.dispatch(new DeleteTravel(this.car));
-
-  public hasBattery = (): boolean => this.engine.hasBattery(this.car);
-  public isBrakeDisabled = (): boolean => this.engine.isBrakeDisabled(this.car);
-  public isThrottleDisabled = (): boolean =>
-    this.engine.isThrottleDisabled(this.car);
-
   private onCarGotten = (car: Car): void => {
     if (car == null) {
       return;

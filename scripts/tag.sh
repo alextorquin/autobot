@@ -1,4 +1,4 @@
-git merge 9-change
+git merge a-redux
 git tag -a v9.0.0 -m "9-Detección del cambio en Angular"
 git push origin master --tag
 

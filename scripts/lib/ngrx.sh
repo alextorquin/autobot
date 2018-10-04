@@ -6,6 +6,6 @@
 # npm install @ngrx/store-devtools @ngrx/router-store --save
 ng generate store Global -m core/core.module.ts --statePath core/store/global/reducers
 ng g effect Cars --root --module=./../../../core.module.ts
- ng generate feature Car -m ./../car.module.ts --flat false  --spec false
+ng generate feature Car -m ./../car.module.ts --flat false  --spec false
 
 # https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en

@@ -6,20 +6,17 @@
 ## a.2 NgRx
 
 instalación ./scripts/lib/ngrx.sh
-mover importación a core module
-mover reducers a core/store/state
 
-
-*Feature modules*
-*Effects*
 
 
 ### a.2.1 El Store
-a partir de global-store.services.ts
-root
+
+- root
  - router
- - global
-cars
+ - global *a partir de global-store.services.ts*
+ - cars *Effects*
+ - car *Feature module*
+
 
 ### a.2.2 Las Actions
 
