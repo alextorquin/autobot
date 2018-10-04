@@ -1,5 +1,5 @@
 git merge a-redux
-git tag -a v9.0.0 -m "9-Detección del cambio en Angular"
+git tag -a v10.0.0 -m "a-El patrón Redux con NgRx en Angular"
 git push origin master --tag
 
 # git push --delete origin v0.0.0
