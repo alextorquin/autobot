@@ -1,7 +1,7 @@
 import { GlobalActions, GlobalActionTypes } from './global.actions';
-import { Global, initialState } from './global.state';
+import { GlobalState, initialState } from './global.state';
 
-export function reducer(state = initialState, action: GlobalActions): Global {
+export function globalReducer(state = initialState, action: GlobalActions): GlobalState {
   switch (action.type) {
     case GlobalActionTypes.SendUserMessage:
       return { ...state, userMessage: action.payload };

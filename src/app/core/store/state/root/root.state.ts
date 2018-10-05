@@ -1,8 +1,8 @@
 import { CarsState } from '../cars/cars.state';
-import { Global } from '../global/global.state';
+import { GlobalState } from '../global/global.state';
 
 export interface RootState {
   router: any;
-  global: Global;
+  global: GlobalState;
   cars: CarsState;
 }
