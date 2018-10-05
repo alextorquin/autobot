@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { interval, Observable, Subscription } from 'rxjs';
@@ -57,7 +52,7 @@ export class CarComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.loadCar();
-    this.selectData();
+    this.subscribeToChanges();
   }
   public canBeDeactivated() {
     if (this._canBeDeactivated) {
@@ -91,8 +86,7 @@ export class CarComponent implements OnInit, OnDestroy {
 
   public hasBattery = (): boolean => this.engine.hasBattery(this.car);
   public isBrakeDisabled = (): boolean => this.engine.isBrakeDisabled(this.car);
-  public isThrottleDisabled = (): boolean =>
-    this.engine.isThrottleDisabled(this.car);
+  public isThrottleDisabled = (): boolean => this.engine.isThrottleDisabled(this.car);
 
   private loadCar() {
     this.globalStore.dispatchUserMessage('Loading data !!');
@@ -100,7 +94,7 @@ export class CarComponent implements OnInit, OnDestroy {
       .pipe(map((params: Params): string => params['carId']))
       .subscribe((carId: string) => this.store.dispatch(new LoadCar(carId)));
   }
-  private selectData() {
+  private subscribeToChanges() {
     this.car$ = this.store.select(carSelector).pipe(tap(this.onCarGotten));
     this.indicators$ = this.store.select(indicatorsSelector);
     this.travel$ = this.store.select(travelSelector).pipe(
@@ -110,9 +104,7 @@ export class CarComponent implements OnInit, OnDestroy {
     );
     this.store
       .select(canBeDeactivatedSelector)
-      .subscribe(
-        canBeDeactivated => (this._canBeDeactivated = canBeDeactivated)
-      );
+      .subscribe(canBeDeactivated => (this._canBeDeactivated = canBeDeactivated));
     this.intervalSubscription = interval(environment.refreshInterval).subscribe(
       this.timeGoesBy
     );
@@ -130,10 +122,7 @@ export class CarComponent implements OnInit, OnDestroy {
     this.updateIndicators();
   };
   private onCarTravelGotten = (travel: Travel) => {
-    this.car.currentSpeed = travel.currentSpeed;
-    this.car.remainingBattery = travel.remainingBattery;
-    this.car.distanceTraveled = travel.distanceTraveled;
-    this.car.owner = travel.owner;
+    this.engine.updateCarTravelData(this.car, travel);
     this.globalStore.dispatchUserMessage('Ride like the wind!!');
     this.updateIndicators();
   };

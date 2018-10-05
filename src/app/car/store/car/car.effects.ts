@@ -54,7 +54,7 @@ export class CarEffects {
         map((travel: Travel) => new LoadTravelOK(travel)),
         catchError(
           (err: HttpErrorResponse): Observable<CarActions> =>
-            this.onLoadCarError$(err, action)
+            this.onLoadTravelError$(err, action)
         )
       )
     )
@@ -93,14 +93,14 @@ export class CarEffects {
     )
   );
 
-  public onLoadCarError$(
+  public onLoadTravelError$(
     err: HttpErrorResponse,
     action: LoadTravel
   ): Observable<CarActions> {
     if (err.status === 404) {
       return of(new InsertTravel(action.payload));
     } else {
-      return of(new LoadTravelError('Error loading travel. Try Insert'));
+      return of(new LoadTravelError('Unexpected Error loading travel.'));
     }
   }
 }
