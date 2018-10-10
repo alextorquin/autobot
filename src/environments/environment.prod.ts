@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
   title: 'autobot',
-  version: 'a-redux',
-  tag: '10.0.0',
+  version: 'b-pwa',
+  tag: '11.0.0',
   clearMessageDelayMs: 5000,
   refreshInterval: 1000,
   factorSpeed: 10,
