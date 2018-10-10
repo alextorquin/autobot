@@ -1,0 +1,87 @@
+{
+  "configVersion": 1,
+  "index": "https://academiabinaria.github.io/autobot/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "https://academiabinaria.github.io/autobot/0.6fdf944d624209aa100e.js",
+        "https://academiabinaria.github.io/autobot/6.4bfb6f46f1bc5091420b.js",
+        "https://academiabinaria.github.io/autobot/7.ae0ebb5337627b9d777a.js",
+        "https://academiabinaria.github.io/autobot/8.4670bf0213951658a111.js",
+        "https://academiabinaria.github.io/autobot/9.67e493c4f8d9860effee.js",
+        "https://academiabinaria.github.io/autobot/common.b137af9e214cf41ea26b.js",
+        "https://academiabinaria.github.io/autobot/favicon.ico",
+        "https://academiabinaria.github.io/autobot/index.html",
+        "https://academiabinaria.github.io/autobot/main.48f74b1dd070f9c5eeae.js",
+        "https://academiabinaria.github.io/autobot/polyfills.fd09c208ba09a6514e6a.js",
+        "https://academiabinaria.github.io/autobot/runtime.964b8bad4259c58b3a9a.js",
+        "https://academiabinaria.github.io/autobot/styles.6df9e799e5ea371eb393.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "https://academiabinaria.github.io/autobot/assets/data/cars.json",
+        "https://academiabinaria.github.io/autobot/assets/icons/icon-128x128.png",
+        "https://academiabinaria.github.io/autobot/assets/icons/icon-144x144.png",
+        "https://academiabinaria.github.io/autobot/assets/icons/icon-152x152.png",
+        "https://academiabinaria.github.io/autobot/assets/icons/icon-192x192.png",
+        "https://academiabinaria.github.io/autobot/assets/icons/icon-384x384.png",
+        "https://academiabinaria.github.io/autobot/assets/icons/icon-512x512.png",
+        "https://academiabinaria.github.io/autobot/assets/icons/icon-72x72.png",
+        "https://academiabinaria.github.io/autobot/assets/icons/icon-96x96.png",
+        "https://academiabinaria.github.io/autobot/assets/logo.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://academiabinaria.github.io/autobot/0.6fdf944d624209aa100e.js": "0147a295534948a785978de381d5420577219716",
+    "https://academiabinaria.github.io/autobot/6.4bfb6f46f1bc5091420b.js": "24c01e23b7b2b8c49eb583b6e319c3e925ca2ad7",
+    "https://academiabinaria.github.io/autobot/7.ae0ebb5337627b9d777a.js": "a1e96bfb7ff4a620e58eb6144e9b36d037f1f807",
+    "https://academiabinaria.github.io/autobot/8.4670bf0213951658a111.js": "ed4934f68cf96dd2d7888f454ced2ea2428b46d7",
+    "https://academiabinaria.github.io/autobot/9.67e493c4f8d9860effee.js": "2a0b868e57728a0d1f8d3aaf1597f648827726ac",
+    "https://academiabinaria.github.io/autobot/assets/data/cars.json": "143f4845d31fd8ba547e2d7defa64f8d0bedb3a9",
+    "https://academiabinaria.github.io/autobot/assets/icons/icon-128x128.png": "43dcb385c20ff598bdc1eb308acd6f2978b4bbe7",
+    "https://academiabinaria.github.io/autobot/assets/icons/icon-144x144.png": "d04ae1213bef156e8a261c7700af3d5e98ae46cf",
+    "https://academiabinaria.github.io/autobot/assets/icons/icon-152x152.png": "46c47a256ad1ba64ee65947e605981b73ee2a3d4",
+    "https://academiabinaria.github.io/autobot/assets/icons/icon-192x192.png": "20f0bb526afab9250da79e2ebedc2cae6bd53d96",
+    "https://academiabinaria.github.io/autobot/assets/icons/icon-384x384.png": "e97ea330fdfd231c8c0a24c3753914a37b4091ec",
+    "https://academiabinaria.github.io/autobot/assets/icons/icon-512x512.png": "51074dc36dec6f5a90d3267563097173f08ce8b6",
+    "https://academiabinaria.github.io/autobot/assets/icons/icon-72x72.png": "d188ed2489347c224717806c156ba734adfa0d98",
+    "https://academiabinaria.github.io/autobot/assets/icons/icon-96x96.png": "e8e0e0ba6d4a798a58912237a27356b16e1bd01f",
+    "https://academiabinaria.github.io/autobot/assets/logo.png": "3ea04c5059266f2614f2fe37ebd81b6e8acb8a3c",
+    "https://academiabinaria.github.io/autobot/common.b137af9e214cf41ea26b.js": "3f4cf57390c66469b1a74dec6654e6458281e865",
+    "https://academiabinaria.github.io/autobot/favicon.ico": "eaf485c235ca3d83faf3d38064a6e0f1df3d14fa",
+    "https://academiabinaria.github.io/autobot/index.html": "84c8de6e107eda98e6c12c607f3399197c518715",
+    "https://academiabinaria.github.io/autobot/main.48f74b1dd070f9c5eeae.js": "42d2ae8ea2902575d61e86578200a6c3d518af59",
+    "https://academiabinaria.github.io/autobot/polyfills.fd09c208ba09a6514e6a.js": "97f2e963ac1a178f16f3f293ba69ed6ada0da23b",
+    "https://academiabinaria.github.io/autobot/runtime.964b8bad4259c58b3a9a.js": "e4c6823d205cacfacaa9b3d98124a996f19cca72",
+    "https://academiabinaria.github.io/autobot/styles.6df9e799e5ea371eb393.css": "672242d73842e414f30b3ecda57edcc3dc81100f"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
