@@ -14,7 +14,7 @@
     "build": "ng build --prod --stats-json",
     "prepub": "ng build --prod --output-path docs --base-href https://academiabinaria.github.io/autobot/",
     "pub": "git add * && git commit -m 'pub' && git push",
-    "prod": "ng build --prod && http-server ./dist/autobot -o",
+    "prod": "ng build --prod && http-server ./dist/autobot -o -c-1",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
