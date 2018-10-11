@@ -1,5 +1,5 @@
-git merge a-redux
-git tag -a v10.0.0 -m "a-El patrón Redux con NgRx en Angular"
+git merge b-pwa
+git tag -a v11.0.0 -m "b-PWA: Entre la web y las apps con Angular"
 git push origin master --tag
 
 # git push --delete origin v0.0.0

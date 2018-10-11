@@ -1,31 +1,15 @@
 # b - PWA: Entre la web y las apps con Angular
 
-## b.1 El patrón Redux
+## b.1 Configurtación
+npm install http-server -g
+ng add @angular/pwa
+npm install -g ngx-pwa-icons
 
+## b.2 Uso de servicios
+src\app\core\navigator\navigator.component.ts
 
-## b.2 NgRx
-
-instalación ./scripts/lib/ngrx.sh
-
-
-
-### b.2.1 El Store
-
-- root
- - router
- - global *a partir de global-store.services.ts*
- - cars *Effects*
- - car *Feature module*
-
-
-### b.2.2 Las Actions
-
-### b.2.3 Los Reducers
-
-
-## b.3 Herramientas
-
-
+## b.3 Cache
+ngsw-config.json
 
 
 

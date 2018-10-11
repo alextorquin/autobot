@@ -4,12 +4,19 @@
     {
       "name": "app",
       "installMode": "prefetch",
+      "updateMode": "prefetch",
       "resources": {
         "files": [
           "/favicon.ico",
           "/index.html",
           "/*.css",
-          "/*.js"
+          "/common*.js",
+          "/main*.js",
+          "/ngsw*.js",
+          "/woker*.js",
+          "/polyfills*.js",
+          "/runtime*.js",
+          "/fontawesome*"
         ]
       }
     }, {
@@ -18,9 +25,36 @@
       "updateMode": "prefetch",
       "resources": {
         "files": [
-          "/assets/**"
+          "/assets/logo.png",
+          "/assets/icons/**",
+          "/*.js"
         ]
       }
+    }],
+    "dataGroups": [{
+      "name": "cache-first",
+      "urls":[
+        "http://127.0.0.1:8080/assets/data/cars.json",
+        "https://api-base.herokuapp.com/api/priv/travels/**"
+      ],
+      "cacheConfig":{
+        "strategy":"performance",
+        "maxSize":10,
+        "maxAge":"1d"
+      }
     }
+    ,{
+      "name": "api-first",
+      "urls":[
+        "https://api-base.herokuapp.com/_api/_priv/_travels/**"
+      ],
+      "cacheConfig":{
+        "strategy" : "freshness",
+        "maxSize": 100,
+        "maxAge" : "1h",
+        "timeout" : "5s"
+      }
+ }
+
   ]
 }
