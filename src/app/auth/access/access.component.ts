@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { GlobalStoreService } from '../../core/global-store.service';
@@ -12,7 +12,7 @@ import { FormToolsService } from '../../shared/form-tools.service';
   templateUrl: './access.component.html',
   styles: []
 })
-export class AccessComponent implements OnInit {
+export class AccessComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public isNewAccount = false;
   private url = environment.apiUrl + 'pub/credentials/';
@@ -26,13 +26,22 @@ export class AccessComponent implements OnInit {
   public ngOnInit() {
     this.onAccount();
   }
-
+  public ngOnDestroy(): void {
+    this.globalStore.dispatchLoginNeeded(false);
+  }
   public onNoAccount() {
     this.form = this.fb.group(
       {
         name: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(4), CustomValidators.PasswordMustHaveNumbers]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            CustomValidators.PasswordMustHaveNumbers
+          ]
+        ],
         confirmPassword: ['', [Validators.required, Validators.minLength(4)]]
       },
       {
@@ -45,7 +54,10 @@ export class AccessComponent implements OnInit {
   public onAccount() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(4), CustomValidators.PasswordMustHaveNumbers]]
+      password: [
+        '',
+        [Validators.required, Validators.minLength(4), CustomValidators.PasswordMustHaveNumbers]
+      ]
     });
     this.isNewAccount = false;
   }
@@ -55,7 +67,9 @@ export class AccessComponent implements OnInit {
   }
 
   public onRegister() {
-    this.http.post(this.url + 'registration', this.form.value).subscribe(this.onSuccess, this.onError);
+    this.http
+      .post(this.url + 'registration', this.form.value)
+      .subscribe(this.onSuccess, this.onError);
   }
 
   public getErrors(controlName: string): any {

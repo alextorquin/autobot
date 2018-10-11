@@ -113,7 +113,7 @@ export class CarComponent implements OnInit, OnDestroy {
     if (car == null) {
       return;
     }
-    if (this.car == null) {
+    if (this.car == null || this.car.owner == null) {
       const indicators = this.display.initilizeIndicators(car);
       this.store.dispatch(new UpdateIndicators(indicators));
       this.store.dispatch(new LoadTravel(car));
