@@ -18,7 +18,6 @@ echo "---> Generating $repo_name"
 ng new $repo_name -s -S -t
 echo "---> Created Repo at $repo_dir"
 echo "---> Configuring prettier"
-# To Do: plantillas pendientes de publicar
 #cp $script_dir/temp/prettier.config.js $repo_dir/prettier.config.js
 #cp $script_dir/temp/tslint.json $repo_dir/tslint.json
 echo "---> Configuring npm scripts" 
@@ -133,5 +132,5 @@ npm start
 npm run doc
 npm run build
 npm run stats
-npm run gh
+npm run pub
 ```
