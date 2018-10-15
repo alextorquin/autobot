@@ -1,6 +1,6 @@
 # b - PWA: Entre la web y las apps con Angular
 
-## b.1 Configurtación
+## b.1 Configuración
 npm install http-server -g
 ng add @angular/pwa
 npm install -g ngx-pwa-icons
