@@ -12,7 +12,7 @@ Proyecto simple usado como ejemplo en cursos de Angular. *Coded in english.*
 
 - Artículo: [Hola Angular CLI](https://academia-binaria.com/hola-angular-cli/)
 
-- Instrucciones paso a paso: [Script](./0-hello.md)
+- Instrucciones paso a paso: [Script](./readme/0-hello.md)
 
 
 ## Autor
