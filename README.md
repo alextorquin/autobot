@@ -24,7 +24,7 @@ Proyecto simple usado como ejemplo en cursos de Angular. *Coded in english.*
 
 - Artículo: [Páginas y rutas Angular SPA](https://academia-binaria.com/paginas-y-rutas-angular-spa//)
 
--- Instrucciones paso a paso: [Script](./readme/2-soa.md)
+-- Instrucciones paso a paso: [Script](./readme/2-spa.md)
 
 
 ## Autor
