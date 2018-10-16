@@ -12,13 +12,13 @@ Proyecto simple usado como ejemplo en cursos de Angular. *Coded in english.*
 
 - Artículo: [Hola Angular CLI](https://academia-binaria.com/hola-angular-cli/)
 
-- Instrucciones paso a paso: [Script](./0-hello.md)
+- Instrucciones paso a paso: [Script](./readme/0-hello.md)
 
 ### 1-base
 
 - Artículo: [Base para una aplicación Angular](https://academia-binaria.com/base-aplicacion-angular/)
 
--- Instrucciones paso a paso: [Script](./1-base.md)
+-- Instrucciones paso a paso: [Script](./readme/1-base.md)
 
 
 ## Autor
@@ -33,5 +33,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Mis alumnos
-* John Papa, Todd Motto, Pascal Precht, Cris Sevilleja, John Lindquist, Dan Wahlin, Devora Kurata, Ben Nadel...
+* Mis mentores: John Papa, Todd Motto, Pascal Precht, Cris Sevilleja, John Lindquist, Dan Wahlin, Devora Kurata, Ben Nadel...
+* Mis distribuidores: Vitae Digital, EscuelaIT, TrainingIT
 * etc
