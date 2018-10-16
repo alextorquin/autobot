@@ -26,8 +26,12 @@ export class NavigatorComponent implements OnInit {
     this.userMessage$ = this.globalStore.selectUserMessage$();
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.subscribe((event: UpdateAvailableEvent) => {
-        this.globalStore.dispatchUserMessage('There are available updates!!!');
-        const msg = `Do you want to update?`;
+        const appData = event.available.appData;
+        const versionMessage = appData
+          ? appData['versionMessage']
+          : 'New version is available!';
+        this.globalStore.dispatchUserMessage(versionMessage);
+        const msg = `${versionMessage} Do you want to update?`;
         if (confirm(msg)) {
           window.location.reload();
         }
