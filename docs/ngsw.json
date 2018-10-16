@@ -1,5 +1,8 @@
 {
   "configVersion": 1,
+  "appData": {
+    "versionMessage": "New version: More features to come!"
+  },
   "index": "https://academiabinaria.github.io/autobot/index.html",
   "assetGroups": [
     {
@@ -15,7 +18,7 @@
         "https://academiabinaria.github.io/autobot/fontawesome-webfont.b06871f281fee6b241d6.ttf",
         "https://academiabinaria.github.io/autobot/fontawesome-webfont.fee66e712a8a08eef580.woff",
         "https://academiabinaria.github.io/autobot/index.html",
-        "https://academiabinaria.github.io/autobot/main.3456face9563592c7366.js",
+        "https://academiabinaria.github.io/autobot/main.c398556c7974d504366e.js",
         "https://academiabinaria.github.io/autobot/polyfills.fd09c208ba09a6514e6a.js",
         "https://academiabinaria.github.io/autobot/runtime.56882fdb2b8057b48784.js",
         "https://academiabinaria.github.io/autobot/styles.6df9e799e5ea371eb393.css"
@@ -91,8 +94,8 @@
     "https://academiabinaria.github.io/autobot/fontawesome-webfont.af7ae505a9eed503f8b8.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
     "https://academiabinaria.github.io/autobot/fontawesome-webfont.b06871f281fee6b241d6.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
     "https://academiabinaria.github.io/autobot/fontawesome-webfont.fee66e712a8a08eef580.woff": "28b782240b3e76db824e12c02754a9731a167527",
-    "https://academiabinaria.github.io/autobot/index.html": "8242eacbcfd0d77fe39602c03ce36d747c4f53db",
-    "https://academiabinaria.github.io/autobot/main.3456face9563592c7366.js": "52dec2cbc765f607e86bbb98641ffe331880ea7b",
+    "https://academiabinaria.github.io/autobot/index.html": "119504a70ee7089b9b5e7a1856f3e3df6d8286df",
+    "https://academiabinaria.github.io/autobot/main.c398556c7974d504366e.js": "e74118332f8c26d944a01daee4ec845082abac2f",
     "https://academiabinaria.github.io/autobot/polyfills.fd09c208ba09a6514e6a.js": "97f2e963ac1a178f16f3f293ba69ed6ada0da23b",
     "https://academiabinaria.github.io/autobot/runtime.56882fdb2b8057b48784.js": "6487d36074afeff8755d8b411eb2615ef02789f3",
     "https://academiabinaria.github.io/autobot/styles.6df9e799e5ea371eb393.css": "672242d73842e414f30b3ecda57edcc3dc81100f"
