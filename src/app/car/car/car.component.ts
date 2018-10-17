@@ -86,7 +86,7 @@ export class CarComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     const carId = this.route.snapshot.params['carId'];
     this.car = CARS.find(c => c.link.url === carId);
     setInterval(() => this.timeGoesBy(), environment.refreshInterval);
