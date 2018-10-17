@@ -52,10 +52,10 @@ import { Car } from '../../core/store/models/car.model';
     <footer >
       <section *ngIf="hasBattery(); else rechargingSection"  class="card-footer">
         <div class="card-footer-item">
-          <button class="button is-danger is-outlined" [disabled]="this.car.currentSpeed <= 0" (click)="onBrake()">Brake</button>
+          <button class="button is-danger is-outlined" [disabled]="car.currentSpeed <= 0" (click)="onBrake()">Brake</button>
         </div>
         <div class="card-footer-item">
-          <button class="button is-primary is-outlined" [disabled]="this.car.currentSpeed >= this.car.topSpeed" (click)="onThrottle()">Throttle</button>
+          <button class="button is-primary is-outlined" [disabled]="car.currentSpeed >= car.topSpeed" (click)="onThrottle()">Throttle</button>
         </div>
       </section>
       <ng-template #rechargingSection>

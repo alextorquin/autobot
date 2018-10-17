@@ -22,7 +22,7 @@ import { Car } from '../../core/store/models/car.model';
       <li *ngFor="let car of cars">
         <a [routerLink]="['/car', car.link.url]">
           <strong>
-            {{ car.link.caption }}
+            {{ car.link.caption | lowercase }}
           </strong>
           <span class="is-pulled-right">
             {{ car.cost | currency:'EUR' }}

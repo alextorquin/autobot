@@ -30,3 +30,21 @@
 
 
 
+  - app
+    - core
+
+    - car
+      - shared
+        - forms
+    - home
+      - shared
+        - forms
+    - about
+      - shared
+        - forms
+
+
+
+
+
+
