@@ -12,31 +12,38 @@ Versión desplegada: [AutoBot](https://academiabinaria.github.io/autobot/)
 
 - Artículo: [Hola Angular CLI](https://academia-binaria.com/hola-angular-cli/)
 
-- [Instrucciones paso a paso:](./0-hello.md)
+- Instrucciones paso a paso: [Script](./readme/0-hello.md)
 
 ### 1-base
 
 - Artículo: [Base para una aplicación Angular](https://academia-binaria.com/base-aplicacion-angular/)
 
-- [Instrucciones paso a paso:](./1-base.md)
+-- Instrucciones paso a paso: [Script](./readme/1-base.md)
 
 ### 2-spa
 
 - Artículo: [Páginas y rutas Angular SPA](https://academia-binaria.com/paginas-y-rutas-angular-spa/)
 
-- [Instrucciones paso a paso:](./2-spa.md)
+-- Instrucciones paso a paso: [Script](./readme/2-spa.md)
 
 ### 3-data
 
 - Artículo: [Formularios, tablas y modelos de datos en Angular](https://academia-binaria.com/formularios-tablas-y-modelos-de-datos-en-angular/)
 
-- [Instrucciones paso a paso:](./3-data.md)
+-- Instrucciones paso a paso: [Script](./readme/3-data.md)
 
 ### 4-flow
 
 - Artículo: [Flujo de datos entre componentes Angular](https://academia-binaria.com/flujo-de-datos-entre-componentes-angular/)
 
-- [Instrucciones paso a paso:](./1-base.md)
+-- Instrucciones paso a paso: [Script](./readme/4-flow.md)
+
+### 5-inject
+
+- Artículo: [Servicios inyectables en Angular](https://academia-binaria.com/servicios-inyectables-en-Angular/)
+
+-- Instrucciones paso a paso: [Script](./readme/5-inject.md)
+
 
 ## Autor
 
