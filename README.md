@@ -12,13 +12,31 @@ Proyecto simple usado como ejemplo en cursos de Angular. *Coded in english.*
 
 - Artículo: [Hola Angular CLI](https://academia-binaria.com/hola-angular-cli/)
 
-- Instrucciones paso a paso: [Script](./0-hello.md)
+- Instrucciones paso a paso: [Script](./readme/0-hello.md)
 
 ### 1-base
 
 - Artículo: [Base para una aplicación Angular](https://academia-binaria.com/base-aplicacion-angular/)
 
--- Instrucciones paso a paso: [Script](./1-base.md)
+-- Instrucciones paso a paso: [Script](./readme/1-base.md)
+
+### 2-spa
+
+- Artículo: [Páginas y rutas Angular SPA](https://academia-binaria.com/paginas-y-rutas-angular-spa/)
+
+-- Instrucciones paso a paso: [Script](./readme/2-spa.md)
+
+### 3-data
+
+- Artículo: [Formularios, tablas y modelos de datos en Angular](https://academia-binaria.com/formularios-tablas-y-modelos-de-datos-en-angular/)
+
+-- Instrucciones paso a paso: [Script](./readme/3-data.md)
+
+### 4-flow
+
+- Artículo: [Flujo de datos entre componentes Angular](https://academia-binaria.com/flujo-de-datos-entre-componentes-angular/)
+
+-- Instrucciones paso a paso: [Script](./readme/4-flow.md)
 
 
 ## Autor
@@ -33,5 +51,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Mis alumnos
-* John Papa, Todd Motto, Pascal Precht, Cris Sevilleja, John Lindquist, Dan Wahlin, Devora Kurata, Ben Nadel...
+* Mis mentores: John Papa, Todd Motto, Pascal Precht, Cris Sevilleja, John Lindquist, Dan Wahlin, Devora Kurata, Ben Nadel...
+* Mis distribuidores: Vitae Digital, EscuelaIT, TrainingIT
 * etc
