@@ -1,4 +1,4 @@
 <div class="tags has-addons">
-  <span class="tag is-dark">{{ caption }}</span>
-  <span [ngClass]="['tag', tagClass]">{{ value }}</span>
+  <span class="tag is-dark">{{ tag.caption }}</span>
+  <span [ngClass]="['tag', tag.class]">{{ tag.value | number:'1.0-0' }}</span>
 </div>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { statusClass } from '../../../core/store/models/status-class';
+import { Tag } from 'src/app/core/store/models/tag.model';
 
 @Component({
   selector: 'app-data-tag',
@@ -8,11 +8,7 @@ import { statusClass } from '../../../core/store/models/status-class';
 })
 export class DataTagComponent implements OnInit {
   @Input()
-  public caption: string;
-  @Input()
-  public value: string;
-  @Input()
-  public tagClass: statusClass;
+  public tag: Tag;
 
   constructor() {}
 

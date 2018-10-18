@@ -1,9 +1,7 @@
 <div class="field is-grouped is-grouped-multiline">
   <div *ngFor="let tag of indicator.tags"
        class="control">
-    <app-data-tag [caption]="tag.caption"
-                  [value]="tag.value | number:'1.0-0'"
-                  [tagClass]="tag.class">
+    <app-data-tag [tag]="tag">
     </app-data-tag>
   </div>
 </div>
