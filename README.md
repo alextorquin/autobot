@@ -57,5 +57,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Mis alumnos
-* John Papa, Todd Motto, Pascal Precht, Cris Sevilleja, John Lindquist, Dan Wahlin, Devora Kurata, Ben Nadel...
+* Mis mentores: John Papa, Todd Motto, Pascal Precht, Cris Sevilleja, John Lindquist, Dan Wahlin, Devora Kurata, Ben Nadel...
+* Mis distribuidores: Vitae Digital, EscuelaIT, TrainingIT
 * etc
