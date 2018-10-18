@@ -17,4 +17,6 @@ export class SpeedControlsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  public onThrottle = () => this.throttle.next();
 }

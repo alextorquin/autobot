@@ -2,11 +2,11 @@
   <span class="control">
     <button class="button is-danger is-outlined is-large"
             [disabled]="brakeDisabled"
-            (click)="brake.next()">Brake</button>
+            (click)="brake.emit()">Brake</button>
   </span>
   <span class="control">
     <button class="button is-primary is-outlined is-large"
             [disabled]="throttleDisabled"
-            (click)="throttle.next()">Throttle</button>
+            (click)="onThrottle()">Throttle</button>
   </span>
 </section>

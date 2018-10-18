@@ -14,4 +14,8 @@ export class BatteryRechargerComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  onSubmit() {
+    this.recharge.next(this.rechargedDistance);
+  }
 }
