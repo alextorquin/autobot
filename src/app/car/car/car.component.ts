@@ -17,31 +17,31 @@ export class CarComponent implements OnInit {
   public indicators;
 
   constructor(
-    private route: ActivatedRoute,
-    private cars: CarsService,
-    private display: DisplayService,
-    private engine: EngineService
+    private activatedRoute: ActivatedRoute,
+    private displayService: DisplayService,
+    private carsService: CarsService,
+    public engineService: EngineService
   ) {}
 
   public ngOnInit() {
-    const carId = this.route.snapshot.params['carId'];
-    this.car = this.cars.getCarByLinkId(carId);
+    const carId = this.activatedRoute.snapshot.params['carId'];
+    this.car = this.carsService.getCarByLinkId(carId);
     this.initilizeIndicators();
     this.timeGoesBy();
     setInterval(() => this.timeGoesBy(), environment.refreshInterval);
   }
-  public onBrake = () => this.engine.brake(this.car);
-  public onThrottle = () => this.engine.throttle(this.car);
-  public onRecharge = rechargedDistance => this.engine.recharge(rechargedDistance, this.car);
+  public onBrake = () => this.engineService.brake(this.car);
+  public onThrottle = () => this.engineService.throttle(this.car);
+  public onRecharge = rechargedDistance => this.engineService.recharge(rechargedDistance, this.car);
 
-  public hasBattery = () => this.engine.hasBattery(this.car);
-  public isBrakeDisabled = () => this.engine.isBrakeDisabled(this.car);
-  public isThrottleDisabled = () => this.engine.isThrottleDisabled(this.car);
+  public hasBattery = () => this.engineService.hasBattery(this.car);
+  public isBrakeDisabled = () => this.engineService.isBrakeDisabled(this.car);
+  public isThrottleDisabled = () => this.engineService.isThrottleDisabled(this.car);
 
-  private initilizeIndicators = () => (this.indicators = this.display.initilizeIndicators(this.car));
-  private updateIndicators = () => (this.indicators = this.display.updateIndicators(this.car));
-  private checkSpeed = () => this.engine.checkSpeed(this.car);
-  private checkBattery = () => this.engine.checkBattery(this.car);
+  private initilizeIndicators = () => (this.indicators = this.displayService.initilizeIndicators(this.car));
+  private updateIndicators = () => (this.indicators = this.displayService.updateIndicators(this.car));
+  private checkSpeed = () => this.engineService.checkSpeed(this.car);
+  private checkBattery = () => this.engineService.checkBattery(this.car);
 
   private timeGoesBy() {
     this.checkSpeed();

@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   public carLinks: Link[];
   public title = environment.title;
   public subtitle = environment.version;
+
   constructor(private carsService: CarsService) {}
 
   public ngOnInit() {
