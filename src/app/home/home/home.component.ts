@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   public cars: Car[] = CARS;
   public links: Link[];
   public title = 'autobot';
-  public subtitle = '3-data';
+  public subtitle = '4-flow';
   constructor() {}
 
   public ngOnInit() {
