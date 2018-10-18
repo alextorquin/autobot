@@ -18,9 +18,9 @@
         "https://academiabinaria.github.io/autobot/fontawesome-webfont.b06871f281fee6b241d6.ttf",
         "https://academiabinaria.github.io/autobot/fontawesome-webfont.fee66e712a8a08eef580.woff",
         "https://academiabinaria.github.io/autobot/index.html",
-        "https://academiabinaria.github.io/autobot/main.c398556c7974d504366e.js",
+        "https://academiabinaria.github.io/autobot/main.4219ec9d285c657244f1.js",
         "https://academiabinaria.github.io/autobot/polyfills.fd09c208ba09a6514e6a.js",
-        "https://academiabinaria.github.io/autobot/runtime.56882fdb2b8057b48784.js",
+        "https://academiabinaria.github.io/autobot/runtime.459ba3365a08291c0d02.js",
         "https://academiabinaria.github.io/autobot/styles.6df9e799e5ea371eb393.css"
       ],
       "patterns": []
@@ -30,7 +30,7 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
-        "https://academiabinaria.github.io/autobot/0.6fdf944d624209aa100e.js",
+        "https://academiabinaria.github.io/autobot/0.07906e142917237a6973.js",
         "https://academiabinaria.github.io/autobot/6.4bfb6f46f1bc5091420b.js",
         "https://academiabinaria.github.io/autobot/7.ae0ebb5337627b9d777a.js",
         "https://academiabinaria.github.io/autobot/8.32a470f8ce032af0ccb3.js",
@@ -73,7 +73,7 @@
     }
   ],
   "hashTable": {
-    "https://academiabinaria.github.io/autobot/0.6fdf944d624209aa100e.js": "0147a295534948a785978de381d5420577219716",
+    "https://academiabinaria.github.io/autobot/0.07906e142917237a6973.js": "0147a295534948a785978de381d5420577219716",
     "https://academiabinaria.github.io/autobot/6.4bfb6f46f1bc5091420b.js": "24c01e23b7b2b8c49eb583b6e319c3e925ca2ad7",
     "https://academiabinaria.github.io/autobot/7.ae0ebb5337627b9d777a.js": "a1e96bfb7ff4a620e58eb6144e9b36d037f1f807",
     "https://academiabinaria.github.io/autobot/8.32a470f8ce032af0ccb3.js": "e773739ca91803f88c02a12fc47959ecc800636b",
@@ -94,10 +94,10 @@
     "https://academiabinaria.github.io/autobot/fontawesome-webfont.af7ae505a9eed503f8b8.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
     "https://academiabinaria.github.io/autobot/fontawesome-webfont.b06871f281fee6b241d6.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
     "https://academiabinaria.github.io/autobot/fontawesome-webfont.fee66e712a8a08eef580.woff": "28b782240b3e76db824e12c02754a9731a167527",
-    "https://academiabinaria.github.io/autobot/index.html": "119504a70ee7089b9b5e7a1856f3e3df6d8286df",
-    "https://academiabinaria.github.io/autobot/main.c398556c7974d504366e.js": "e74118332f8c26d944a01daee4ec845082abac2f",
+    "https://academiabinaria.github.io/autobot/index.html": "a9f95641bb1d3b6af5cdfedeca78d7727b07044a",
+    "https://academiabinaria.github.io/autobot/main.4219ec9d285c657244f1.js": "e638ecaa30f2951bb57112660bedb35d5b1fc7e8",
     "https://academiabinaria.github.io/autobot/polyfills.fd09c208ba09a6514e6a.js": "97f2e963ac1a178f16f3f293ba69ed6ada0da23b",
-    "https://academiabinaria.github.io/autobot/runtime.56882fdb2b8057b48784.js": "6487d36074afeff8755d8b411eb2615ef02789f3",
+    "https://academiabinaria.github.io/autobot/runtime.459ba3365a08291c0d02.js": "e6b2381663446be777ef8c0e250beb92d04908f7",
     "https://academiabinaria.github.io/autobot/styles.6df9e799e5ea371eb393.css": "672242d73842e414f30b3ecda57edcc3dc81100f"
   },
   "navigationUrls": [
