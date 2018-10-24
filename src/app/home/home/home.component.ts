@@ -17,7 +17,7 @@ import { Link } from '../../core/store/models/link.model';
       </a>
     </div>
   </header>
-  <button (click)="onClick()" >Laod</button>
+  <button (click)="onClick()" >Load</button>
   <app-menu-list caption="Cars in your garage:"
     [links]="carLinks">
   </app-menu-list>
