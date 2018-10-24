@@ -12,67 +12,81 @@ Versión desplegada: [AutoBot](https://academiabinaria.github.io/autobot/)
 
 - Artículo: [Hola Angular CLI](https://academia-binaria.com/hola-angular-cli/)
 
-- Instrucciones paso a paso: [Script](./readme/0-hello.md)
+- [Instrucciones paso a paso:](./0-hello.md)
 
 ### 1-base
 
 - Artículo: [Base para una aplicación Angular](https://academia-binaria.com/base-aplicacion-angular/)
 
--- Instrucciones paso a paso: [Script](./readme/1-base.md)
+- [Instrucciones paso a paso:](./1-base.md)
 
 ### 2-spa
 
 - Artículo: [Páginas y rutas Angular SPA](https://academia-binaria.com/paginas-y-rutas-angular-spa/)
 
--- Instrucciones paso a paso: [Script](./readme/2-spa.md)
+- [Instrucciones paso a paso:](./2-spa.md)
 
 ### 3-data
 
 - Artículo: [Formularios, tablas y modelos de datos en Angular](https://academia-binaria.com/formularios-tablas-y-modelos-de-datos-en-angular/)
 
--- Instrucciones paso a paso: [Script](./readme/3-data.md)
+- [Instrucciones paso a paso:](./3-data.md)
 
 ### 4-flow
 
 - Artículo: [Flujo de datos entre componentes Angular](https://academia-binaria.com/flujo-de-datos-entre-componentes-angular/)
 
--- Instrucciones paso a paso: [Script](./readme/4-flow.md)
+- [Instrucciones paso a paso:](./4-flow.md)
 
 ### 5-inject
 
 - Artículo: [Servicios inyectables en Angular](https://academia-binaria.com/servicios-inyectables-en-Angular/)
 
--- Instrucciones paso a paso: [Script](./readme/5-inject.md)
+- [Instrucciones paso a paso:](./5-inject.md)
 
 ### 6-http
 
 - Artículo: [Comunicaciones http en Angular](https://academia-binaria.com/comunicaciones-http-en-Angular/)
 
--- Instrucciones paso a paso: [Script](./readme/6-http.md)
+- [Instrucciones paso a paso:](./6-http.md)
 
 ### 7-watch
 
 - Artículo: [Vigilancia y seguridad en Angular](https://academia-binaria.com/vigilancia-y-seguridad-en-Angular/)
 
-- [Instrucciones paso a paso:](./readme/7-watch.md)
+- [Instrucciones paso a paso:](./7-watch.md)
 
 ### 8-reactive
 
 - Artículo: [Formularios reactivos con Angular](https://academia-binaria.com/formularios-reactivos-con-Angular/)
 
-- [Instrucciones paso a paso:](./readme/8-reactive.md)
+- [Instrucciones paso a paso:](./8-reactive.md)
 
 ### 9-change
 
 - Artículo: [Detección del cambio en Angular](https://academia-binaria.com/deteccion-del-cambio-en-Angular/)
 
-- [Instrucciones paso a paso:](./readme/9-change.md)
+- [Instrucciones paso a paso:](./9-change.md)
 
 ### a-redux
 
 - Artículo: [El patrón Redux con NgRx en Angular](https://academia-binaria.com/el-patron-redux-con-ngrx-en-angular/)
 
-- [Instrucciones paso a paso:](./readme/a-redux.md)
+- [Instrucciones paso a paso:](./a-redux.md)
+
+### b-pwa
+
+- Artículo: [PWA, Entre la web y las apps con Angular](https://academia-binaria.com/pwa-entre-la-web-y-las-apps-con-angular/)
+
+- [Instrucciones paso a paso:](./b-pwa.md)
+
+### c-universal
+
+- Artículo: [academia-binaria](https://academia-binaria.com/)
+
+- [Instrucciones paso a paso:](./c-universal.md)
+
+
 
 ## Autor
 
@@ -86,7 +100,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Mis alumnos
-* Mis mentores: John Papa, Todd Motto, Pascal Precht, Cris Sevilleja, John Lindquist, Dan Wahlin, Devora Kurata, Ben Nadel...
-* Mis distribuidores: Vitae Digital, EscuelaIT, TrainingIT
+* John Papa, Todd Motto, Pascal Precht, Cris Sevilleja, John Lindquist, Dan Wahlin, Devora Kurata, Ben Nadel...
 * etc
-
