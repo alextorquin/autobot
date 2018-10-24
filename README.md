@@ -56,6 +56,19 @@ Versión desplegada: [AutoBot](https://academiabinaria.github.io/autobot/)
 
 - [Instrucciones paso a paso:](./7-watch.md)
 
+### 8-reactive
+
+- Artículo: [Formularios reactivos con Angular](https://academia-binaria.com/formularios-reactivos-con-Angular/)
+
+- [Instrucciones paso a paso:](./8-reactive.md)
+
+### 9-change
+
+- Artículo: [Detección del cambio en Angular](https://academia-binaria.com/deteccion-del-cambio-en-Angular/)
+
+- [Instrucciones paso a paso:](./9-change.md)
+
+
 ## Autor
 
 * **Alberto Basalo** - *Consultor e instructor* - [@albertobasalo](https://twitter.com/albertobasalo)
