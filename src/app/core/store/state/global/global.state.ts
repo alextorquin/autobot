@@ -6,7 +6,7 @@ export interface Global {
   loginNeeded: boolean;
 }
 
-export const initialState: Global = { token: sessionStorage['token'], userMessage: 'Init AutoBot', loginNeeded: false };
+export const initialState: Global = { token: '', userMessage: 'Init AutoBot', loginNeeded: false };
 
 export const globalFeatureSelector = createFeatureSelector('global');
 export const userMessageSelector = createSelector(globalFeatureSelector, (state: Global) => state.userMessage);
