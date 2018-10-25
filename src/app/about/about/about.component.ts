@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { GlobalStoreService } from '../../core/global-store.service';
 import { Link } from '../../core/store/models/link.model';
 
 @Component({
@@ -28,7 +29,9 @@ export class AboutComponent implements OnInit {
       caption: 'Info'
     }
   ];
-  constructor() {}
+  constructor(private globalStore: GlobalStoreService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.globalStore.dispatchTitle('About Autobot');
+  }
 }

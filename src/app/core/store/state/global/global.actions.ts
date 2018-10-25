@@ -3,7 +3,8 @@ import { Action } from '@ngrx/store';
 export enum GlobalActionTypes {
   SendUserMessage = '[Global] Show Message',
   IsLoginNeeded = '[Auth] Is Login Needed',
-  StoreToken = '[Auth] Store Token'
+  StoreToken = '[Auth] Store Token',
+  SetTitle = '[Router] Set Title'
 }
 
 export class SendUserMesage implements Action {
@@ -21,4 +22,9 @@ export class StoreToken implements Action {
   constructor(public payload: string) {}
 }
 
-export type GlobalActions = SendUserMesage | IsLoginNeeded | StoreToken;
+export class SetTitle implements Action {
+  readonly type = GlobalActionTypes.SetTitle;
+  constructor(public payload: string) {}
+}
+
+export type GlobalActions = SendUserMesage | IsLoginNeeded | StoreToken | SetTitle;

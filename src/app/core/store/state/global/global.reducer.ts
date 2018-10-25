@@ -9,6 +9,8 @@ export function reducer(state = initialState, action: GlobalActions): Global {
       return { ...state, loginNeeded: action.payload };
     case GlobalActionTypes.StoreToken:
       return { ...state, token: action.payload };
+    case GlobalActionTypes.SetTitle:
+      return { ...state, title: action.payload };
     default:
       return state;
   }

@@ -20,12 +20,7 @@ import {
   UpdateIndicators,
   UpdateTravel
 } from '../store/car/car.actions';
-import {
-  canBeDeactivatedSelector,
-  carSelector,
-  indicatorsSelector,
-  travelSelector
-} from '../store/car/car.state';
+import { canBeDeactivatedSelector, carSelector, indicatorsSelector, travelSelector } from '../store/car/car.state';
 import { Indicator } from '../store/models/indicator.model';
 
 @Component({
@@ -51,6 +46,7 @@ export class CarComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit() {
+    this.globalStore.dispatchTitle('Car loading...');
     this.loadCar();
     this.subscribeToChanges();
   }
@@ -102,18 +98,15 @@ export class CarComponent implements OnInit, OnDestroy {
       take(1),
       tap(this.onCarTravelGotten)
     );
-    this.store
-      .select(canBeDeactivatedSelector)
-      .subscribe(canBeDeactivated => (this._canBeDeactivated = canBeDeactivated));
-    this.intervalSubscription = interval(environment.refreshInterval).subscribe(
-      this.timeGoesBy
-    );
+    this.store.select(canBeDeactivatedSelector).subscribe(canBeDeactivated => (this._canBeDeactivated = canBeDeactivated));
+    this.intervalSubscription = interval(environment.refreshInterval).subscribe(this.timeGoesBy);
   }
   private onCarGotten = (car: Car): void => {
     if (car == null) {
       return;
     }
     if (this.car == null) {
+      this.globalStore.dispatchTitle(car.name);
       const indicators = this.display.initilizeIndicators(car);
       this.store.dispatch(new UpdateIndicators(indicators));
       this.store.dispatch(new LoadTravel(car));

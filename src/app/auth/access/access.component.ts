@@ -24,6 +24,7 @@ export class AccessComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
+    this.globalStore.dispatchTitle('Access Autobot');
     this.onAccount();
   }
 

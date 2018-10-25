@@ -2,6 +2,7 @@ import { formatNumber } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { GlobalStoreService } from '../../core/global-store.service';
 import { Car } from '../../core/store/models/car.model';
 import { Link } from '../../core/store/models/link.model';
 
@@ -30,9 +31,10 @@ export class HomeComponent implements OnInit {
   public title = environment.title;
   public subtitle = environment.version;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private globalStore: GlobalStoreService) {}
 
   public ngOnInit() {
+    this.globalStore.dispatchTitle('Autobot garage');
     this.carLinks = this.route.snapshot.data.cars.map(this.getLinkFromCar);
   }
 
