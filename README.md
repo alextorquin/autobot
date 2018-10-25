@@ -82,7 +82,7 @@ Versión desplegada: [AutoBot](https://academiabinaria.github.io/autobot/)
 
 ### c-universal
 
-- Artículo: [academia-binaria](https://academia-binaria.com/)
+- Artículo: [Velocidad y SEO con el SSR de Angular Universal](https://academia-binaria.com/velocidad-y-seo-con-el-ssr-de-angular-universal/)
 
 - [Instrucciones paso a paso:](./c-universal.md)
 
