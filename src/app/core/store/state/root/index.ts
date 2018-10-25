@@ -14,14 +14,3 @@ export const rootReducers: ActionReducerMap<RootState> = {
 export const metaReducers: MetaReducer<RootState>[] = !environment.production
   ? []
   : [];
-
-// cars : fromCars.reducer
-
-// loadCars (Sucess , Error)
-
-// car: fromCar.reducer
-
-// LoadCarById  (Sucess , Error)
-// LoadTravelByCarLink  (Sucess , Error)
-// SaveTravel  (Sucess , Error)
-// DeleteTravel  (Sucess , Error)
