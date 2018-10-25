@@ -1,8 +1,10 @@
 import { GlobalActions, GlobalActionTypes } from './global.actions';
 import { Global, initialState } from './global.state';
 
-export function reducer(state = initialState, action: GlobalActions): Global {
+export function globalReducer(state = initialState, action: GlobalActions): Global {
   switch (action.type) {
+    case GlobalActionTypes.ClearUserMessage:
+      return { ...state, userMessage: action.payload };
     case GlobalActionTypes.SendUserMessage:
       return { ...state, userMessage: action.payload };
     case GlobalActionTypes.IsLoginNeeded:

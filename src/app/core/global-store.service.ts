@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, timer } from 'rxjs';
 import { environment } from '../../environments/environment';
 import {
+  ClearUserMessage,
   IsLoginNeeded,
   SendUserMesage,
   StoreToken
@@ -22,12 +23,9 @@ export class GlobalStoreService {
 
   constructor(private store: Store<RootState>) {}
 
-  public selectToken$ = (): Observable<string> =>
-    this.store.select(tokenSelector);
-  public selectUserMessage$ = (): Observable<string> =>
-    this.store.select(userMessageSelector);
-  public selectLoginNeeded$ = (): Observable<boolean> =>
-    this.store.select(loginNeededSelector);
+  public selectToken$ = (): Observable<string> => this.store.select(tokenSelector);
+  public selectUserMessage$ = (): Observable<string> => this.store.select(userMessageSelector);
+  public selectLoginNeeded$ = (): Observable<boolean> => this.store.select(loginNeededSelector);
 
   public dispatchToken = (token: string) => {
     sessionStorage['token'] = token;
@@ -39,7 +37,8 @@ export class GlobalStoreService {
       return;
     }
     const subs = timer(this.clearMessageDelayMs).subscribe(() => {
-      this.store.dispatch(new SendUserMesage(''));
+      // this.store.dispatch(new SendUserMesage(''));
+      this.store.dispatch(new ClearUserMessage());
       subs.unsubscribe();
     });
   };

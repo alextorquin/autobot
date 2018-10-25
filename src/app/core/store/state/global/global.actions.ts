@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 
 export enum GlobalActionTypes {
   SendUserMessage = '[Global] Show Message',
+  ClearUserMessage = '[Global] Clear Message',
   IsLoginNeeded = '[Auth] Is Login Needed',
   StoreToken = '[Auth] Store Token'
 }
@@ -9,6 +10,12 @@ export enum GlobalActionTypes {
 export class SendUserMesage implements Action {
   readonly type = GlobalActionTypes.SendUserMessage;
   constructor(public payload: string) {}
+}
+
+export class ClearUserMessage implements Action {
+  readonly type = GlobalActionTypes.ClearUserMessage;
+  readonly payload = '';
+  constructor() {}
 }
 
 export class IsLoginNeeded implements Action {
@@ -21,4 +28,4 @@ export class StoreToken implements Action {
   constructor(public payload: string) {}
 }
 
-export type GlobalActions = SendUserMesage | IsLoginNeeded | StoreToken;
+export type GlobalActions = SendUserMesage | ClearUserMessage | IsLoginNeeded | StoreToken;
