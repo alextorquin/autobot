@@ -25,7 +25,7 @@ export class NavigatorComponent implements OnInit {
     this.globalStore.selectLoginNeeded$().subscribe(this.onLoginNeededChange);
     this.userMessage$ = this.globalStore.selectUserMessage$();
     if (this.swUpdate.isEnabled) {
-      this.swUpdate.available.subscribe((event: UpdateAvailableEvent) => {
+      this.swUpdate.available.subscribe( ( event: UpdateAvailableEvent ) => {
         const appData = event.available.appData;
         const versionMessage = appData
           ? appData['versionMessage']

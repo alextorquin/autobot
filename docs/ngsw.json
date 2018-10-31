@@ -1,5 +1,8 @@
 {
   "configVersion": 1,
+  "appData": {
+    "versionMessage": "New version: More features to come!"
+  },
   "index": "https://academiabinaria.github.io/autobot/index.html",
   "assetGroups": [
     {
@@ -15,9 +18,9 @@
         "https://academiabinaria.github.io/autobot/fontawesome-webfont.b06871f281fee6b241d6.ttf",
         "https://academiabinaria.github.io/autobot/fontawesome-webfont.fee66e712a8a08eef580.woff",
         "https://academiabinaria.github.io/autobot/index.html",
-        "https://academiabinaria.github.io/autobot/main.3456face9563592c7366.js",
+        "https://academiabinaria.github.io/autobot/main.9cd5c6964d5e9da09256.js",
         "https://academiabinaria.github.io/autobot/polyfills.fd09c208ba09a6514e6a.js",
-        "https://academiabinaria.github.io/autobot/runtime.964b8bad4259c58b3a9a.js",
+        "https://academiabinaria.github.io/autobot/runtime.6cbba2c4bfbcfe2cc5c4.js",
         "https://academiabinaria.github.io/autobot/styles.6df9e799e5ea371eb393.css"
       ],
       "patterns": []
@@ -27,11 +30,11 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
-        "https://academiabinaria.github.io/autobot/0.6fdf944d624209aa100e.js",
+        "https://academiabinaria.github.io/autobot/0.6a0a38ab7702bb0dc3b6.js",
         "https://academiabinaria.github.io/autobot/6.4bfb6f46f1bc5091420b.js",
         "https://academiabinaria.github.io/autobot/7.ae0ebb5337627b9d777a.js",
-        "https://academiabinaria.github.io/autobot/8.4670bf0213951658a111.js",
-        "https://academiabinaria.github.io/autobot/9.67e493c4f8d9860effee.js",
+        "https://academiabinaria.github.io/autobot/8.32a470f8ce032af0ccb3.js",
+        "https://academiabinaria.github.io/autobot/9.effb3baaef2f7f9eec8d.js",
         "https://academiabinaria.github.io/autobot/assets/icons/icon-128x128.png",
         "https://academiabinaria.github.io/autobot/assets/icons/icon-144x144.png",
         "https://academiabinaria.github.io/autobot/assets/icons/icon-152x152.png",
@@ -49,8 +52,7 @@
     {
       "name": "cache-first",
       "patterns": [
-        "http:\\/\\/127\\.0\\.0\\.1:8080\\/assets\\/data\\/cars\\.json",
-        "https:\\/\\/api-base\\.herokuapp\\.com\\/api\\/priv\\/travels\\/.*"
+        "http:\\/\\/127\\.0\\.0\\.1:8080\\/assets\\/data\\/cars\\.json"
       ],
       "strategy": "performance",
       "maxSize": 10,
@@ -60,7 +62,7 @@
     {
       "name": "api-first",
       "patterns": [
-        "https:\\/\\/api-base\\.herokuapp\\.com\\/_api\\/_priv\\/_travels\\/.*"
+        "https:\\/\\/api-base\\.herokuapp\\.com\\/api\\/priv\\/travels\\/.*"
       ],
       "strategy": "freshness",
       "maxSize": 100,
@@ -70,11 +72,11 @@
     }
   ],
   "hashTable": {
-    "https://academiabinaria.github.io/autobot/0.6fdf944d624209aa100e.js": "0147a295534948a785978de381d5420577219716",
+    "https://academiabinaria.github.io/autobot/0.6a0a38ab7702bb0dc3b6.js": "0147a295534948a785978de381d5420577219716",
     "https://academiabinaria.github.io/autobot/6.4bfb6f46f1bc5091420b.js": "24c01e23b7b2b8c49eb583b6e319c3e925ca2ad7",
     "https://academiabinaria.github.io/autobot/7.ae0ebb5337627b9d777a.js": "a1e96bfb7ff4a620e58eb6144e9b36d037f1f807",
-    "https://academiabinaria.github.io/autobot/8.4670bf0213951658a111.js": "ed4934f68cf96dd2d7888f454ced2ea2428b46d7",
-    "https://academiabinaria.github.io/autobot/9.67e493c4f8d9860effee.js": "2a0b868e57728a0d1f8d3aaf1597f648827726ac",
+    "https://academiabinaria.github.io/autobot/8.32a470f8ce032af0ccb3.js": "e773739ca91803f88c02a12fc47959ecc800636b",
+    "https://academiabinaria.github.io/autobot/9.effb3baaef2f7f9eec8d.js": "83288043abf780171d89da00d17bea95a407f31d",
     "https://academiabinaria.github.io/autobot/assets/icons/icon-128x128.png": "43dcb385c20ff598bdc1eb308acd6f2978b4bbe7",
     "https://academiabinaria.github.io/autobot/assets/icons/icon-144x144.png": "d04ae1213bef156e8a261c7700af3d5e98ae46cf",
     "https://academiabinaria.github.io/autobot/assets/icons/icon-152x152.png": "46c47a256ad1ba64ee65947e605981b73ee2a3d4",
@@ -91,10 +93,10 @@
     "https://academiabinaria.github.io/autobot/fontawesome-webfont.af7ae505a9eed503f8b8.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
     "https://academiabinaria.github.io/autobot/fontawesome-webfont.b06871f281fee6b241d6.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
     "https://academiabinaria.github.io/autobot/fontawesome-webfont.fee66e712a8a08eef580.woff": "28b782240b3e76db824e12c02754a9731a167527",
-    "https://academiabinaria.github.io/autobot/index.html": "5d535442551d37d748ef380b3434a720d473836a",
-    "https://academiabinaria.github.io/autobot/main.3456face9563592c7366.js": "52dec2cbc765f607e86bbb98641ffe331880ea7b",
+    "https://academiabinaria.github.io/autobot/index.html": "b04c08da28dca2c5a09d5af61b8d2400bfb827c6",
+    "https://academiabinaria.github.io/autobot/main.9cd5c6964d5e9da09256.js": "397c6507fd2f358edc8c1bc84d8b2577d8457db7",
     "https://academiabinaria.github.io/autobot/polyfills.fd09c208ba09a6514e6a.js": "97f2e963ac1a178f16f3f293ba69ed6ada0da23b",
-    "https://academiabinaria.github.io/autobot/runtime.964b8bad4259c58b3a9a.js": "e4c6823d205cacfacaa9b3d98124a996f19cca72",
+    "https://academiabinaria.github.io/autobot/runtime.6cbba2c4bfbcfe2cc5c4.js": "2ee7ca8cd097ef71ac4415b50b6560e2cc1eea76",
     "https://academiabinaria.github.io/autobot/styles.6df9e799e5ea371eb393.css": "672242d73842e414f30b3ecda57edcc3dc81100f"
   },
   "navigationUrls": [

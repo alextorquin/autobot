@@ -37,8 +37,7 @@
     "dataGroups": [{
       "name": "cache-first",
       "urls":[
-        "http://127.0.0.1:8080/assets/data/cars.json",
-        "https://api-base.herokuapp.com/api/priv/travels/**"
+        "http://127.0.0.1:8080/assets/data/cars.json"
       ],
       "cacheConfig":{
         "strategy":"performance",
@@ -49,7 +48,7 @@
     ,{
       "name": "api-first",
       "urls":[
-        "https://api-base.herokuapp.com/_api/_priv/_travels/**"
+        "https://api-base.herokuapp.com/api/priv/travels/**"
       ],
       "cacheConfig":{
         "strategy" : "freshness",

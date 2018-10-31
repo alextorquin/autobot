@@ -14,7 +14,7 @@ import { environment } from '../../../environments/environment';
         rel="noopener" target="_blank">
           v: {{ version }}
       </a>
-      <small>By <a href="https://twitter.com/albertobasalo">Alberto Basalo</a></small>
+      <small>By <a href="https://twitter.com/albertobasalo">Alberto Basalo</a> for Redegal</small>
     </div>
   </footer>
   `,
