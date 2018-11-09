@@ -7,14 +7,14 @@ import { environment } from '../../../environments/environment';
   <footer class="footer has-text-centered">
     <div class="has-text-primary has-text-weight-bold">{{ message }}</div>
     <div>
-      <a routerLink="about"><strong> Autobot.</strong> </a><i>-A simple Angular project for playing with cars... while learning Angular ;-)</i>.
+      <a routerLink="about"><strong> Autobot.</strong> </a><i i18n="@@slogan">-A simple Angular project for playing with cars... while learning Angular ;-)</i>.
     </div>
     <div>
       <a href="https://github.com/AcademiaBinaria/{{title}}/tree/{{version}}/"
         rel="noopener" target="_blank">
           v: {{ version }}
       </a>
-      <small>By <a href="https://twitter.com/albertobasalo">Alberto Basalo</a> by redegal </small>
+      <small>By <a href="https://twitter.com/albertobasalo">Alberto Basalo</a></small>
     </div>
   </footer>
   `,
