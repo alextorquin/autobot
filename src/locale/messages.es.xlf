@@ -3,28 +3,28 @@
   <file source-language="es" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="logo_alt" datatype="html">
-        <source>Autobot: aprende Angular jugando con coches</source>
+        <target>Autobot: aprende Angular jugando con coches</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/core/navigator/header.component.ts</context>
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="about" datatype="html">
-        <source> A cerca de</source>
+        <target> A cerca de</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/core/navigator/header.component.ts</context>
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="slogan" datatype="html">
-        <source>-Un simple proyecto Angular para jugar concoches... mientras parendes Angular ;-)</source>
+        <target>-Un simple proyecto Angular para jugar con coches... mientras aprendes Angular ;-)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/core/navigator/footer.component.ts</context>
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="welcome" datatype="html">
-        <source>Bienvenido a <x id="INTERPOLATION" equiv-text="{{ title }}"/></source>
+        <target>Bienvenido a <x id="INTERPOLATION" equiv-text="{{ title }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/home/home/home.component.ts</context>
           <context context-type="linenumber">4</context>

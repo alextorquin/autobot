@@ -24,7 +24,7 @@ import { RootState } from '../../core/store/state/root/root.state';
     </header>
     <app-menu-list
       caption="Cars in your garage:"
-      i18n-title="@@home_list_caption"
+      i18n-caption="@@home_list_caption"
       [links]="carLinks$ | async"
     >
     </app-menu-list>
