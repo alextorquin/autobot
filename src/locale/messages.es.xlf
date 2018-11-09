@@ -36,7 +36,7 @@
       </trans-unit>
       <trans-unit id="home_list_caption" datatype="html">
         <source>Cars in your garage:</source>
-        <target>Ccoches en tu garaje:</target>
+        <target>Coches en tu garaje:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/home/home/home.component.ts</context>
           <context context-type="linenumber">12</context>
