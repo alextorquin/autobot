@@ -30,6 +30,13 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="home_list_caption" datatype="html">
+        <source>Cars in your garage:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/home/home.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -3,6 +3,7 @@
   <file source-language="es" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="logo_alt" datatype="html">
+        <source>Autobot: learn Angular playing with cars</source>
         <target>Autobot: aprende Angular jugando con coches</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/core/navigator/header.component.ts</context>
@@ -10,6 +11,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="about" datatype="html">
+        <source> About</source>
         <target> A cerca de</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/core/navigator/header.component.ts</context>
@@ -17,6 +19,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="slogan" datatype="html">
+        <source>-A simple Angular project for playing with cars... while learning Angular ;-)</source>
         <target>-Un simple proyecto Angular para jugar con coches... mientras aprendes Angular ;-)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/core/navigator/footer.component.ts</context>
@@ -24,10 +27,19 @@
         </context-group>
       </trans-unit>
       <trans-unit id="welcome" datatype="html">
+        <source>Welcome to <x id="INTERPOLATION" equiv-text="{{ title }}"/></source>
         <target>Bienvenido a <x id="INTERPOLATION" equiv-text="{{ title }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/home/home/home.component.ts</context>
           <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home_list_caption" datatype="html">
+        <source>Cars in your garage:</source>
+        <target>Ccoches en tu garaje:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/home/home.component.ts</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
     </body>
