@@ -4,9 +4,12 @@ import { Link } from '../../core/store/models/link.model';
 @Component({
   selector: 'app-links',
   template: `
-  <app-menu-list caption="Links to learn Angular:"
-    [links]="links">
-  </app-menu-list>
+    <app-menu-list
+      caption="Links to learn Angular:"
+      i18n-caption="@@about_links_caption"
+      [links]="links"
+    >
+    </app-menu-list>
   `,
   styles: []
 })

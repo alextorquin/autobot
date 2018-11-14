@@ -73,6 +73,74 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true
+            },
+            "production-es": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "outputPath": "dist/autobot/es/",
+              "baseHref": "/es/",
+			        "i18nFile": "src/locale/messages.es.xlf",
+			        "i18nFormat": "xlf",
+			        "i18nLocale": "es",
+			        "i18nMissingTranslation": "error"
+            },
+            "publication": {
+              "outputPath": "docs",
+              "baseHref": "https://academiabinaria.github.io/autobot/",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true
+            },
+            "publication-es": {
+              "outputPath": "docs/es",
+              "baseHref": "https://academiabinaria.github.io/autobot/es/",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "i18nFile": "src/locale/messages.es.xlf",
+			        "i18nFormat": "xlf",
+			        "i18nLocale": "es",
+			        "i18nMissingTranslation": "error"
             }
           }
         },
@@ -84,6 +152,9 @@
           "configurations": {
             "production": {
               "browserTarget": "autobot:build:production"
+            },
+            "es": {
+              "browserTarget": "autobot:build:production-es"
             }
           }
         },

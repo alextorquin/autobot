@@ -17,6 +17,10 @@
           <context context-type="sourcefile">app/core/navigator/header.component.ts</context>
           <context context-type="linenumber">15</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/about/about/about.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="slogan" datatype="html">
         <source>-A simple Angular project for playing with cars... while learning Angular ;-)</source>
@@ -24,6 +28,184 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/core/navigator/footer.component.ts</context>
           <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="about_links_caption" datatype="html">
+        <source>Links to learn Angular:</source>
+        <target>Enlaces para aprender Angular ;-)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/about/about/links.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="play" datatype="html">
+        <source>Play with cars...</source>
+        <target>Juega a los coches...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/about/about/info.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="learn" datatype="html">
+        <source>...while learning Angular.</source>
+        <target>...mientras aprendes Angular</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/about/about/info.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_legend" datatype="html">
+        <source>Use your account or create a new one</source>
+        <target>Usa tu cuenta o crea una nueva</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_name" datatype="html">
+        <source>Name</source>
+        <target>Nombre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_name_placeholder" datatype="html">
+        <source>Your name, please</source>
+        <target>Tu nombre por favor</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_required_name" datatype="html">
+        <source>We need a name</source>
+        <target>Necesitamos un nombre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_email" datatype="html">
+        <source>Email</source>
+        <target>Correo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_email_placeholder" datatype="html">
+        <source>Email address</source>
+        <target>Dirección de e-mail</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_required_email" datatype="html">
+        <source>We need a valid email</source>
+        <target>Necesitamos una dirección de emial válida</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_password" datatype="html">
+        <source>Password</source>
+        <target>Contraseña</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_password_placeholder" datatype="html">
+        <source>4 digits password</source>
+        <target>Contraseña de 4 dígitos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_required_password" datatype="html">
+        <source>We need a password</source>
+        <target>Necesitamos una contraseña</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_minlength_password" datatype="html">
+        <source>We need at least <x id="INTERPOLATION" equiv-text="{{getErrors(&apos;password&apos;).minlength.requiredLength}}"/>
+            digits</source>
+        <target>Necesitamos al menos <x id="INTERPOLATION" equiv-text="{{getErrors(&apos;password&apos;).minlength.requiredLength}}"/>
+            dígitos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_confirm_password" datatype="html">
+        <source>Confirm Password</source>
+        <target>Confirma la contraseña</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_password_confirm_placeholder" datatype="html">
+        <source>repeat password</source>
+        <target>Repite la contraseña</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_notmatch_passwords" datatype="html">
+        <source>Passwords do not match</source>
+        <target>Las contraseñas no coinciden</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_login" datatype="html">
+        <source>Login</source>
+        <target>Acceder</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_register" datatype="html">
+        <source>Register</source>
+        <target>Registrame</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_dont_have" datatype="html">
+        <source>I don´t have an account yet.</source>
+        <target>Aún no tengo una cuenta</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_already_have" datatype="html">
+        <source>I already have an account.</source>
+        <target>Ya tengo una cuenta</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="access_caption" datatype="html">
+        <source>Access to autobot</source>
+        <target>Acceso a autobot</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/access/access.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="welcome" datatype="html">

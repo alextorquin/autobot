@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   title: 'autobot',
-  version: 'b-pwa',
-  tag: '11.0.0',
+  version: 'd-i18n',
+  tag: '13.0.0',
   clearMessageDelayMs: 5000,
   refreshInterval: 1000,
   factorSpeed: 10,
