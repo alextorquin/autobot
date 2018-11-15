@@ -1,5 +1,5 @@
-git merge b-pwa
-git tag -a v11.0.0 -m "b-PWA: Entre la web y las apps con Angular"
+git merge d-i18n
+git tag -a v13.0.0 -m "d-i18n: Intenacionalización de aplicaciones con Angular"
 git push origin master --tag
 
 # git push --delete origin v0.0.0
