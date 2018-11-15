@@ -56,12 +56,12 @@
             "scripts": []
           },
           "configurations": {
-            "serve-es": {
+            "es": {
               "optimization": false,
               "outputHashing": "all",
               "sourceMap": true,
               "extractCss": true,
-              "namedChunks": false,
+              "namedChunks": true,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -74,7 +74,7 @@
 			        "i18nLocale": "es",
 			        "i18nMissingTranslation": "error"
             },
-            "production": {
+            "prod": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -92,7 +92,7 @@
               "buildOptimizer": true,
               "serviceWorker": true
             },
-            "production-es": {
+            "prod-es": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -116,7 +116,7 @@
 			        "i18nLocale": "es",
 			        "i18nMissingTranslation": "error"
             },
-            "publication": {
+            "pub": {
               "outputPath": "docs",
               "baseHref": "https://academiabinaria.github.io/autobot/",
               "fileReplacements": [
@@ -136,7 +136,7 @@
               "buildOptimizer": true,
               "serviceWorker": true
             },
-            "publication-es": {
+            "pub-es": {
               "outputPath": "docs/es",
               "baseHref": "https://academiabinaria.github.io/autobot/es/",
               "fileReplacements": [
@@ -168,11 +168,11 @@
             "browserTarget": "autobot:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "autobot:build:production"
+            "prod": {
+              "browserTarget": "autobot:build:prod"
             },
             "es": {
-              "browserTarget": "autobot:build:serve-es"
+              "browserTarget": "autobot:build:es"
             }
           }
         },
