@@ -92,6 +92,7 @@ Versión desplegada: [AutoBot](https://academiabinaria.github.io/autobot/)
 
 - [Instrucciones paso a paso:](./d-i18n.md)
 
+
 ## Autor
 
 * **Alberto Basalo** - *Consultor e instructor* - [@albertobasalo](https://twitter.com/albertobasalo)

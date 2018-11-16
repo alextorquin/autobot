@@ -13,6 +13,6 @@ export const environment = {
   warningKmsBattery: 150,
   assetsUrl: './assets/data/',
   apiUrl: 'https://api-base.herokuapp.com/api/',
-  locale: 'en',
-  alternateUrl: 'https://academiabinaria.github.io/autobot/es/'
+  locale: 'es',
+  alternateUrl: 'https://academiabinaria.github.io/autobot/'
 };
