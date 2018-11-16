@@ -57,6 +57,16 @@
           },
           "configurations": {
             "es": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.es.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index.es.html"
+                }
+              ],
               "optimization": false,
               "outputHashing": "all",
               "sourceMap": true,
@@ -96,7 +106,11 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "with": "src/environments/environment.prod.es.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index.es.html"
                 }
               ],
               "optimization": true,
@@ -123,6 +137,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index.es.html"
                 }
               ],
               "optimization": true,

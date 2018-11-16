@@ -80,6 +80,17 @@ Versión desplegada: [AutoBot](https://academiabinaria.github.io/autobot/)
 
 - [Instrucciones paso a paso:](./b-pwa.md)
 
+### c-universal
+
+- Artículo: [Velocidad y SEO con el SSR de Angular Universal](https://academia-binaria.com/velocidad-y-seo-con-el-ssr-de-angular-universal/)
+
+- [Instrucciones paso a paso:](./c-universal.md)
+
+### d-i18n
+
+- Artículo: [Internacionalización de aplicaciones con Angular](https://academia-binaria.com/internacionalizacion-de-aplicaciones-con-angular/)
+
+- [Instrucciones paso a paso:](./d-i18n.md)
 
 
 ## Autor

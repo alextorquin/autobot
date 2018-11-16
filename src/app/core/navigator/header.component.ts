@@ -19,6 +19,9 @@ import { environment } from '../../../environments/environment';
         <div class="navbar-start ">
           <a class="navbar-item" routerLink="about" i18n="@@about"> About</a>
         </div>
+        <div class="navbar-start ">
+          <a class="navbar-item" [href]="alternateUrl" i18n="@@alternate"> Español</a>
+        </div>
         <div class="navbar-end">
           <a
             class="navbar-item"
@@ -38,6 +41,7 @@ export class HeaderComponent implements OnInit {
   public title = environment.title;
   public version = environment.version;
   public tag = environment.tag;
+  public alternateUrl = environment.alternateUrl;
   constructor() {}
 
   ngOnInit() {}
