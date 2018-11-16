@@ -88,7 +88,7 @@ Versión desplegada: [AutoBot](https://academiabinaria.github.io/autobot/)
 
 ### d-i18n
 
-- Work in progress
+- Artículo: [Internacionalización de aplicaciones con Angular](https://academia-binaria.com/internacionalizacion-de-aplicaciones-con-angular/)
 
 - [Instrucciones paso a paso:](./d-i18n.md)
 
