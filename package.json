@@ -13,10 +13,12 @@
     "start:es": "ng serve --configuration=es -o --port 4204",
     "build": "ng build --configuration=prod",
     "build:es": "ng build --configuration=prod-es",
+    "build:auth-blocks": "ng build auth-blocks",
     "serve": "npm run build && http-server ./dist/autobot -o -c-1",
     "serve:es": "npm run build:es && http-server ./dist/autobot-es -o -c-1",
     "pub": "ng build --configuration=pub && git add * && git commit -m 'pub' && git push",
     "pub:es": "ng build --configuration=pub-es && git add * && git commit -m 'pub-es' && git push",
+    "pack:auth-blocks": "cd dist/auth-blocks && npm pack",
     "ng": "ng",
     "xi18n": "ng xi18n --output-path locale",
     "test": "ng test"
