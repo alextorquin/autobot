@@ -1,102 +1,103 @@
-<lib-auth-blocks></lib-auth-blocks>
 <app-card caption="Access to autobot" i18n-caption="@@access_caption">
-  <main>
-    <form [formGroup]="form"
-          (keyup.enter)="isNewAccount?onRegister():onLogin()">
-      <legend i18n="@@access_legend">
-        Use your account or create a new one
-      </legend>
-      <div *ngIf="isNewAccount"
-           class="field">
-        <label for="name"
-               class="label" i18n="@@access_name">Name</label>
-        <div class="control">
-          <input name="name"
-                 formControlName="name"
-                 type="text "
-                 class="input"
-                 placeholder="Your name, please" i18n-placeholder="@@access_name_placeholder">
-        </div>
-        <span *ngIf="mustShowError('name')">
-          <p class="help is-danger" i18n="@@access_required_name">We need a name</p>
-        </span>
-      </div>
-      <div class="field">
-        <label for="email"
-               class="label" i18n="@@access_email">Email</label>
-        <div class="control">
-          <input name="email"
-                 formControlName="email"
-                 type="email"
-                 class="input"
-                 placeholder="Email address" i18n-placeholder="@@access_email_placeholder">
-        </div>
-        <span *ngIf="mustShowError('email')">
-          <p class="help is-danger" i18n="@@access_required_email">We need a valid email</p>
-        </span>
-      </div>
-      <div class="field">
-        <label for="password"
-               class="label" i18n="@@access_password">Password</label>
-        <div class="control">
-          <input name="password"
-                 formControlName="password"
-                 type="password"
-                 class="input"
-                 placeholder="4 digits password" i18n-placeholder="@@access_password_placeholder">
-        </div>
-        <span *ngIf="mustShowError('password')">
-          <p *ngIf="hasError('password', 'required')"
-             class="help is-danger" i18n="@@access_required_password">We need a password</p>
-          <p *ngIf="hasError('password', 'minlength')"
-             class="help is-danger" i18n="@@access_minlength_password">We need at least {{getErrors('password').minlength.requiredLength}}
-            digits</p>
-          <p *ngIf="hasError('password', 'passwordMustHaveNumbers')"
-             class="help is-danger">{{getErrors('password').passwordMustHaveNumbers}}</p>
-        </span>
-      </div>
-      <div *ngIf="isNewAccount"
-           class="field">
-        <label for="confirmPassword"
-               class="label" i18n="@@access_confirm_password">Confirm Password</label>
-        <div class="control">
-          <input name="confirmPassword"
-                 formControlName="confirmPassword"
-                 type="password"
-                 class="input"
-                 placeholder="repeat password" i18n-placeholder="@@access_password_confirm_placeholder">
-        </div>
-        <span *ngIf="mustShowError('confirmPassword')">
-          <p *ngIf="hasError('confirmPassword', 'matchPassword')"
-             class="help is-danger" i18n="@@access_notmatch_passwords">Passwords do not match</p>
-        </span>
-      </div>
-    </form>
-  </main>
-  <footer>
-    <section class="field is-grouped">
-      <span *ngIf="!isNewAccount"
-            class="control">
-        <button class="button is-warning is-large"
-                [disabled]="form.invalid"
-                (click)="onLogin()" i18n="@@access_login">Login</button>
-      </span>
-      <span *ngIf="isNewAccount"
-            class="control">
-        <button class="button is-info is-large"
-                [disabled]="form.invalid"
-                (click)="onRegister()" i18n="@@access_register">Register</button>
-      </span>
-      <span *ngIf="!isNewAccount"
-            class="control">
-        <button class="button is-outlined is-large"
-                (click)="onNoAccount()" i18n="@@access_dont_have">I don´t have an account yet.</button>
-      </span>
-      <span *ngIf="isNewAccount"
-            class="control">
-        <button class="button is-outlined is-large"
-                (click)="onAccount()" i18n="@@access_already_have">I already have an account.</button>
-      </span>
-    </section>
-  </footer>
+    <lib-auth-blocks [form]="form" [isNewAccount]="isNewAccount" (login)="onLogin()" (register)="onRegister()">
+    </lib-auth-blocks>
 </app-card>
+    <!-- <main>
+      <form [formGroup]="form"
+            (keyup.enter)="isNewAccount?onRegister():onLogin()">
+        <legend i18n="@@access_legend">
+          Use your account or create a new one
+        </legend>
+        <div *ngIf="isNewAccount"
+             class="field">
+          <label for="name"
+                 class="label" i18n="@@access_name">Name</label>
+          <div class="control">
+            <input name="name"
+                   formControlName="name"
+                   type="text "
+                   class="input"
+                   placeholder="Your name, please" i18n-placeholder="@@access_name_placeholder">
+          </div>
+          <span *ngIf="mustShowError('name')">
+            <p class="help is-danger" i18n="@@access_required_name">We need a name</p>
+          </span>
+        </div>
+        <div class="field">
+          <label for="email"
+                 class="label" i18n="@@access_email">Email</label>
+          <div class="control">
+            <input name="email"
+                   formControlName="email"
+                   type="email"
+                   class="input"
+                   placeholder="Email address" i18n-placeholder="@@access_email_placeholder">
+          </div>
+          <span *ngIf="mustShowError('email')">
+            <p class="help is-danger" i18n="@@access_required_email">We need a valid email</p>
+          </span>
+        </div>
+        <div class="field">
+          <label for="password"
+                 class="label" i18n="@@access_password">Password</label>
+          <div class="control">
+            <input name="password"
+                   formControlName="password"
+                   type="password"
+                   class="input"
+                   placeholder="4 digits password" i18n-placeholder="@@access_password_placeholder">
+          </div>
+          <span *ngIf="mustShowError('password')">
+            <p *ngIf="hasError('password', 'required')"
+               class="help is-danger" i18n="@@access_required_password">We need a password</p>
+            <p *ngIf="hasError('password', 'minlength')"
+               class="help is-danger" i18n="@@access_minlength_password">We need at least {{getErrors('password').minlength.requiredLength}}
+              digits</p>
+            <p *ngIf="hasError('password', 'passwordMustHaveNumbers')"
+               class="help is-danger">{{getErrors('password').passwordMustHaveNumbers}}</p>
+          </span>
+        </div>
+        <div *ngIf="isNewAccount"
+             class="field">
+          <label for="confirmPassword"
+                 class="label" i18n="@@access_confirm_password">Confirm Password</label>
+          <div class="control">
+            <input name="confirmPassword"
+                   formControlName="confirmPassword"
+                   type="password"
+                   class="input"
+                   placeholder="repeat password" i18n-placeholder="@@access_password_confirm_placeholder">
+          </div>
+          <span *ngIf="mustShowError('confirmPassword')">
+            <p *ngIf="hasError('confirmPassword', 'matchPassword')"
+               class="help is-danger" i18n="@@access_notmatch_passwords">Passwords do not match</p>
+          </span>
+        </div>
+      </form>
+    </main>
+    <footer>
+      <section class="field is-grouped">
+        <span *ngIf="!isNewAccount"
+              class="control">
+          <button class="button is-warning is-large"
+                  [disabled]="form.invalid"
+                  (click)="onLogin()" i18n="@@access_login">Login</button>
+        </span>
+        <span *ngIf="isNewAccount"
+              class="control">
+          <button class="button is-info is-large"
+                  [disabled]="form.invalid"
+                  (click)="onRegister()" i18n="@@access_register">Register</button>
+        </span>
+        <span *ngIf="!isNewAccount"
+              class="control">
+          <button class="button is-outlined is-large"
+                  (click)="onNoAccount()" i18n="@@access_dont_have">I don´t have an account yet.</button>
+        </span>
+        <span *ngIf="isNewAccount"
+              class="control">
+          <button class="button is-outlined is-large"
+                  (click)="onAccount()" i18n="@@access_already_have">I already have an account.</button>
+        </span>
+      </section>
+    </footer> -->

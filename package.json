@@ -40,7 +40,7 @@
     "@ngrx/router-store": "^6.1.0",
     "@ngrx/store": "^6.1.0",
     "@ngrx/store-devtools": "^6.1.0",
-    "auth-blocks": "file:dist/auth-blocks/auth-blocks-0.0.1.tgz",
+    "auth-blocks": "file:dist/auth-blocks/auth-blocks-0.0.2.tgz",
     "bulma": "^0.7.1",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",

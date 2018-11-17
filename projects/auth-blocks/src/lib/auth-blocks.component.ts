@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthBlocksService } from './auth-blocks.service';
 import { CustomValidators } from './custom.validators';
 
 @Component({
@@ -16,7 +17,7 @@ export class AuthBlocksComponent implements OnInit {
   public login = new EventEmitter();
   @Output()
   public register = new EventEmitter();
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private formTools: AuthBlocksService) {}
 
   public ngOnInit() {}
 
@@ -51,5 +52,17 @@ export class AuthBlocksComponent implements OnInit {
       ]
     });
     this.isNewAccount = false;
+  }
+
+  public getErrors(controlName: string): any {
+    return this.formTools.getErrors(this.form, controlName);
+  }
+
+  public mustShowError(controlName: string) {
+    return this.formTools.mustShowError(this.form, controlName);
+  }
+
+  public hasError(controlName: string, errorCode: string): any {
+    return this.formTools.hasError(this.form, controlName, errorCode);
   }
 }
