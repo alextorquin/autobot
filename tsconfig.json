@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "auth-blocks": [
+        "dist/auth-blocks"
+      ],
+      "auth-blocks/*": [
+        "dist/auth-blocks/*"
+      ]
+    }
   }
 }
