@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AuthBlocksModule } from 'AuthBlocks';
+import { AuthBlocksModule } from 'auth-blocks';
 import { SharedModule } from '../shared/shared.module';
 import { AccessComponent } from './access/access.component';
 import { AuthRoutingModule } from './auth-routing.module';
