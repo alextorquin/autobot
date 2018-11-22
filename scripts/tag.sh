@@ -1,5 +1,5 @@
-git merge d-i18n
-git tag -a v13.0.0 -m "d-i18n: Intenacionalización de aplicaciones con Angular"
+git merge e-library
+git tag -a v14.0.0 -m "e-library: Librerías reutilizables entre aplicaciones Angular"
 git push origin master --tag
 
 # git push --delete origin v0.0.0

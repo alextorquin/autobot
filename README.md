@@ -92,6 +92,11 @@ Versión desplegada: [AutoBot](https://academiabinaria.github.io/autobot/)
 
 - [Instrucciones paso a paso:](./d-i18n.md)
 
+### e-library
+
+- Artículo: [Librerías reutilizables entre aplicaciones Angular](https://academia-binaria.com/libreriaas-reutilizables-entre-aplicaciones-angular/)
+
+- [Instrucciones paso a paso:](./e-library.md)
 
 ## Autor
 
