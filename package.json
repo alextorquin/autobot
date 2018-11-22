@@ -1,6 +1,6 @@
 {
   "name": "autobot",
-  "version": "6.1.0",
+  "version": "7.1.0",
   "description": "A simple Angular project for playing with cars... while learning Angular ;-)",
   "homepage": "https://academiabinaria.github.io/autobot/",
   "author": {
@@ -11,13 +11,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o --port 4203",
-    "build": "ng build --prod --base-href /dist/autobot/ --stats-json",
+    "build": "ng build --prod --base-href /dist/autobot/ ",
     "pub": "ng build --prod --output-path docs --base-href https://academiabinaria.github.io/autobot/",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "doc": "compodoc -p src/tsconfig.app.json -s",
-    "stats": "webpack-bundle-analyzer dist/autobot/stats.json"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -33,13 +31,12 @@
     "bulma": "^0.7.1",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
-    "moment": "^2.22.2",
     "rxjs": "^6.3.3",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.0",
-    "@angular/cli": "~7.0.5",
+    "@angular/cli": "~7.0.6",
     "@angular/compiler-cli": "^7.0.3",
     "@angular/language-service": "^7.0.3",
     "@types/jasmine": "~2.8.6",
