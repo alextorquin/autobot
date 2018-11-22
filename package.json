@@ -11,13 +11,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o --port 4203",
-    "build": "ng build --prod --stats-json",
+    "build": "ng build --prod",
     "gh": "ng build --prod --output-path docs --base-href https://academiabinaria.github.io/autobot/",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "doc": "compodoc -p src/tsconfig.app.json -s",
-    "stats": "webpack-bundle-analyzer dist/autobot/stats.json"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -32,8 +30,6 @@
     "@angular/router": "^7.0.3",
     "bulma": "^0.7.1",
     "core-js": "^2.5.4",
-    "font-awesome": "^4.7.0",
-    "moment": "^2.22.2",
     "rxjs": "^6.3.3",
     "zone.js": "~0.8.26"
   },
