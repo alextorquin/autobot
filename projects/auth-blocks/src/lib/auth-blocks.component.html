@@ -1,6 +1,6 @@
 <main>
   <form [formGroup]="form"
-        (keyup.enter)="isNewAccount?register.next():login.next()">
+        (keyup.enter)="isNewAccount?register.next(form.value):login.next(form.value)">
         <legend i18n="@@access_legend">
           Use your account or create a new one
         </legend>
@@ -77,13 +77,13 @@
               class="control">
           <button class="button is-warning is-large"
                   [disabled]="form.invalid"
-                  (click)="login.next()" i18n="@@access_login">Login</button>
+                  (click)="login.next(form.value)" i18n="@@access_login">Login</button>
         </span>
         <span *ngIf="isNewAccount"
               class="control">
           <button class="button is-info is-large"
                   [disabled]="form.invalid"
-                  (click)="register.next()" i18n="@@access_register">Register</button>
+                  (click)="register.next(form.value)" i18n="@@access_register">Register</button>
         </span>
         <span *ngIf="!isNewAccount"
               class="control">

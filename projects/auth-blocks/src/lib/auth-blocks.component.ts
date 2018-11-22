@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthBlocksService } from './auth-blocks.service';
 import { CustomValidators } from './custom.validators';
@@ -9,17 +9,17 @@ import { CustomValidators } from './custom.validators';
   styles: []
 })
 export class AuthBlocksComponent implements OnInit {
-  @Input()
   public form: FormGroup;
-  @Input()
   public isNewAccount = false;
   @Output()
-  public login = new EventEmitter();
+  public login = new EventEmitter<any>();
   @Output()
-  public register = new EventEmitter();
+  public register = new EventEmitter<any>();
   constructor(private fb: FormBuilder, private formTools: AuthBlocksService) {}
 
-  public ngOnInit() {}
+  public ngOnInit() {
+    this.onAccount();
+  }
 
   public onNoAccount() {
     this.form = this.fb.group(
