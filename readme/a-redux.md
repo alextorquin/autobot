@@ -2,12 +2,9 @@
 
 ## a.1 El patrón Redux
 
-
 ## a.2 NgRx
 
 instalación ./scripts/lib/ngrx.sh
-
-
 
 ### a.2.1 El Store
 
@@ -21,7 +18,6 @@ instalación ./scripts/lib/ngrx.sh
 ### a.2.2 Las Actions
 
 ### a.2.3 Los Reducers
-
 
 ## a.3 Herramientas
 
