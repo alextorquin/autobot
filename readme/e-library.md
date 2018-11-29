@@ -12,3 +12,13 @@ ng generate library auth-blocks
 ## e.3 Importar y usar
 AuthBlocksModule
 <lib-auth-blocks>
+
+
+## e.1 Crear la librería
+ng generate library welcome
+"build:welcome": "ng build welcome"
+
+
+## e.2 Empaquetar e instalar
+"pack:welcome": "npm run build:welcome && cd dist/welcome && npm pack"
+"welcome": "file:dist/welcome/welcome-0.0.4.tgz",
